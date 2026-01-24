@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"seconds_to_min_sec",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"seconds_to_min_sec",
+  "parent":{
+    "name":"脚本",
+    "path":"folders/脚本.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"Dll_Xml",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Dll_Xml",
+  "parent":{
+    "name":"脚本",
+    "path":"folders/脚本.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

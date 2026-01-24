@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"Voices1_1",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":248.80417,
+  "exportDir":"",
+  "name":"Voices1_1",
+  "parent":{
+    "name":"debug",
+    "path":"folders/声音/debug.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"Voices1_1.ogg",
+  "volume":0.0,
+}

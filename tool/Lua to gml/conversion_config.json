@@ -1,0 +1,16 @@
+{
+  "settings": {
+    "auto_semicolon": true,
+    "preserve_comments": true,
+    "convert_string_concatenation": true,
+    "add_conversion_header": true
+  },
+  "custom_functions": {
+    "custom_print": "show_custom_message",
+    "custom_input": "get_custom_input"
+  },
+  "ignore_patterns": [
+    "--\\[\\[.*?\\]\\]",
+    "--.*$"
+  ]
+}

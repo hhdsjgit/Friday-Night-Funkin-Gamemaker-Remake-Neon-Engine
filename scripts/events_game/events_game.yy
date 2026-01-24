@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"events_game",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"events_game",
+  "parent":{
+    "name":"脚本",
+    "path":"folders/脚本.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
