@@ -30,6 +30,16 @@ function events_game(song_name){
 		ui_arrow_move_buffer(790,790+115,790+230,790+345,100,100,100,100,0,30,46000,50000,1,0)
 		ui_arrow_move_buffer(135,135+115,135+230,135+345,100,100,100,100,1,30,46000,50000,1,0)
 		
+		ui_arrow_move_buffer(790+345,790+230,790+115,790,100,100,100,100,0,10,70000,78000,1,0)
+		ui_arrow_move_buffer(790,790+115,790+230,790+345,100,100,100,100,0,10,100000,108000,1,0)
+		
+		ui_arrow_move_buffer(790,790+115,790+230,790+345,100,180,100,180,0,10,120000,140000,1,1)
+		ui_arrow_move_buffer(135,135+115,135+230,135+345,180,100,180,100,1,10,120000,148000,1,1)
+		
+		ui_arrow_move_buffer(790,790+115,790+230,790+345,100,100,100,100,0,10,180000,186000,1,1)
+		ui_arrow_move_buffer(135,135+115,135+230,135+345,100,100,100,100,1,10,180000,186000,1,1)
+	
+		
 		//if cam_move_type = obj_opponent_player {
 		//	global.Game_inf.cam_x -= ( global.Game_inf.cam_x - (obj_opponent_player.x) +900) / 30
 		//	global.Game_inf.cam_y -= ( global.Game_inf.cam_y - (obj_opponent_player.y) + 900) / 30

@@ -32,5 +32,12 @@ if global.game_paused = 1{
 			audio_stop_sound(break_music)
 			resume_game();
 		}
+		if test_need_draw[choose_setting] == "EXIT TO MENU" {
+			room_goto(room_game_choose)			
+			draw_texture_flush();			
+			surface_free(global.ui_surface)
+			audio_stop_all()
+			global.tittle_music = func_play_sounds("assets\\music\\freakyMenu.ogg",0,1)
+		}
 	}
 }

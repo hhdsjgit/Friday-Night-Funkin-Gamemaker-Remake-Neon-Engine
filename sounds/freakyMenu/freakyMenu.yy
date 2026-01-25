@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"freakyMenu",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":112.95347,
+  "exportDir":"",
+  "name":"freakyMenu",
+  "parent":{
+    "name":"声音",
+    "path":"folders/声音.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"freakyMenu.ogg",
+  "volume":1.0,
+}

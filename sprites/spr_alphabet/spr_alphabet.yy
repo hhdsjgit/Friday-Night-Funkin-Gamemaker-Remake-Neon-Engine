@@ -669,8 +669,8 @@
   "swatchColours":null,
   "swfPrecision":0.5,
   "textureGroupId":{
-    "name":"Default",
-    "path":"texturegroups/Default",
+    "name":"text_ui",
+    "path":"texturegroups/text_ui",
   },
   "type":0,
   "VTile":false,

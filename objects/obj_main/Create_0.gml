@@ -10,7 +10,6 @@ Game_start_pos = 1
 Game_start_pos_time = 0
 a_time = 0
 
-anit_time = 0
 //创建摄像机
 
 enum RES {
@@ -32,7 +31,7 @@ test_hc_a = 0
 //TEST END
 
 show_debug_log(1)
-global.fps_time = 0
+
 //Game main
 var Game_engine_type = "NE"
 if !file_exists(working_directory + "\\song_test.json") {

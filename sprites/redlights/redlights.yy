@@ -81,8 +81,8 @@
   "swatchColours":null,
   "swfPrecision":0.5,
   "textureGroupId":{
-    "name":"Default",
-    "path":"texturegroups/Default",
+    "name":"nightflaid_beijin",
+    "path":"texturegroups/nightflaid_beijin",
   },
   "type":0,
   "VTile":false,

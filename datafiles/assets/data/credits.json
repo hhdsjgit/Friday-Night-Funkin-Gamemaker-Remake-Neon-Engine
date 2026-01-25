@@ -1,0 +1,25 @@
+{
+	"credits":
+	[
+		{
+			"names": "> CODE BY",
+	        "role": "",
+	        "path": ""
+		},
+		{
+			"names": "GOODTIMES2",
+	        "role": "code",
+	        "path": "assets//imagles//credits//credit_icon_hhdsj.png"
+		},
+		{
+			"names": "awa test",
+	        "role": "code",
+	        "path": "assets//imagles//credits//credit_icon_hhdsj.png"
+		},
+		{
+			"names": "> ELSE",
+	        "role": "",
+	        "path": ""
+		}
+	]
+}

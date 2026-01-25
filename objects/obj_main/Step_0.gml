@@ -1,9 +1,5 @@
 /// @description
 
-anit_time += 0.3
-if anit_time >= 3 {
-	anit_time = 0	
-}
 
 
 switch Game_start_pos {
@@ -60,7 +56,7 @@ if !audio_exists(song_sound1) or !audio_exists(song_sound2) {
 	
 }
 
-global.fps_time = delta_time / 1000000
+
 Shooting_duration = 60 / global.Song_information.bpm;
 Shooting_time =song_time / 1000 - Shooting_time_last
 if Shooting_time > Shooting_duration * 2 {

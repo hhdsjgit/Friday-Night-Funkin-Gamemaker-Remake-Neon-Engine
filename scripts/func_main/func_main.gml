@@ -9,6 +9,17 @@ function func_main(a1,a2,a3,a4,b1,b2,b3,b4){
 	obj_main.obj_opponent_right_arrow.x = b4
 	
 }
+
+function load_image(Path) {
+
+	var full_path = working_directory + string(Path)
+
+	var sprite_id = sprite_add(full_path, 1, false, false, 0, 0);
+
+	return sprite_id; 
+	
+}
+
 function func_frc(val){
 	return val * 60 * global.fps_time
 }
@@ -16,8 +27,10 @@ function func_frc(val){
 /// @description 读取外部音频文件用=)
 /// @param {string} sounds_dir 音频文件路径
 function func_play_sounds(sounds_dir,priority,loops){
+
 	var load_sounds = audio_create_stream(working_directory + string(sounds_dir))
-	audio_play_sound(load_sounds,priority,loops)
+	var back_sounds = audio_play_sound(load_sounds,priority,loops)
+	return back_sounds;
 }
 
 /// @function func_judge_performance_quality(_x,_offset,_note)
@@ -53,7 +66,6 @@ function pause_game() {
     
     global.game_paused = true;
     
-    
     // 暂停音效
     audio_pause_sound(obj_main.song_sound1);
     audio_pause_sound(obj_main.song_sound2);
@@ -61,13 +73,7 @@ function pause_game() {
     
     // 暂停所有其他音效
     audio_pause_all();
-    
-    // 保存游戏速度
-    //global.previous_game_speed = game_get_speed(gamespeed_fps);
-    //game_set_speed(0, gamespeed_fps);
-	
-    
-
+       
 }
 
 /// 恢复游戏
@@ -75,9 +81,6 @@ function resume_game() {
     if (!global.game_paused) return;
     
     global.game_paused = false;
-    
-    // 恢复所有实例
-    //instance_activate_all();
     
     // 恢复音效
     audio_resume_sound(obj_main.song_sound1);
@@ -87,13 +90,6 @@ function resume_game() {
     // 恢复所有其他音效
     audio_resume_all();
     
-    // 恢复游戏速度
-    //game_set_speed(global.previous_game_speed, gamespeed_fps);
-    
-    // 移除暂停菜单
-    
-    
-    //show_debug_message("游戏已恢复");
 }
 
 /// @function func_bet_char(_char)
@@ -140,23 +136,18 @@ function func_bet_char(_char){
         case "X": return 137;
         case "Y": return 141;
         case "Z": return 145;
-        
-        default: return -1;
-			
-		
+      
+        default: return -1;	
 	}
 }
 
-function draw_text_bet(text,_x,_y,_image_xscale,_image_yscale,angle,alpha) {
-	
+function draw_text_bet(text,_x,_y,_image_xscale,_image_yscale,angle,alpha) {	
 	for (var i=1;i <= string_length(text);i ++) {
-		var _chars = " "
-		
+		var _chars = " "		
 		_chars = string_upper(string_char_at(text, i));	
 		if func_bet_char(_chars) != -1 {
-			draw_sprite_ext(spr_alphabet,func_bet_char(_chars) + obj_main.anit_time,_x + (sprite_get_width(spr_alphabet) - 37)* i * image_xscale,_y ,_image_xscale,_image_yscale,angle,c_white,alpha)	
+			draw_sprite_ext(spr_alphabet,func_bet_char(_chars) + obj_all_load.anit_time,_x + (sprite_get_width(spr_alphabet) - 37)* i * image_xscale,_y ,_image_xscale,_image_yscale,angle,c_white,alpha)	
 		}
-		
 	}
 }
 
@@ -165,7 +156,6 @@ function vedio_play (_PATH) {
 		instance_create_depth(0,0,-1000,obj_vedio)
 	}
 	var dir = working_directory + _PATH;
-	show_debug_message(dir)
 	obj_vedio._PATH = _PATH
 	obj_vedio._CAN_PLAY_VEDIO = true
 	with obj_vedio {
@@ -288,6 +278,7 @@ function ui_arrow_set_individual_color(Target, arrow_type, red, green, blue) {
 function get_song_position_ms() {
 	return obj_main.song_time / 10000	
 }
+
 function ui_arrow_wave(Target, start_time, end_time) {
 	if start_time < obj_main.song_time and end_time > obj_main.song_time{
 		var now_time = obj_main.song_time
@@ -314,10 +305,11 @@ function redPulse() {
     with (obj_main.obj_opponent_up_arrow) { image_blend = make_color_rgb(255, 0, 0); }
     with (obj_main.obj_opponent_right_arrow) { image_blend = make_color_rgb(255, 0, 0); }
     
-    // 渐变色恢复（使用tween或逐步恢复）
-    // 可以添加到Step事件中
 }
 
+function unload_texture_group(group_name) {
+	texturegroup_unload(group_name);
+}
 
 
 
