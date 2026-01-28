@@ -32,7 +32,7 @@ function func_play_sounds(sounds_dir,priority,loops){
 	var back_sounds = audio_play_sound(load_sounds,priority,loops)
 	return back_sounds;
 }
-
+/*
 /// @function func_judge_performance_quality(_x,_offset,_note)
 /// @description 判定sick good bad shit =<
 /// @param {real} _y 按键时箭头的y坐标
@@ -58,7 +58,7 @@ function func_judge_performance_quality(_y,_offset,_note,worry_note){
 		global.Game_inf.total_score += 0
 		return 3;
 	}
-}
+}*/
 
 
 function pause_game() {
@@ -313,4 +313,46 @@ function unload_texture_group(group_name) {
 
 
 
-
+/// @function func_judge_performance_quality(_y,_offset,_note,worry_note)
+/// @description 判定sick good bad shit =<
+/// @param {real} _y 按键时箭头的y坐标
+/// @param {real} _offset 偏移量
+/// @param {real} _note 箭头类型 0 1 2 3玩家 4 5 6 7对手
+function func_judge_performance_quality(_y,_offset,_note,worry_note){
+    // 计算与判定线的实际距离（像素转换为毫秒）
+    var distance_pixels = abs(_y - _offset);
+    var distance_ms = distance_pixels * (1000 / (22.5 * 60)); // 转换为毫秒
+    show_debug_message(distance_ms)
+    var judgement = "";
+    var rating = 0; // 0=Sick, 1=Good, 2=Bad, 3=Shit
+    var base_score = 0;
+    
+    // 使用ACC时间窗口判断
+    if distance_ms <= 45 {
+        judgement = "SICK";
+        rating = 0; // Sick
+        base_score = 300;
+    } else if distance_ms <= 90 {
+        judgement = "GOOD";
+        rating = 1; // Good
+        base_score = 200;
+    } else if distance_ms <= 135 {
+        judgement = "BAD";
+        rating = 2; // Bad
+        base_score = 100;
+    } else if distance_ms <= 160 {
+        judgement = "SHIT";
+        rating = 3; // Shit
+        base_score = 50;
+    }
+   
+    if worry_note = false {
+        global.Game_inf.max_score += 300;
+    }
+    
+    if base_score > 0 {
+        global.Game_inf.total_score += base_score;
+    }
+    
+    return rating;
+}

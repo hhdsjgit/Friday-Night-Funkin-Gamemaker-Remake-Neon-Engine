@@ -10,16 +10,16 @@
 			"names": "GOODTIMES2",
 	        "role": "code",
 	        "path": "assets//imagles//credits//credit_icon_hhdsj.png"
-		},
+		},	
 		{
-			"names": "awa test",
-	        "role": "code",
-	        "path": "assets//imagles//credits//credit_icon_hhdsj.png"
-		},
-		{
-			"names": "> ELSE",
+			"names": "> ELSE THANK",
 	        "role": "",
 	        "path": ""
+		},
+		{
+			"names": "Shui Ping Jun ",
+	        "role": "thank",
+	        "path": "assets//imagles//credits//thank0.png"
 		}
 	]
 }

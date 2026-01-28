@@ -1,7 +1,7 @@
 /// @description 
 var bpm = 102;
 var _current_time = audio_sound_get_track_position(global.tittle_music) * 1000;
-draw_subimg += func_frc(0.6)
+draw_subimg += func_frc(0.4)
 crochet = (_current_time / ((60 / bpm) * 1000));
 choose_setting = clamp(choose_setting,0,array_length(test_need_draw)-1)
 ui_y += (choose_setting * 180 - ui_y) / 6

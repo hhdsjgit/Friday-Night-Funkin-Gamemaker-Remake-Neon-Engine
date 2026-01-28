@@ -30,7 +30,7 @@ function get_note_y (_note_arrow,_Note_mustHitSection){
 	return 100;
 	//get_note_y(note_arrow,Note_mustHitSection)
 }
-var _NOTENOWY = get_note_y(note_arrow,Note_mustHitSection)
+_NOTENOWY = get_note_y(note_arrow,Note_mustHitSection)
 
 // 计算经过的时间（转换为秒）
 var _dt = delta_time / 1000000; // 转换为秒
@@ -223,9 +223,9 @@ if Note_mustHitSection {//是否必须点击（玩家段）
 }
 
 // 错过音符检测（玩家段）
-if y <= 0 and Note_mustHitSection = 1 and check_note = 0 and worry_note = "NOONE"{
+if y <= -200 and Note_mustHitSection = 1 and check_note = 0 and worry_note = "NOONE"{
     if miss_note = 0 {
-		global.Game_inf.heath -= 0.4
+		global.Game_inf.heath -= 1
 		global.Game_inf.max_score += 300
 		global.Game_inf.total_score -= 10
         global.Game_inf.miss_note += 1  // 增加错过计数
@@ -234,93 +234,113 @@ if y <= 0 and Note_mustHitSection = 1 and check_note = 0 and worry_note = "NOONE
 }
 
 //自动销毁
-if y <= -100 {
+if y <= -240{
     // 短音符在y<=-100时销毁
     if Note_length <= 0 {
 		
         instance_destroy(id)    
-    }else if y <= -100 - Note_length * 5{
+    }else if y <= -280 - Note_length * 5{
         // 长音符在超出一定范围后销毁
         instance_destroy(id)
     }
 }
 
 // Player check
-if Note_mustHitSection = 1 and (y >= (0 +_NOTENOWY) and y <= (260 + _NOTENOWY)) and Note_length <= 0{
+if Note_mustHitSection = 1 and (y >= (-200 +_NOTENOWY) and y <= (200 + _NOTENOWY)) and Note_length <= 10{
 	
-	switch note_arrow {
-		case 0:
-		if keyboard_check_pressed(vk_left){
-			instance_destroy(id)
-			var obj = instance_create_depth(x,_NOTENOWY,-15,obj_noteSplashes)    
-            obj.Note_Direction = note_arrow
-			obj_bf_car.image_index = 0
-	        obj_bf_car.Action = note_arrow
-	        obj_bf_car.time = 30
-			global.Game_inf.Note_player2_0=1;
+	// 保存当前音符的判定线位置
+    my_target_y = _NOTENOWY;
+    
+    // 检查是否有同方向音符更接近判定线
+   
+    with obj_note {
+        if id != other.id and note_arrow = other.note_arrow 
+        and Note_mustHitSection = other.Note_mustHitSection {
+            // 计算其他音符的判定线位置
+            var other_target_y = get_note_y(note_arrow, Note_mustHitSection);
+            
+            // 如果这个音符更接近判定线，让更近的先处理
+            if abs(y - other_target_y) < abs(other.y - other.my_target_y) {
+                other.can_hit = false;
+                break;
+            }
+        }
+    }
+	if can_hit = true {
+		switch note_arrow {
+			case 0:
+			if global.check_map.left_pressed{
+				instance_destroy(id)
+				var obj = instance_create_depth(x,_NOTENOWY,-15,obj_noteSplashes)    
+	            obj.Note_Direction = note_arrow
+				obj_bf_car.image_index = 0
+		        obj_bf_car.Action = note_arrow
+		        obj_bf_car.time = 30
+				global.Game_inf.Note_player2_0=1;
 			
-			global.Game_inf.Combo_note ++
-            scrore_ui(global.Game_inf.Combo_note,func_judge_performance_quality(y,_NOTENOWY,0,false))
-			//obj_main.obj_left_arrow.sprite_index=left_confirm0000;
-		};
-		break;
+				global.Game_inf.Combo_note ++
+	            scrore_ui(global.Game_inf.Combo_note,func_judge_performance_quality(y,_NOTENOWY,0,false))
+				//obj_main.obj_left_arrow.sprite_index=left_confirm0000;
+			};
+			break;
 		
-		case 1:
-		if keyboard_check_pressed(vk_down){
-			instance_destroy(id)
-			var obj = instance_create_depth(x,_NOTENOWY,-15,obj_noteSplashes)    
-            obj.Note_Direction = note_arrow
-			obj_bf_car.image_index = 0
-	        obj_bf_car.Action = note_arrow
-	        obj_bf_car.time = 30
-			global.Game_inf.Note_player2_1=1;
+			case 1:
+			if global.check_map.down_pressed{
+				instance_destroy(id)
+				var obj = instance_create_depth(x,_NOTENOWY,-15,obj_noteSplashes)    
+	            obj.Note_Direction = note_arrow
+				obj_bf_car.image_index = 0
+		        obj_bf_car.Action = note_arrow
+		        obj_bf_car.time = 30
+				global.Game_inf.Note_player2_1=1;
 			
-			global.Game_inf.Combo_note ++
-            scrore_ui(global.Game_inf.Combo_note,func_judge_performance_quality(y,_NOTENOWY,1,false))
-			//obj_main.obj_down_arrow.sprite_index=down_confirm0000;
-		};
-		break;
+				global.Game_inf.Combo_note ++
+	            scrore_ui(global.Game_inf.Combo_note,func_judge_performance_quality(y,_NOTENOWY,1,false))
+				//obj_main.obj_down_arrow.sprite_index=down_confirm0000;
+			};
+			break;
 		
-		case 2:
-		if keyboard_check_pressed(vk_up){
-			instance_destroy(id)
-			var obj = instance_create_depth(x,_NOTENOWY,-15,obj_noteSplashes)    
-            obj.Note_Direction = note_arrow
-			obj_bf_car.image_index = 0
-	        obj_bf_car.Action = note_arrow
-	        obj_bf_car.time = 30
-			global.Game_inf.Note_player2_2=1;
+			case 2:
+			if global.check_map.up_pressed{
+				instance_destroy(id)
+				var obj = instance_create_depth(x,_NOTENOWY,-15,obj_noteSplashes)    
+	            obj.Note_Direction = note_arrow
+				obj_bf_car.image_index = 0
+		        obj_bf_car.Action = note_arrow
+		        obj_bf_car.time = 30
+				global.Game_inf.Note_player2_2=1;
 						
-			global.Game_inf.Combo_note ++
-            scrore_ui(global.Game_inf.Combo_note,func_judge_performance_quality(y,_NOTENOWY,2,false))
-			//obj_main.obj_up_arrow.sprite_index=up_confirm0000;
-		};
-		break;
+				global.Game_inf.Combo_note ++
+	            scrore_ui(global.Game_inf.Combo_note,func_judge_performance_quality(y,_NOTENOWY,2,false))
+				//obj_main.obj_up_arrow.sprite_index=up_confirm0000;
+			};
+			break;
 		
-		case 3:
-		if keyboard_check_pressed(vk_right){
-			instance_destroy(id)
-			var obj = instance_create_depth(x,_NOTENOWY,-15,obj_noteSplashes)    
-            obj.Note_Direction = note_arrow
-			global.Game_inf.Note_player2_3=1;
-			obj_bf_car.image_index = 0
-	        obj_bf_car.Action = note_arrow
-	        obj_bf_car.time = 30
-			global.Game_inf.Combo_note ++
-            scrore_ui(global.Game_inf.Combo_note,func_judge_performance_quality(y,_NOTENOWY,3,false))
-			//obj_main.obj_right_arrow.sprite_index=right_confirm0000;
-		};
-		break;
+			case 3:
+			if global.check_map.right_pressed{
+				instance_destroy(id)
+				var obj = instance_create_depth(x,_NOTENOWY,-15,obj_noteSplashes)    
+	            obj.Note_Direction = note_arrow
+				global.Game_inf.Note_player2_3=1;
+				obj_bf_car.image_index = 0
+		        obj_bf_car.Action = note_arrow
+		        obj_bf_car.time = 30
+				global.Game_inf.Combo_note ++
+	            scrore_ui(global.Game_inf.Combo_note,func_judge_performance_quality(y,_NOTENOWY,3,false))
+				//obj_main.obj_right_arrow.sprite_index=right_confirm0000;
+			};
+			break;
+		}
 	}
 	
 }
 
 if Note_mustHitSection = 1 and Note_length > 0{
 	
-	if check_note = 0 and (y >= (5 + _NOTENOWY) and y <= (240 + _NOTENOWY)){
+	if check_note = 0 and (y >= (-200 + _NOTENOWY) and y <= (200 + _NOTENOWY)){
 		switch note_arrow {
 			case 0:
-			if keyboard_check_pressed(vk_left){
+			if global.check_map.left_pressed{
 				var obj = instance_create_depth(x,_NOTENOWY,-15,obj_noteSplashes)    
 				obj.Note_Direction = note_arrow
 				global.Game_inf.Note_player2_0=1;
@@ -334,7 +354,7 @@ if Note_mustHitSection = 1 and Note_length > 0{
 			break;
 		
 			case 1:
-			if keyboard_check_pressed(vk_down){
+			if global.check_map.down_pressed{
 				var obj = instance_create_depth(x,_NOTENOWY,-15,obj_noteSplashes)    
 				obj.Note_Direction = note_arrow
 				global.Game_inf.Note_player2_1=1;
@@ -348,7 +368,7 @@ if Note_mustHitSection = 1 and Note_length > 0{
 			break;
 		
 			case 2:
-			if keyboard_check_pressed(vk_up){
+			if global.check_map.up_pressed{
 				var obj = instance_create_depth(x,_NOTENOWY,-15,obj_noteSplashes)    
 				obj.Note_Direction = note_arrow
 				global.Game_inf.Note_player2_2=1;
@@ -362,7 +382,7 @@ if Note_mustHitSection = 1 and Note_length > 0{
 			break;
 		
 			case 3:
-			if keyboard_check_pressed(vk_right){
+			if global.check_map.right_pressed{
 				var obj = instance_create_depth(x,_NOTENOWY,-15,obj_noteSplashes)    
 				obj.Note_Direction = note_arrow
 				global.Game_inf.Note_player2_3=1;

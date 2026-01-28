@@ -1,5 +1,4 @@
 /// @description 
-show_debug_log(1)
 window_set_caption("Neon Engine")
 global.tittle_music = func_play_sounds("assets\\music\\freakyMenu.ogg",0,1)
 
