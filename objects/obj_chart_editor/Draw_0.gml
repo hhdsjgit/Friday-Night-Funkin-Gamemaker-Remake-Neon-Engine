@@ -26,12 +26,11 @@
 //	}
 //}
 
-// 在Draw Event中（修复后的绘制代码）
-//if song_time != draw_last_time {
-    // 时间变化时重置索引
-    draw_note_i = 0;
-    draw_note_n = 0;
-    draw_last_time = song_time;
+
+
+draw_note_i = 0;
+draw_note_n = 0;
+draw_last_time = song_time;
 
 
 // 绘制当前时间
@@ -43,6 +42,77 @@ var temp_i = draw_note_i;
 var temp_n = draw_note_n;
 var notes_drawn = 0;
 
+
+//var down_y = floor(song_time)
+//for (var j = 0;j <= 500;j++) {
+//	for (var k = 0;k < 8;k++){
+//		var need_draw_x = 0
+//		draw_set_alpha(0.8)
+//		if j % 2 {
+//			if (k % 2 == 0) {
+//				draw_set_color(c_white)
+//			}else{
+//				draw_set_color(c_gray)
+//			}
+//			if k > 3 {
+//				need_draw_x = 1
+//			}
+//		}else{
+//			if (k % 2 == 0) {
+//				draw_set_color(c_gray)
+//			}else{
+//				draw_set_color(c_white)
+//			}	
+//			if k > 3 {
+//				need_draw_x = 1
+//			}
+//		}
+		
+//		draw_rectangle(200 + k * 60 + need_draw_x * 5,200 + j *60-down_y,260 + k * 60 + need_draw_x * 5,260 + j *60-down_y,0)
+//	}
+//}
+//draw_set_alpha(1)
+
+var down_y = floor(song_time);
+var visible_rows = 30; // 根据屏幕高度调整，比如800/60≈13，多画几行确保覆盖
+
+draw_set_alpha(0.8);
+
+for (var j = 0; j < visible_rows; j++) {
+	draw_set_alpha(0.8)
+    for (var k = 0; k < 8; k++) {
+		
+		
+        // 简化的颜色逻辑：根据行列奇偶性决定颜色
+        var is_white = ((j % 2) == (k % 2));
+        var offset_x = (k > 3) ? 5 : 0;
+        
+        draw_set_color(is_white ? c_white : c_gray);
+        
+        // 绘制网格方块
+        draw_rectangle(
+            200 + k * 60 + offset_x,
+            0 + j * 60 - down_y % 720, // 使用取余实现循环滚动
+            260 + k * 60 + offset_x,
+            60 + j * 60 - down_y % 720,
+            false
+        );
+    }
+	if j % 4 = 0 {
+		draw_set_alpha(1)
+		draw_set_color(c_white)
+		draw_line_width(
+			200,
+            j * 60 - down_y % 720, 
+            200 + 60 * 8,
+            j * 60 - down_y % 720,5
+			)
+	}
+}
+
+draw_set_alpha(1);
+
+
 while temp_i < array_length(global.Song_information.notes_data) && notes_drawn < 300 {
     var note_1 = global.Song_information.notes_data[temp_i];
     
@@ -50,58 +120,114 @@ while temp_i < array_length(global.Song_information.notes_data) && notes_drawn <
         while temp_n < array_length(note_1.sectionNotes) {
             var note_time = note_1.sectionNotes[temp_n][0];
             
-            if note_time <= end_time && note_time >= song_time {
+            if note_time <= end_time && note_time >= song_time -2000{
                 // 绘制音符
-                var column = note_1.sectionNotes[temp_n][1];
-                var y_pos = (note_time - song_time) / 10 + 100;
-                
-                // 根据音符类型绘制不同颜色
-                if column < 4 { // 前4列为玩家/对手音符
-                    draw_set_color(c_blue);
-                } else { // 后4列
-                    draw_set_color(c_red);
-                }
-                var nx_x = note_1.mustHitSection
-				if note_1.mustHitSection = 1 and note_1.sectionNotes[temp_n][1] <= 3{
-					 draw_set_color(c_blue);
+				if !(note_time <= end_time && note_time >= song_time) {
+					image_alpha = 0.5	
 				}else{
-					draw_set_color(c_red);
+					image_alpha = 1
+				}
+					
+                var column = note_1.sectionNotes[temp_n][1];
+                var y_pos = (note_time - song_time) + 203;
+                
+                var draw_image_xscale = 0.33
+				var draw_image_yscale = 0.33
+				
+				var nx_x = note_1.mustHitSection
+				if !(note_1.mustHitSection = 1 and note_1.sectionNotes[temp_n][1] <= 3){
 					nx_x = 0
 				}
-				
-				////玩家箭头生成end
-			
-				//生成对手的箭头
-				if note_1.mustHitSection = 0 and note_1.sectionNotes[temp_n][1] <= 3{
-					draw_set_color(c_red);
-				}else if note_1.mustHitSection = 0{
-					 draw_set_color(c_blue);
-					 nx_x = 1
+				if !(note_1.mustHitSection = 0 and note_1.sectionNotes[temp_n][1] <= 3){
+					nx_x = 1
 				}
 				
-				if point_in_rectangle(mouse_x, mouse_y, (400 + (column mod 4) * 30 + nx_x * 120), y_pos, (400 + (column mod 4) * 30 + nx_x * 120) + 30, y_pos+20) {
-					draw_set_alpha(1)
-				} else {
-					draw_set_alpha(0.5)
-				}	
+				var p_x= (232 + (column mod 4) * 60+ nx_x * 240)
+				//if point_in_rectangle(mouse_x, mouse_y,(p_x-127/2) * draw_image_xscale, (y_pos-154/2) * draw_image_yscale,(p_x + 157/2) * draw_image_xscale, (y_pos+154/2) * draw_image_yscale) {
+				//	image_alpha = 1
+				//} else {
+				//	image_alpha = 1
+				//}	
+				
 				draw_set_color(c_white);
-                draw_text(400 + (column mod 4) * 30 + nx_x * 120, y_pos, "XX");
-                
+				if note_1.mustHitSection = 1 {
+					switch note_1.sectionNotes[temp_n][1] {
+						case 0:sprite_index=global.sprite_index_note.p_note_arrow_left;break;
+						case 1:sprite_index=global.sprite_index_note.p_note_arrow_down;break;
+						case 2:sprite_index=global.sprite_index_note.p_note_arrow_up;break;
+						case 3:sprite_index=global.sprite_index_note.p_note_arrow_right;break;
+		
+		
+					}
+				}else{
+					switch note_1.sectionNotes[temp_n][1] {
+						case 0:sprite_index=global.sprite_index_note.o_note_arrow_left;break;
+						case 1:sprite_index=global.sprite_index_note.o_note_arrow_down;break;
+						case 2:sprite_index=global.sprite_index_note.o_note_arrow_up;break;
+						case 3:sprite_index=global.sprite_index_note.o_note_arrow_right;break;
+		
+		
+					}
+				}
+				if !note_1.mustHitSection {
+					if column < 4 { // 前4列为玩家/对手音符
+	                    switch column {
+						
+							case 0:sprite_index=global.sprite_index_note.o_note_arrow_left;break;
+							case 1:sprite_index=global.sprite_index_note.o_note_arrow_down;break;
+							case 2:sprite_index=global.sprite_index_note.o_note_arrow_up;break;
+							case 3:sprite_index=global.sprite_index_note.o_note_arrow_right;break;
+		
+						}
+	                } else { // 后4列
+	                    switch column-4 {
+							case 0:sprite_index=global.sprite_index_note.p_note_arrow_left;break;
+							case 1:sprite_index=global.sprite_index_note.p_note_arrow_down;break;
+							case 2:sprite_index=global.sprite_index_note.p_note_arrow_up;break;
+							case 3:sprite_index=global.sprite_index_note.p_note_arrow_right;break;
+						
+		
+		
+						}
+	                }
+				}else{
+					if column < 4 { // 前4列为玩家/对手音符
+	                    switch column {
+							case 0:sprite_index=global.sprite_index_note.p_note_arrow_left;break;
+							case 1:sprite_index=global.sprite_index_note.p_note_arrow_down;break;
+							case 2:sprite_index=global.sprite_index_note.p_note_arrow_up;break;
+							case 3:sprite_index=global.sprite_index_note.p_note_arrow_right;break;
+								
+						}
+	                } else { // 后4列
+	                    switch column-4 {
+							case 0:sprite_index=global.sprite_index_note.o_note_arrow_left;break;
+							case 1:sprite_index=global.sprite_index_note.o_note_arrow_down;break;
+							case 2:sprite_index=global.sprite_index_note.o_note_arrow_up;break;
+							case 3:sprite_index=global.sprite_index_note.o_note_arrow_right;break;
+						}
+	                }
+				}
+				draw_sprite_ext(sprite_index,0,p_x, y_pos,draw_image_xscale,draw_image_yscale,0,c_white,image_alpha)
+				image_alpha = 1
+				
+                //draw_text(400 + (column mod 4) * 30 + nx_x * 120, y_pos, "XX");
+                draw_set_alpha(1)
                 
                 notes_drawn++;
                 
                 // 限制每帧绘制数量防止卡顿
-                if notes_drawn >= 500 {
+                if notes_drawn >= 300 {
                     break;
                 }
             }
             
             temp_n++;
             
-            // 如果音符时间超过绘制范围，跳出
-            if note_time > end_time {
-                break;
-            }
+
+	        if note_time > end_time{
+	            break;
+	        }
         }
         
         if temp_n >= array_length(note_1.sectionNotes) {

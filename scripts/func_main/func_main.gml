@@ -9,7 +9,21 @@ function func_main(a1,a2,a3,a4,b1,b2,b3,b4){
 	obj_main.obj_opponent_right_arrow.x = b4
 	
 }
-
+function Use_Gradient (value) {
+	if value = 0 and obj_all_load.suc_gradient{
+		obj_all_load.can_show_gradient = 0
+		obj_all_load.y_show_gradient = -1280
+		obj_all_load.suc_gradient = false
+	}
+	if value = 1 and obj_all_load.suc_gradient{
+		obj_all_load.can_show_gradient = 1
+		obj_all_load.y_show_gradient = 0
+		obj_all_load.suc_gradient = false
+	}
+}
+function Get_Gradient () {
+	return obj_all_load.suc_gradient;
+}
 function load_image(Path) {
 
 	var full_path = working_directory + string(Path)

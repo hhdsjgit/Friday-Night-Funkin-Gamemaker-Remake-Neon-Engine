@@ -30,6 +30,9 @@ if right_check == false {
 	}
 }
 if right_check == true {
+	if time <= 50 {
+		Use_Gradient(0)	
+	}
 	time -= func_frc(1)
 	if time <= 0 {
 		switch test_need_draw[choose_setting] {

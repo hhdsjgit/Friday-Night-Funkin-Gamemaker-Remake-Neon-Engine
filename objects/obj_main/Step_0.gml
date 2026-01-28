@@ -109,19 +109,21 @@ if array_length(global.Song_information.notes_data) > i {
 	if array_length(note_1.sectionNotes) >= 1 {
 		song_time = audio_sound_get_track_position(song_sound1) * 1000
 		//冒泡排序(会卡死)(整理时间顺序)
-		var array_2d = note_1.sectionNotes
-		var n1 = array_length(array_2d);
+		if global.setting_game.BUBBLE_SORT {
+			var array_2d = note_1.sectionNotes
+			var n1 = array_length(array_2d);
     
-		for (var i1 = 0; i1 < n1 - 1; i1++) {
-		    for (var j = 0; j < n1 - i1 - 1; j++) {
-		        // 比较相邻子数组的第0个元素
-		        if (array_2d[j][0] > array_2d[j + 1][0]) {
-		            // 交换整个子数组
-		            var temp = array_2d[j];
-		            array_2d[j] = array_2d[j + 1];
-		            array_2d[j + 1] = temp;
-		        }
-		    }
+			for (var i1 = 0; i1 < n1 - 1; i1++) {
+			    for (var j = 0; j < n1 - i1 - 1; j++) {
+			        // 比较相邻子数组的第0个元素
+			        if (array_2d[j][0] > array_2d[j + 1][0]) {
+			            // 交换整个子数组
+			            var temp = array_2d[j];
+			            array_2d[j] = array_2d[j + 1];
+			            array_2d[j + 1] = temp;
+			        }
+			    }
+			}
 		}
 		//show_debug_message("TIME:" + string(note_1.sectionNotes[n][0]) + " TEST:" + string(song_time + 800))
 			

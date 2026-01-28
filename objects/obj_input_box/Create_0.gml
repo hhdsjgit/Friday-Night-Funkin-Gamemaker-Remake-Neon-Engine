@@ -14,3 +14,8 @@ box_y = 100;
 box_width = 200;
 box_height = 30;
 buff_time = 10
+if clipboard_has_text()
+{
+    str = clipboard_get_text();
+    clipboard_set_text("");
+}

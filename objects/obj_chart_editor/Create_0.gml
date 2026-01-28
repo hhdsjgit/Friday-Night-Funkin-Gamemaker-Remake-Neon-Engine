@@ -63,4 +63,23 @@ song_sound2=audio_play_sound(load_s1,0,0)
 
 
 
-
+global.sprite_index_note = 
+{
+	p_note_arrow_left:Notes_Nightflaid_purple,
+	p_note_arrow_down:Notes_Nightflaid_blue,
+	p_note_arrow_up:Notes_Nightflaid_green,
+	p_note_arrow_right:Notes_Nightflaid_red,
+	p_note_arrow_left_hold_piece:Notes_Nightflaid_purple_hold_piece,
+	p_note_arrow_down_hold_piece:Notes_Nightflaid_blue_hold_piece,
+	p_note_arrow_up_hold_piece:Notes_Nightflaid_green_hold_piece,
+	p_note_arrow_right_hold_piece:Notes_Nightflaid_red_hold_piece,
+	
+	o_note_arrow_left:Notes_Nightflaid_Assets_purple_1,
+	o_note_arrow_down:Notes_Nightflaid_Assets_blue_1,
+	o_note_arrow_up:Notes_Nightflaid_Assets_green_1,
+	o_note_arrow_right:Notes_Nightflaid_Assets_red_1,
+	o_note_arrow_left_hold_piece:Notes_Nightflaid_Assets_purple_hold_piece_1,
+	o_note_arrow_down_hold_piece:Notes_Nightflaid_Assets_blue_hold_piece_1,
+	o_note_arrow_up_hold_piece:Notes_Nightflaid_Assets_green_hold_piece_1,
+	o_note_arrow_right_hold_piece:Notes_Nightflaid_Assets_red_hold_piece_1,
+}
