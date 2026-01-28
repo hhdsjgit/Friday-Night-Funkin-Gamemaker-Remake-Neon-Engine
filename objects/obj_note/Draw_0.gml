@@ -87,8 +87,18 @@ if worry_note = "NOONE" {
 if !check_note {
 	draw_self()
 }
-//draw_text(x+15,y-0,"LEG "+string(Note_length) + " / " + string(Check_note_length))
 
+var can_hit = true;
+with obj_note {
+	
+    if id != other.id and note_arrow = other.note_arrow 
+    and Note_mustHitSection = other.Note_mustHitSection {
+        // 如果这个音符更接近判定线，让更近的先处理
+        if abs(y + other._NOTENOWY -100) < abs(other.y + other._NOTENOWY -100) {
+			draw_text(x+15,y-0,"y "+string(abs(other.y - other._NOTENOWY)))
+        }
+    }
+}
 
 
 surface_reset_target();

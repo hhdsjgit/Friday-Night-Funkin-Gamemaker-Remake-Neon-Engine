@@ -21,12 +21,13 @@ function draw_text_bet_ext(text,_x,_y,_image_xscale,_image_yscale,a,angle,alpha)
 }
 function show_text(text,_x,_y,_start_p,_end_p,get_time) {
 	if get_time >= _start_p and get_time <= _end_p {
-		draw_text_bet_ext(text,1280/2-150,_y,1,1,0,0,1)
+		draw_text_bet_ext(text,1280/2-100,_y,1,1,0,0,1)
 	}
 }
-show_text("Neon Engine By",1280/2,120,1,7,crochet)
-show_text("Goodtimes2",1280/2,200,3,7,crochet)
-show_text("TEST NEW",1280/2,200,9,30,crochet)
+show_text("Neon Engine By",1280/2,120,1,5,crochet)
+show_text("Goodtimes2",1280/2,200,3,5,crochet)
+show_text("TEST NEW",1280/2,120,6,9,crochet)
+show_text("GAME",1280/2,200,7,9,crochet)
 
 if check_enter_tittle = true {
 	if subimg > sprite_get_number(spr_tittle_enter_to_begin) {

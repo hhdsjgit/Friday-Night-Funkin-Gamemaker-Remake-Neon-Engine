@@ -1,4 +1,29 @@
 /// @description
+
+global.input_latency_test = false;
+global.input_timestamp = 0;
+global.check_map = 
+{
+	"left_pressed":false,
+	"down_pressed":false,
+	"up_pressed":false,
+	"right_pressed":false
+	
+}
+
+
+// 在Create事件中设置键盘重复率（Windows API调用）
+if os_type == os_windows {
+    // 尝试设置更高的键盘响应率
+    var dll = external_define("user32.dll", "SystemParametersInfoA", dll_cdecl, 
+        ty_real, 4, ty_real, ty_real, ty_real, ty_real);
+    
+    // SPI_SETKEYBOARDSPEED (键盘重复速度)
+    external_call(dll, 0x000B, 31, 0, 0);
+    
+    // SPI_SETKEYBOARDDELAY (键盘重复延迟)
+    external_call(dll, 0x0017, 0, 0, 0);
+}
 test_zx = 0
 depth = -20
 video_played = false;

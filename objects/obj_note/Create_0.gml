@@ -56,3 +56,7 @@ global.sprite_index_note =
 }
 cr_obj_note = y
 now_y = 0
+
+_NOTENOWY = 0
+my_target_y = _NOTENOWY
+can_hit = true;
