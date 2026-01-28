@@ -8,3 +8,8 @@ right_check = false
 time = 0
 sound_scroll= scroll
 crochet = 0
+global.debug_settig =
+{
+	"debug_x":5,
+	"debug_y":5
+}
