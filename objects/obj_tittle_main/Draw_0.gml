@@ -33,12 +33,12 @@ if check_enter_tittle = true {
 	if subimg > sprite_get_number(spr_tittle_enter_to_begin) {
 		subimg = 0	
 	}
-	draw_sprite(spr_tittle_enter_to_begin,subimg,1280/2,500)
+	draw_sprite(spr_tittle_enter_to_begin,subimg,1280/2,600)
 }else{
 	if subimg > sprite_get_number(spr_tittle_enter_to_pressed) {
 		subimg = 0	
 	}
-	draw_sprite(spr_tittle_enter_to_pressed,subimg,1280/2,500)	
+	draw_sprite(spr_tittle_enter_to_pressed,subimg,1280/2,600)	
 }
 
 //if crochet >= 80{

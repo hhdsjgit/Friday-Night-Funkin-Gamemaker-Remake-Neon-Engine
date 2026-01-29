@@ -36,7 +36,7 @@ if right_check == true {
 	time -= func_frc(1)
 	if time <= 0 {
 		switch test_need_draw[choose_setting] {
-			case "RESTART SONG": show_error("Can't find game json","error");break;
+			case "STORY_MODE": room_goto(room_stroy_mode);break;
 			case "FREEPLAY": audio_stop_all();room_goto(Main);break;
 			case "CREDITS": room_goto(room_credions);break;
 			case "OPTIONS": room_goto(room_options);break;

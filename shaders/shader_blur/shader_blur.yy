@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"shader_blur",
+  "name":"shader_blur",
+  "parent":{
+    "name":"着色器",
+    "path":"folders/着色器.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

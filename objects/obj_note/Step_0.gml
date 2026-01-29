@@ -400,7 +400,7 @@ if Note_mustHitSection = 1 and Note_length > 0{
 	if (y <= _NOTENOWY) and y >= (_NOTENOWY - Note_length * 1 - 20){
 		switch note_arrow {
 			case 0:
-			if keyboard_check(vk_left){
+			if global.check_map.left{
 			
 				global.Game_inf.Note_player2_0=1;
 				check_note = 1	
@@ -413,7 +413,7 @@ if Note_mustHitSection = 1 and Note_length > 0{
 			break;
 		
 			case 1:
-			if keyboard_check(vk_down){
+			if global.check_map.down{
 			
 				global.Game_inf.Note_player2_1=1;
 				check_note = 1
@@ -426,7 +426,7 @@ if Note_mustHitSection = 1 and Note_length > 0{
 			break;
 		
 			case 2:
-			if keyboard_check(vk_up){
+			if global.check_map.up{
 			
 				global.Game_inf.Note_player2_2=1;
 				check_note = 1		
@@ -439,7 +439,7 @@ if Note_mustHitSection = 1 and Note_length > 0{
 			break;
 		
 			case 3:
-			if keyboard_check(vk_right){
+			if global.check_map.right{
 			
 				global.Game_inf.Note_player2_3=1;
 				check_note = 1		

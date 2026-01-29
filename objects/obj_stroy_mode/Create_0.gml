@@ -1,7 +1,8 @@
 /// @description 
 choose_setting = 0
 ui_y = 0
-
+right_check = false
+time = 0
 draw_alpha = 1
 time = 0
 sound_scroll= scroll

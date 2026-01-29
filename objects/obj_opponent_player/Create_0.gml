@@ -16,7 +16,7 @@
 
 Action_skin_left = nightflaid_left
 Action_skin_right = nightflaid_right
-Action_skin_down =nightflaid_down
+Action_skin_down = nightflaid_down
 Action_skin_up = nightflaid_up
 Action_skin_idle = nightflaid_idle
 
