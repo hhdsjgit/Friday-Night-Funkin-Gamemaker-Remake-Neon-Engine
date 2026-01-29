@@ -21,7 +21,3 @@ if global.input_latency_test {
 }
 
 
-global.check_map.left_pressed = keyboard_check_pressed(vk_left)
-global.check_map.down_pressed = keyboard_check_pressed(vk_down)
-global.check_map.up_pressed = keyboard_check_pressed(vk_up)
-global.check_map.right_pressed = keyboard_check_pressed(vk_right)

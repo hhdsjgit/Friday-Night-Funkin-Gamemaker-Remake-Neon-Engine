@@ -18,24 +18,24 @@ camera_set_view_pos(global._camera,(1280 - _view_w)/2 + global.Game_inf.cam_x + 
 camera_set_view_size(global._camera,_view_w,_view_h)
 camera_apply(global._camera)
 
-if keyboard_check(ord("D")) {
-	global.Game_inf.cam_x += 3
-}
-if keyboard_check(ord("A")) {
-	global.Game_inf.cam_x -= 3
-}
-if keyboard_check(ord("W")) {
-	global.Game_inf.cam_y -= 3
-}
-if keyboard_check(ord("S")) {
-	global.Game_inf.cam_y += 3
-}
-if keyboard_check(ord("Q")) {
-	global.Game_inf.cam_scale -= 0.02
-}
-if keyboard_check(ord("E")) {
-	global.Game_inf.cam_scale += 0.02
-}
+//if keyboard_check(ord("D")) {
+//	global.Game_inf.cam_x += 3
+//}
+//if keyboard_check(ord("A")) {
+//	global.Game_inf.cam_x -= 3
+//}
+//if keyboard_check(ord("W")) {
+//	global.Game_inf.cam_y -= 3
+//}
+//if keyboard_check(ord("S")) {
+//	global.Game_inf.cam_y += 3
+//}
+//if keyboard_check(ord("Q")) {
+//	global.Game_inf.cam_scale -= 0.02
+//}
+//if keyboard_check(ord("E")) {
+//	global.Game_inf.cam_scale += 0.02
+//}
 
 
 if !audio_exists(song_sound1) or !audio_exists(song_sound2) {
@@ -324,7 +324,7 @@ Ui_Zoom += func_frc((1-Ui_Zoom)/15)
 
 
 //玩家条件判定按键
-if keyboard_check(vk_left){
+if global.check_map.left{
 	if global.Game_inf.Note_player2_0 != 1{
 		global.Game_inf.Note_player2_0 = 2
 	}else{
@@ -334,7 +334,7 @@ if keyboard_check(vk_left){
 	global.Game_inf.Note_player2_0 = 0
 }
 
-if keyboard_check(vk_down) {
+if global.check_map.down {
 	if global.Game_inf.Note_player2_1 != 1 {
 		global.Game_inf.Note_player2_1 = 2
 	}else{
@@ -344,7 +344,7 @@ if keyboard_check(vk_down) {
 	global.Game_inf.Note_player2_1 = 0
 }
 
-if keyboard_check(vk_up) {
+if global.check_map.up {
 	if global.Game_inf.Note_player2_2 != 1 {
 		global.Game_inf.Note_player2_2 = 2
 	}else{
@@ -354,7 +354,7 @@ if keyboard_check(vk_up) {
 	global.Game_inf.Note_player2_2 = 0
 }
 
-if keyboard_check(vk_right) {
+if global.check_map.right {
 	if global.Game_inf.Note_player2_3 != 1{
 		global.Game_inf.Note_player2_3 = 2
 	}else{

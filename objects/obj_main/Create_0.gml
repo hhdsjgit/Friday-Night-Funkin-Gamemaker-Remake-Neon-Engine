@@ -7,7 +7,11 @@ global.check_map =
 	"left_pressed":false,
 	"down_pressed":false,
 	"up_pressed":false,
-	"right_pressed":false
+	"right_pressed":false,
+	"left":false,
+	"down":false,
+	"up":false,
+	"right":false
 	
 }
 
