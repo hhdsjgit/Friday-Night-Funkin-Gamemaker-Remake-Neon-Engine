@@ -36,4 +36,3 @@ if n_red_color > 0 {
 n_red_color += func_frc((0 - n_red_color) / 20)
 n_red_color = clamp(n_red_color,0,255)
 
-global.Game_inf.cam_scale += func_frc((3-global.Game_inf.cam_scale)/15)

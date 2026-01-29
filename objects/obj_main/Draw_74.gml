@@ -100,60 +100,63 @@ if keyboard_check(vk_f11) {
 	test_zx += 1	
 	show_debug_message(test_zx)
 }
-// 1. 先绘制空的部分（白色/背景色）
-draw_sprite_ext(Heathbar_bar, 0, _draw_heath_bar_x + 40,_draw_heath_bar_y,0.6,0.6, 0, c_blue, 1);
-// 从左到右的进度
-var fill_width = spr_w * ((100-global.Game_inf.heath) / 100);
-global.Game_inf.heath = clamp(global.Game_inf.heath,0,100)
 
-// 使用部分绘制，只绘制进度内的区域
-draw_sprite_part_ext(
-    Heathbar_bar, 
-    0,
-    0, 0,                    // 源图的起始位置
-    fill_width, spr_h,       // 要绘制的宽度和高度
-    _draw_heath_bar_x + 40, _draw_heath_bar_y,                  // 目标位置
-    0.6,0.6,                   // 缩放
-    c_white,              // 颜色
-    1                        // 透明度
-);
-draw_sprite_ext(Heathbar_overlay,0,_draw_heath_bar_x,_draw_heath_bar_y,0.6,0.6,0,c_white,1)
 
-// 5. 绘制BF图标，跟随血条进度
-var icon_x = _draw_heath_bar_x + 40 + fill_width * 0.6; // 考虑0.6缩放
-var icon_y = _draw_heath_bar_y; // 垂直居中
-// 根据BF的方向决定是否镜像（如果是面向左边）
-icon_scale += func_frc((-1-icon_scale) / 6);
-icon_x -= sprite_get_width(icon_bf); // 镜像时需要调整位置
-draw_sprite_ext(
-    icon_bf, 
-    0, 
-    icon_x+200, 
-    icon_y+40, 
-    icon_scale, -icon_scale, // 水平和垂直缩放
-    0, 
-    c_white, 
-    1
-);
-function get_icon_heath (heath) {
-	if heath >= 85 {
-		return 1	
-	}else if heath < 85 and heath > 15{
-		return 0
-	}else{
-		return 2	
+if global.Game_inf.show_health_bar {
+	// 1. 先绘制空的部分（白色/背景色）
+	draw_sprite_ext(Heathbar_bar, 0, _draw_heath_bar_x + 40,_draw_heath_bar_y,0.6,0.6, 0, c_blue, 1);
+	// 从左到右的进度
+	var fill_width = spr_w * ((100-global.Game_inf.heath) / 100);
+	
+	// 使用部分绘制，只绘制进度内的区域
+	draw_sprite_part_ext(
+	    Heathbar_bar, 
+	    0,
+	    0, 0,                    // 源图的起始位置
+	    fill_width, spr_h,       // 要绘制的宽度和高度
+	    _draw_heath_bar_x + 40, _draw_heath_bar_y,                  // 目标位置
+	    0.6,0.6,                   // 缩放
+	    c_white,              // 颜色
+	    1                        // 透明度
+	);
+	draw_sprite_ext(Heathbar_overlay,0,_draw_heath_bar_x,_draw_heath_bar_y,0.6,0.6,0,c_white,1)
+
+	// 5. 绘制BF图标，跟随血条进度
+	var icon_x = _draw_heath_bar_x + 40 + fill_width * 0.6; // 考虑0.6缩放
+	var icon_y = _draw_heath_bar_y; // 垂直居中
+	// 根据BF的方向决定是否镜像（如果是面向左边）
+	icon_scale += func_frc((-1-icon_scale) / 6);
+	icon_x -= sprite_get_width(icon_bf); // 镜像时需要调整位置
+	draw_sprite_ext(
+	    icon_bf, 
+	    0, 
+	    icon_x+200, 
+	    icon_y+40, 
+	    icon_scale, -icon_scale, // 水平和垂直缩放
+	    0, 
+	    c_white, 
+	    1
+	);
+	function get_icon_heath (heath) {
+		if heath >= 85 {
+			return 1	
+		}else if heath < 85 and heath > 15{
+			return 0
+		}else{
+			return 2	
+		}
 	}
+	draw_sprite_ext(
+	    icon_nightflaid, 
+	    get_icon_heath(global.Game_inf.heath), 
+	    icon_x+90, 
+	    icon_y+40, 
+	    -icon_scale, -icon_scale, // 水平和垂直缩放
+	    0, 
+	    c_white, 
+	    1
+	);
 }
-draw_sprite_ext(
-    icon_nightflaid, 
-    get_icon_heath(global.Game_inf.heath), 
-    icon_x+90, 
-    icon_y+40, 
-    -icon_scale, -icon_scale, // 水平和垂直缩放
-    0, 
-    c_white, 
-    1
-);
 // 设置水平和垂直对齐方式
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);

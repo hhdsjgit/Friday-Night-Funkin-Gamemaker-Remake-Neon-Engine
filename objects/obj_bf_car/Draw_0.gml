@@ -5,6 +5,6 @@
 draw_self()
 image_yscale = -1 
 image_alpha = 0.5
-draw_self()
+draw_sprite_ext(sprite_index,image_index,x,y+20,image_xscale,image_yscale,0,c_white,image_alpha)
 image_yscale = 1
 image_alpha = 1

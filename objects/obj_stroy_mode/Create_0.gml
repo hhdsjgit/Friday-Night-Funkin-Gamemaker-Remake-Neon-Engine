@@ -16,6 +16,7 @@ test_need_draw =
 	[
 		{	
 			"week_name":"AXCZ",
+			"difficulties":"hard",
 			"choose_difficulties":["hard"],
 			"week_char":["dad","gf","bf"],
 			"week_sprite":"path",
@@ -23,10 +24,12 @@ test_need_draw =
 			"note":"1145"
 		},
 		{
-			"week_name":"114514",
+			"week_name":"kris week",
+			"difficulties":"hard",
+			"choose_difficulties":["hard"],
 			"week_char":["dad","gf","bf"],
 			"week_sprite":"path",
-			"songs":["789","X21X"],
+			"songs":["Montagem-Miau"],
 			"note":"FAFZX"
 		}
 	]

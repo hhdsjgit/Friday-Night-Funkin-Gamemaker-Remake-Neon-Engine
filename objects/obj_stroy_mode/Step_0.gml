@@ -30,6 +30,8 @@ if right_check == true {
 	time -= func_frc(1)
 	if time <= 0 {
 		audio_stop_all()
+		global.song_get.song = string(test_need_draw.weeks[choose_setting].songs[0])
+		global.song_get.difficulties = string(test_need_draw.weeks[choose_setting].difficulties)
 		room_goto(Main)
 	}
 }
