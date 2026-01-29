@@ -69,7 +69,7 @@ if !file_exists(working_directory + "\\song_test.json") {
 }
 //var file_content = buffer_load(working_directory + "\\song_test.json")//lang_en()
 //var file_content = buffer_load(working_directory + "\\assets\\songs\\test-song\\charts\\catastrofiend.json")
-var file_content = buffer_load(working_directory + "\\assets\\songs\\extirpatient\\charts\\extirpatient-hell.json")
+var file_content = buffer_load(working_directory + "\\assets\\songs\\"+string(global.song_get.song)+"\\charts\\"+string(global.song_get.song)+"-"+string(global.song_get.difficulties)+".json")
 
 var json_string = buffer_read(file_content, buffer_string);
 buffer_delete(file_content);
@@ -129,15 +129,25 @@ song_time_show = ""
 /*
 var step_s = audio_create_stream(Path_init("Path_sound","step\\"+ "Run" + string(round(random_range(0,7.5))) + ".ogg"))
 audio_play_sound(step_s,0,0)*/
-load_s = audio_create_stream(working_directory + "\\assets\\songs\\extirpatient\\song\\Inst.ogg")
-load_s1 = audio_create_stream(working_directory + "\\assets\\songs\\extirpatient\\song\\Voices.ogg")
+if file_exists(working_directory + "\\assets\\songs\\"+string(global.song_get.song)+"\\song\\Inst.ogg") {
+	load_s = audio_create_stream(working_directory + "\\assets\\songs\\"+string(global.song_get.song)+"\\song\\Inst.ogg")
+	song_sound1=audio_play_sound(load_s,0,0)
+}else{
+	song_sound1=audio_play_sound(Voices1_1,0,0)
+}
+if file_exists(working_directory + "\\assets\\songs\\"+string(global.song_get.song)+"\\song\\Voices.ogg") {
+	load_s1 = audio_create_stream(working_directory + "\\assets\\songs\\"+string(global.song_get.song)+"\\song\\Voices.ogg")
+	song_sound2=audio_play_sound(load_s1,0,0)
+}else{
+	song_sound2=audio_play_sound(Voices1_1,0,0)
+}
 //load_s2 = audio_create_stream(working_directory + "\\assets\\songs\\extirpatient\\song\\VoicesInsatian.ogg")
 
 
 //load_s = audio_create_stream(working_directory + "\\assets\\songs\\test-song\\song\\Inst.ogg")
 //load_s1 = audio_create_stream(working_directory + "\\assets\\songs\\test-song\\song\\Voices.ogg")
-song_sound1=audio_play_sound(load_s,0,0)
-song_sound2=audio_play_sound(load_s1,0,0)
+
+
 song_sound3=audio_play_sound(Voices1_1,0,0)
 
 global.game_play = 0
@@ -180,6 +190,7 @@ global.Game_inf = {
 	"total_score":0,
 	"accuracy":100,
 	"max_score":0,
+	"show_health_bar":1,
 }
 
 

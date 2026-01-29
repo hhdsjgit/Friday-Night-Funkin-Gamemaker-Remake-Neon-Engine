@@ -1,5 +1,14 @@
 function events_game(song_name){
+	
+	if song_name = "Montagem-Miau" {
+		global.Game_inf.cam_x -= ( global.Game_inf.cam_x - (obj_bf_car.x)+720) / 20
+		global.Game_inf.cam_y -= ( global.Game_inf.cam_y - (obj_bf_car.y) + 500) / 20
+		global.Game_inf.cam_scale += func_frc((1.3-global.Game_inf.cam_scale)/15)
+		global.Game_inf.show_health_bar = 0
+	}
+	
 	if song_name = "Extirpatient" {
+		global.Game_inf.cam_scale += func_frc((3-global.Game_inf.cam_scale)/15)
 		//ui_arrow_wave(0,12000,50000)
 		
 		if audio_exists(obj_main.song_sound1) {

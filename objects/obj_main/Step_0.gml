@@ -44,14 +44,17 @@ if !audio_exists(song_sound1) or !audio_exists(song_sound2) {
 	}else{
 		audio_stop_sound(song_sound2)	
 	}
-	load_s = audio_create_stream(working_directory + "\\assets\\songs\\test-song\\song\\Inst.ogg")
-	load_s1 = audio_create_stream(working_directory + "\\assets\\songs\\test-song\\song\\Voices.ogg")
-	song_sound1=audio_play_sound(load_s,0,0)
-	song_sound2=audio_play_sound(load_s1,0,0)	
-	var audio_time = song_time / 1000
+	audio_stop_all()
+	room_goto(room_stroy_mode)
+	exit;
+	//load_s = audio_create_stream(working_directory + "\\assets\\songs\\test-song\\song\\Inst.ogg")
+	//load_s1 = audio_create_stream(working_directory + "\\assets\\songs\\test-song\\song\\Voices.ogg")
+	//song_sound1=audio_play_sound(load_s,0,0)
+	//song_sound2=audio_play_sound(load_s1,0,0)	
+	//var audio_time = song_time / 1000
 	
-	audio_sound_set_track_position(song_sound1, audio_time)	
-	audio_sound_set_track_position(song_sound2, audio_time)	
+	//audio_sound_set_track_position(song_sound1, audio_time)	
+	//audio_sound_set_track_position(song_sound2, audio_time)	
 			
 	
 }
@@ -291,7 +294,7 @@ if array_length(global.Song_information.events_data) > events_i {
 
 
 
-
+global.Game_inf.heath = clamp(global.Game_inf.heath,0,100)
 
 
 

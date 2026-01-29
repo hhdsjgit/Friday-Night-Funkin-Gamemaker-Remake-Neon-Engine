@@ -1,4 +1,32 @@
 /// @description 
+function get_note_y (_note_arrow,_Note_mustHitSection){
+	
+	var _LEFTARROW_Y = obj_main.obj_left_arrow.y
+	var _DOWNARROW_Y =obj_main.obj_down_arrow.y
+	var _UPARROW_Y =obj_main.obj_up_arrow.y
+	var _RIGHTARROW_Y =obj_main.obj_right_arrow.y
+	var _OLEFTARROW_Y = obj_main.obj_left_arrow.y
+	var _ODOWNARROW_Y =obj_main.obj_down_arrow.y
+	var _OUPARROW_Y =obj_main.obj_up_arrow.y
+	var _ORIGHTARROW_Y =obj_main.obj_right_arrow.y
+	if _Note_mustHitSection {
+		switch _note_arrow {
+		    case 0: return _LEFTARROW_Y;
+			case 1: return _DOWNARROW_Y;
+			case 2: return _UPARROW_Y;
+			case 3: return _RIGHTARROW_Y;
+		}	
+	}else{
+		switch _note_arrow {
+		    case 0: return _OLEFTARROW_Y;
+			case 1: return _ODOWNARROW_Y;
+			case 2: return _OUPARROW_Y;
+			case 3: return _ORIGHTARROW_Y;
+		}	
+	}
+	return 100;
+	//get_note_y(note_arrow,Note_mustHitSection)
+}
 note_arrow = 0
 Note_length = 0
 Check_note_length = 0

@@ -2,34 +2,7 @@ var LEFTARROW_Y = obj_main.obj_left_arrow.y
 var DOWNARROW_Y =obj_main.obj_down_arrow.y
 var UPARROW_Y =obj_main.obj_up_arrow.y
 var RIGHTARROW_Y =obj_main.obj_right_arrow.y
-function get_note_y (_note_arrow,_Note_mustHitSection){
-	
-	var _LEFTARROW_Y = obj_main.obj_left_arrow.y
-	var _DOWNARROW_Y =obj_main.obj_down_arrow.y
-	var _UPARROW_Y =obj_main.obj_up_arrow.y
-	var _RIGHTARROW_Y =obj_main.obj_right_arrow.y
-	var _OLEFTARROW_Y = obj_main.obj_left_arrow.y
-	var _ODOWNARROW_Y =obj_main.obj_down_arrow.y
-	var _OUPARROW_Y =obj_main.obj_up_arrow.y
-	var _ORIGHTARROW_Y =obj_main.obj_right_arrow.y
-	if _Note_mustHitSection {
-		switch _note_arrow {
-		    case 0: return _LEFTARROW_Y;
-			case 1: return _DOWNARROW_Y;
-			case 2: return _UPARROW_Y;
-			case 3: return _RIGHTARROW_Y;
-		}	
-	}else{
-		switch _note_arrow {
-		    case 0: return _OLEFTARROW_Y;
-			case 1: return _ODOWNARROW_Y;
-			case 2: return _OUPARROW_Y;
-			case 3: return _ORIGHTARROW_Y;
-		}	
-	}
-	return 100;
-	//get_note_y(note_arrow,Note_mustHitSection)
-}
+
 _NOTENOWY = get_note_y(note_arrow,Note_mustHitSection)
 
 // 计算经过的时间（转换为秒）
@@ -253,19 +226,21 @@ if Note_mustHitSection = 1 and (y >= (-200 +_NOTENOWY) and y <= (200 + _NOTENOWY
     
     // 检查是否有同方向音符更接近判定线
    
-    with obj_note {
-        if id != other.id and note_arrow = other.note_arrow 
-        and Note_mustHitSection = other.Note_mustHitSection {
-            // 计算其他音符的判定线位置
-            var other_target_y = get_note_y(note_arrow, Note_mustHitSection);
+    //with obj_note {
+    //    if id != other.id and note_arrow = other.note_arrow 
+    //    and Note_mustHitSection = other.Note_mustHitSection {
+    //        // 计算其他音符的判定线位置
+    //        var other_target_y = get_note_y(note_arrow, Note_mustHitSection);
             
-            // 如果这个音符更接近判定线，让更近的先处理
-            if abs(y - other_target_y) < abs(other.y - other.my_target_y) {
-                other.can_hit = false;
-                break;
-            }
-        }
-    }
+    //        // 如果这个音符更接近判定线，让更近的先处理
+    //        if abs(y - other_target_y) < abs(other.y - other.my_target_y) {
+    //            other.can_hit = false;
+    //            break;
+    //        }
+    //    }
+    //}
+	
+	
 	if can_hit = true {
 		switch note_arrow {
 			case 0:
@@ -338,64 +313,66 @@ if Note_mustHitSection = 1 and (y >= (-200 +_NOTENOWY) and y <= (200 + _NOTENOWY
 if Note_mustHitSection = 1 and Note_length > 0{
 	
 	if check_note = 0 and (y >= (-200 + _NOTENOWY) and y <= (200 + _NOTENOWY)){
-		switch note_arrow {
-			case 0:
-			if global.check_map.left_pressed{
-				var obj = instance_create_depth(x,_NOTENOWY,-15,obj_noteSplashes)    
-				obj.Note_Direction = note_arrow
-				global.Game_inf.Note_player2_0=1;
-				obj_bf_car.image_index = 0
-	            obj_bf_car.Action = note_arrow
-	            obj_bf_car.time = 30
-				global.Game_inf.Combo_note ++
-	            scrore_ui(global.Game_inf.Combo_note,func_judge_performance_quality(y,_NOTENOWY,0,false))
-				//obj_main.obj_left_arrow.sprite_index=left_confirm0000;
-			};
-			break;
 		
-			case 1:
-			if global.check_map.down_pressed{
-				var obj = instance_create_depth(x,_NOTENOWY,-15,obj_noteSplashes)    
-				obj.Note_Direction = note_arrow
-				global.Game_inf.Note_player2_1=1;
-				obj_bf_car.image_index = 0
-	            obj_bf_car.Action = note_arrow
-	            obj_bf_car.time = 30
-				global.Game_inf.Combo_note ++
-	            scrore_ui(global.Game_inf.Combo_note,func_judge_performance_quality(y,_NOTENOWY,1,false))
-				//obj_main.obj_down_arrow.sprite_index=down_confirm0000;
-			};
-			break;
+		if can_hit = true {
+			switch note_arrow {
+				case 0:
+				if global.check_map.left_pressed{
+					var obj = instance_create_depth(x,_NOTENOWY,-15,obj_noteSplashes)    
+					obj.Note_Direction = note_arrow
+					global.Game_inf.Note_player2_0=1;
+					obj_bf_car.image_index = 0
+		            obj_bf_car.Action = note_arrow
+		            obj_bf_car.time = 30
+					global.Game_inf.Combo_note ++
+		            scrore_ui(global.Game_inf.Combo_note,func_judge_performance_quality(y,_NOTENOWY,0,false))
+					//obj_main.obj_left_arrow.sprite_index=left_confirm0000;
+				};
+				break;
 		
-			case 2:
-			if global.check_map.up_pressed{
-				var obj = instance_create_depth(x,_NOTENOWY,-15,obj_noteSplashes)    
-				obj.Note_Direction = note_arrow
-				global.Game_inf.Note_player2_2=1;
-				obj_bf_car.image_index = 0
-	            obj_bf_car.Action = note_arrow
-	            obj_bf_car.time = 30			
-				global.Game_inf.Combo_note ++
-	            scrore_ui(global.Game_inf.Combo_note,func_judge_performance_quality(y,_NOTENOWY,2,false))
-				//obj_main.obj_up_arrow.sprite_index=up_confirm0000;
-			};
-			break;
+				case 1:
+				if global.check_map.down_pressed{
+					var obj = instance_create_depth(x,_NOTENOWY,-15,obj_noteSplashes)    
+					obj.Note_Direction = note_arrow
+					global.Game_inf.Note_player2_1=1;
+					obj_bf_car.image_index = 0
+		            obj_bf_car.Action = note_arrow
+		            obj_bf_car.time = 30
+					global.Game_inf.Combo_note ++
+		            scrore_ui(global.Game_inf.Combo_note,func_judge_performance_quality(y,_NOTENOWY,1,false))
+					//obj_main.obj_down_arrow.sprite_index=down_confirm0000;
+				};
+				break;
 		
-			case 3:
-			if global.check_map.right_pressed{
-				var obj = instance_create_depth(x,_NOTENOWY,-15,obj_noteSplashes)    
-				obj.Note_Direction = note_arrow
-				global.Game_inf.Note_player2_3=1;
-				obj_bf_car.image_index = 0
-	            obj_bf_car.Action = note_arrow
-	            obj_bf_car.time = 30		
-				global.Game_inf.Combo_note ++
-	            scrore_ui(global.Game_inf.Combo_note,func_judge_performance_quality(y,_NOTENOWY,3,false))
-				//obj_main.obj_right_arrow.sprite_index=right_confirm0000;
-			};
-			break;
+				case 2:
+				if global.check_map.up_pressed{
+					var obj = instance_create_depth(x,_NOTENOWY,-15,obj_noteSplashes)    
+					obj.Note_Direction = note_arrow
+					global.Game_inf.Note_player2_2=1;
+					obj_bf_car.image_index = 0
+		            obj_bf_car.Action = note_arrow
+		            obj_bf_car.time = 30			
+					global.Game_inf.Combo_note ++
+		            scrore_ui(global.Game_inf.Combo_note,func_judge_performance_quality(y,_NOTENOWY,2,false))
+					//obj_main.obj_up_arrow.sprite_index=up_confirm0000;
+				};
+				break;
+		
+				case 3:
+				if global.check_map.right_pressed{
+					var obj = instance_create_depth(x,_NOTENOWY,-15,obj_noteSplashes)    
+					obj.Note_Direction = note_arrow
+					global.Game_inf.Note_player2_3=1;
+					obj_bf_car.image_index = 0
+		            obj_bf_car.Action = note_arrow
+		            obj_bf_car.time = 30		
+					global.Game_inf.Combo_note ++
+		            scrore_ui(global.Game_inf.Combo_note,func_judge_performance_quality(y,_NOTENOWY,3,false))
+					//obj_main.obj_right_arrow.sprite_index=right_confirm0000;
+				};
+				break;
+			}
 		}
-	
 	}
 	if (y <= _NOTENOWY) and y >= (_NOTENOWY - Note_length * 1 - 20){
 		switch note_arrow {
