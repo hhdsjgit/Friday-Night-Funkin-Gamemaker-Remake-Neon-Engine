@@ -9,3 +9,7 @@ time = 0
 subimg = 0
 check_enter_tittle = 0
 run_wait_time = 60
+
+
+//window_set_Penetrate(0)
+//window_set_AlphaAndCrkey(255,c_black)

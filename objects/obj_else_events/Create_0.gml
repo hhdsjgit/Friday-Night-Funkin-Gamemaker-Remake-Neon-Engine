@@ -30,9 +30,10 @@ camera_shake_timer = 0; // 这里已经初始化了，但确保没有遗漏
 modcharts_enabled = true;
 toggledShove = false;
 trulyBeats = 0;
-
+depth = -20
 // 闪光效果
-flash_active = false;
+flash_time = 0
+flash_active = 1;
 next_beat_flash = -1;
 
 // 红色对象列表

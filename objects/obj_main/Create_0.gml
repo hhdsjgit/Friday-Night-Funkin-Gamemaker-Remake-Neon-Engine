@@ -191,6 +191,8 @@ global.Game_inf = {
 	"accuracy":100,
 	"max_score":0,
 	"show_health_bar":1,
+	"show_opponent_alpha":1,
+	"show_note_Splashes":1,
 }
 
 

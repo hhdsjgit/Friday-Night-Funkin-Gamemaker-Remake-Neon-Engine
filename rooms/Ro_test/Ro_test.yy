@@ -18,8 +18,8 @@
   ],
   "name":"Ro_test",
   "parent":{
-    "name":"房间",
-    "path":"folders/房间.yy",
+    "name":"Note",
+    "path":"folders/精灵/Note.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

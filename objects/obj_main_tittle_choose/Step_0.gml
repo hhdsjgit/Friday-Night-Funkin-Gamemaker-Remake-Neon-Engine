@@ -37,7 +37,7 @@ if right_check == true {
 	if time <= 0 {
 		switch test_need_draw[choose_setting] {
 			case "STORY_MODE": room_goto(room_stroy_mode);break;
-			case "FREEPLAY": audio_stop_all();room_goto(Main);global.song_get.song="extirpatient";global.song_get.difficulties="hell";break;
+			case "FREEPLAY": room_goto(room_freeplay)break;
 			case "CREDITS": room_goto(room_credions);break;
 			case "OPTIONS": room_goto(room_options);break;
 		}

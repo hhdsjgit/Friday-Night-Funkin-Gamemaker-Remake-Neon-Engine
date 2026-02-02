@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"hx_window_main",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"hx_window_main",
+  "parent":{
+    "name":"hx_window_control_core",
+    "path":"folders/hx_window_control_core.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

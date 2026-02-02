@@ -2,6 +2,8 @@
 //global.Game_inf.cam_shark_shake_y = random_range(-10,10)
 //global.Game_inf.ui_shark_shake_x = random_range(-5,5)
 //global.Game_inf.ui_shark_shake_y = random_range(-5,5)
+flash_active -= func_frc(0.05)
+flash_time -= 1/60
 var bpm = global.Song_information.bpm; // 128
 crochet = (60 / bpm) * 1000; // 每拍毫秒数 = 468.75ms
 var _current_time = obj_main.song_time; // 你的时间变量

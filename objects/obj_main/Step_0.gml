@@ -44,6 +44,7 @@ if !audio_exists(song_sound1) or !audio_exists(song_sound2) {
 	}else{
 		audio_stop_sound(song_sound2)	
 	}
+	wimdows_rename()
 	audio_stop_all()
 	room_goto(room_stroy_mode)
 	exit;
@@ -228,9 +229,9 @@ function execute_event(_event_type, param1, param2) {
             //change_character(param1, param2);
             break;
             
-        case "Wildcard":
+        case "Flash Camera":
             // 自定义事件
-            //handle_wildcard(param1, param2);
+            Flash_Camera(param1, param2);
             break;
             
         case "Midsong Video":

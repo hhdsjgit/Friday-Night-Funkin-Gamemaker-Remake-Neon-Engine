@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"hx_BGR2RGB",
+  "name":"hx_BGR2RGB",
+  "parent":{
+    "name":"hx_window_control_core",
+    "path":"folders/hx_window_control_core.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

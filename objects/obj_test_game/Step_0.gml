@@ -22,7 +22,7 @@ if global.game_paused = 1{
 	}
 
 	choose_setting = clamp(choose_setting,0,array_length(test_need_draw)-1)
-	ui_y += (choose_setting * 180 - ui_y) / 6
+	ui_y += func_frc((choose_setting * 180 - ui_y) / 6)
 	if keyboard_check_pressed(vk_enter) {
 		if test_need_draw[choose_setting] == "RESTART SONG" {
 			room_goto(Main)
@@ -37,6 +37,7 @@ if global.game_paused = 1{
 			draw_texture_flush();			
 			surface_free(global.ui_surface)
 			audio_stop_all()
+			wimdows_rename()
 			global.tittle_music = func_play_sounds("assets\\music\\freakyMenu.ogg",0,1)
 		}
 	}

@@ -370,3 +370,29 @@ function func_judge_performance_quality(_y,_offset,_note,worry_note){
     
     return rating;
 }
+
+//e,别问我咋用,我其实不是很知道(^-^)
+function load_all_jsons_from_folder(folder_path) {
+    var all_jsons = [];
+    
+    var search_pattern = working_directory + string(folder_path) + "*.json";
+    var file = file_find_first(search_pattern, 0);
+    
+    while (file != "") {
+        var full_path = folder_path + file;
+		var file_content = buffer_load(working_directory + full_path)
+
+		var json_string = buffer_read(file_content, buffer_string);
+		buffer_delete(file_content);
+		var json_data = json_parse(json_string);
+        
+        if (json_data != undefined) {            
+            array_push(all_jsons, json_data);
+        }
+        
+        file = file_find_next();
+    }
+    file_find_close();
+    
+    return all_jsons; 
+}

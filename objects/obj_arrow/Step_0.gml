@@ -1,51 +1,36 @@
 /// @description
 
-if Note_mustHitSection = 1 {
-	skin_left = Notes_Nightflaid_Arrow_Left
-	skin_down = Notes_Nightflaid_Arrow_Down
-	skin_up = Notes_Nightflaid_Arrow_Up
-	skin_right = Notes_Nightflaid_Arrow_Right
+//if Note_mustHitSection = 1 {
+//	skin_left = Notes_Nightflaid_Arrow_Left
+//	skin_down = Notes_Nightflaid_Arrow_Down
+//	skin_up = Notes_Nightflaid_Arrow_Up
+//	skin_right = Notes_Nightflaid_Arrow_Right
 
-	skin_left_pass = Notes_Nightflaid_left_press
-	skin_down_pass = Notes_Nightflaid_down_press
-	skin_up_pass = Notes_Nightflaid_up_press
-	skin_right_pass = Notes_Nightflaid_right_press
+//	skin_left_pass = Notes_Nightflaid_left_press
+//	skin_down_pass = Notes_Nightflaid_down_press
+//	skin_up_pass = Notes_Nightflaid_up_press
+//	skin_right_pass = Notes_Nightflaid_right_press
 
-	skin_left_pass_ok = Notes_Nightflaid_left_confirm
-	skin_down_pass_ok = Notes_Nightflaid_down_confirm
-	skin_up_pass_ok = Notes_Nightflaid_up_confirm
-	skin_right_pass_ok = Notes_Nightflaid_right_confirm
-}else{
-	skin_left = Notes_Nightflaid_Assets_Arrow_Left
-	skin_down = Notes_Nightflaid_Assets_Arrow_Down
-	skin_up = Notes_Nightflaid_Assets_Arrow_Up
-	skin_right = Notes_Nightflaid_Assets_Arrow_Right
+//	skin_left_pass_ok = Notes_Nightflaid_left_confirm
+//	skin_down_pass_ok = Notes_Nightflaid_down_confirm
+//	skin_up_pass_ok = Notes_Nightflaid_up_confirm
+//	skin_right_pass_ok = Notes_Nightflaid_right_confirm
+//}else{
+//	skin_left = Notes_Nightflaid_Assets_Arrow_Left
+//	skin_down = Notes_Nightflaid_Assets_Arrow_Down
+//	skin_up = Notes_Nightflaid_Assets_Arrow_Up
+//	skin_right = Notes_Nightflaid_Assets_Arrow_Right
 
-	skin_left_pass = Notes_Nightflaid_Assets_left_confirm_1
-	skin_down_pass = Notes_Nightflaid_Assets_down_confirm_1
-	skin_up_pass = Notes_Nightflaid_Assets_up_confirm_1
-	skin_right_pass = Notes_Nightflaid_Assets_right_confirm_1
+//	skin_left_pass = Notes_Nightflaid_Assets_left_confirm_1
+//	skin_down_pass = Notes_Nightflaid_Assets_down_confirm_1
+//	skin_up_pass = Notes_Nightflaid_Assets_up_confirm_1
+//	skin_right_pass = Notes_Nightflaid_Assets_right_confirm_1
 
-	skin_left_pass_ok = Notes_Nightflaid_Assets_left_confirm_1
-	skin_down_pass_ok = Notes_Nightflaid_Assets_down_confirm_1
-	skin_up_pass_ok = Notes_Nightflaid_Assets_up_confirm_1
-	skin_right_pass_ok = Notes_Nightflaid_Assets_right_confirm_1
-	//skin_left = arrowLEFT0001
-	//skin_down = arrowDOWN0001
-	//skin_up = arrowUP0001
-	//skin_right = arrowRIGHT0001
-
-	//skin_left_pass = left_press0001
-	//skin_down_pass = down_press0001
-	//skin_up_pass = up_press0001
-	//skin_right_pass = right_press0001
-
-	//skin_left_pass_ok = left_confirm0001
-	//skin_down_pass_ok = down_confirm0001
-	//skin_up_pass_ok = up_confirm0001
-	//skin_right_pass_ok = right_confirm0001
-	
-}
+//	skin_left_pass_ok = Notes_Nightflaid_Assets_left_confirm_1
+//	skin_down_pass_ok = Notes_Nightflaid_Assets_down_confirm_1
+//	skin_up_pass_ok = Notes_Nightflaid_Assets_up_confirm_1
+//	skin_right_pass_ok = Notes_Nightflaid_Assets_right_confirm_1	
+//}
 
 
 

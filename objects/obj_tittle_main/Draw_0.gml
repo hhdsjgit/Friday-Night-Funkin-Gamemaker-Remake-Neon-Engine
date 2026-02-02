@@ -1,3 +1,4 @@
+
 /// @description
 /*
 function draw_text_bet(text,_x,_y,_image_xscale,_image_yscale,angle,alpha) {

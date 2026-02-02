@@ -1,4 +1,5 @@
 /// @description 
+draw_sprite(menuBG,0,0,-ui_y/60)
 var draw_x = 80
 var draw_y = 100
 var draw_need_air = 120
@@ -55,3 +56,7 @@ for (var a = 0;a < array_length(test_need_draw);a++) {
 			
 	}
 }
+draw_set_halign(fa_right)
+draw_set_color(c_white)
+draw_Outline("Neon Engine 0.0.1 beta",1275,680,0.8,0.8,c_black,c_white,0,Font_vcr)
+draw_set_halign(fa_left)
