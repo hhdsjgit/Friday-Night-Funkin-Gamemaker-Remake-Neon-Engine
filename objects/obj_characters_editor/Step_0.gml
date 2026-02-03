@@ -1,4 +1,5 @@
 /// @description
+global.debug_settig.debug_y = 700
 if file_exists(working_directory + string(text_box_path.text)) and path_ok = false{
 	if string_pos(".json",string(text_box_path.text)) {
 		var file_content = buffer_load(working_directory + string(text_box_path.text))

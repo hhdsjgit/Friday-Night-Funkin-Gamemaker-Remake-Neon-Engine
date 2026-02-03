@@ -25,5 +25,3 @@ if file_exists(working_directory + string(text_box_path.text)) {
 	draw_Outline("ERROR",text_box_path.x,text_box_path.y + 40,1,1,c_black,c_red,0,Font_vcr)
 }
 draw_Outline("Json path :",text_box_path.x,text_box_path.y - 12,1,1,c_black,c_white,0,Font_vcr)
-
-
