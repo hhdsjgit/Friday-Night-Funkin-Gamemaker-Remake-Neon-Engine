@@ -7,11 +7,11 @@ cursor_pos = 0;         // 光标位置
 cursor_blink = 0;       // 光标闪烁计时器
 max_length = 200;        // 最大字符数
 placeholder = "text..."; // 占位符
-
+input_ok = false
 // 定义输入框外观
 box_x = 100;
 box_y = 100;
-box_width = 200;
+box_width = 400;
 box_height = 30;
 buff_time = 10
 if clipboard_has_text()

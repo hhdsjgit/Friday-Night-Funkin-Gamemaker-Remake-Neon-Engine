@@ -13,3 +13,579 @@ global.debug_settig =
 	"debug_x":5,
 	"debug_y":5
 }
+
+
+
+test_time = 0
+sub = {
+"TextureAtlas": {
+"imagePath": "starjump.png",
+"SubTextures":
+[
+		{
+	    "name": 1,
+	    "x": 2718,
+	    "y": 451,
+	    "width": 405,
+	    "height": 478,
+	    "frameX": -36,
+	    "frameY": -152,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 2,
+	    "x": 3852,
+	    "y": 459,
+	    "width": 405,
+	    "height": 485,
+	    "frameX": -36,
+	    "frameY": -145,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 3,
+	    "x": 1800,
+	    "y": 912,
+	    "width": 405,
+	    "height": 491,
+	    "frameX": -36,
+	    "frameY": -139,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 4,
+	    "x": 2565,
+	    "y": 929,
+	    "width": 405,
+	    "height": 496,
+	    "frameX": -27,
+	    "frameY": -134,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 5,
+	    "x": 2970,
+	    "y": 934,
+	    "width": 405,
+	    "height": 500,
+	    "frameX": -27,
+	    "frameY": -130,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 6,
+	    "x": 3375,
+	    "y": 940,
+	    "width": 405,
+	    "height": 503,
+	    "frameX": -27,
+	    "frameY": -127,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 7,
+	    "x": 3780,
+	    "y": 944,
+	    "width": 405,
+	    "height": 505,
+	    "frameX": -27,
+	    "frameY": -125,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 8,
+	    "x": 4185,
+	    "y": 1069,
+	    "width": 405,
+	    "height": 505,
+	    "frameX": -27,
+	    "frameY": -125,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 9,
+	    "x": 0,
+	    "y": 1402,
+	    "width": 405,
+	    "height": 505,
+	    "frameX": -27,
+	    "frameY": -125,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 10,
+	    "x": 405,
+	    "y": 1402,
+	    "width": 405,
+	    "height": 505,
+	    "frameX": -27,
+	    "frameY": -125,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 11,
+	    "x": 810,
+	    "y": 1402,
+	    "width": 405,
+	    "height": 505,
+	    "frameX": -27,
+	    "frameY": -125,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 12,
+	    "x": 1215,
+	    "y": 1402,
+	    "width": 405,
+	    "height": 505,
+	    "frameX": -27,
+	    "frameY": -125,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 13,
+	    "x": 1620,
+	    "y": 1403,
+	    "width": 405,
+	    "height": 508,
+	    "frameX": -27,
+	    "frameY": -122,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 14,
+	    "x": 3393,
+	    "y": 1443,
+	    "width": 342,
+	    "height": 536,
+	    "frameX": -36,
+	    "frameY": -94,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 15,
+	    "x": 3735,
+	    "y": 1449,
+	    "width": 342,
+	    "height": 536,
+	    "frameX": -36,
+	    "frameY": -95,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 16,
+	    "x": 4257,
+	    "y": 534,
+	    "width": 342,
+	    "height": 535,
+	    "frameX": -36,
+	    "frameY": -98,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 17,
+	    "x": 2025,
+	    "y": 1405,
+	    "width": 342,
+	    "height": 535,
+	    "frameX": -36,
+	    "frameY": -99,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 18,
+	    "x": 4257,
+	    "y": 0,
+	    "width": 342,
+	    "height": 534,
+	    "frameX": -36,
+	    "frameY": -100,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 19,
+	    "x": 2367,
+	    "y": 1425,
+	    "width": 342,
+	    "height": 535,
+	    "frameX": -36,
+	    "frameY": -100,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 20,
+	    "x": 2709,
+	    "y": 1434,
+	    "width": 342,
+	    "height": 535,
+	    "frameX": -36,
+	    "frameY": -100,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 21,
+	    "x": 3051,
+	    "y": 1443,
+	    "width": 342,
+	    "height": 535,
+	    "frameX": -36,
+	    "frameY": -100,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 22,
+	    "x": 3051,
+	    "y": 1443,
+	    "width": 342,
+	    "height": 535,
+	    "frameX": -36,
+	    "frameY": -100,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 23,
+	    "x": 3051,
+	    "y": 1443,
+	    "width": 342,
+	    "height": 535,
+	    "frameX": -36,
+	    "frameY": -100,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 24,
+	    "x": 0,
+	    "y": 0,
+	    "width": 423,
+	    "height": 445,
+	    "frameX": -36,
+	    "frameY": -185,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 25,
+	    "x": 423,
+	    "y": 0,
+	    "width": 423,
+	    "height": 451,
+	    "frameX": -36,
+	    "frameY": -179,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 26,
+	    "x": 846,
+	    "y": 0,
+	    "width": 423,
+	    "height": 451,
+	    "frameX": -36,
+	    "frameY": -179,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 27,
+	    "x": 1269,
+	    "y": 0,
+	    "width": 432,
+	    "height": 451,
+	    "frameX": -27,
+	    "frameY": -179,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 28,
+	    "x": 1701,
+	    "y": 0,
+	    "width": 432,
+	    "height": 451,
+	    "frameX": -27,
+	    "frameY": -179,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 29,
+	    "x": 2133,
+	    "y": 0,
+	    "width": 432,
+	    "height": 451,
+	    "frameX": -27,
+	    "frameY": -179,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 30,
+	    "x": 2565,
+	    "y": 0,
+	    "width": 432,
+	    "height": 451,
+	    "frameX": -27,
+	    "frameY": -179,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 31,
+	    "x": 2997,
+	    "y": 0,
+	    "width": 432,
+	    "height": 451,
+	    "frameX": -27,
+	    "frameY": -179,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 32,
+	    "x": 3429,
+	    "y": 0,
+	    "width": 432,
+	    "height": 451,
+	    "frameX": -27,
+	    "frameY": -179,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 33,
+	    "x": 3429,
+	    "y": 0,
+	    "width": 432,
+	    "height": 451,
+	    "frameX": -27,
+	    "frameY": -179,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 34,
+	    "x": 3123,
+	    "y": 451,
+	    "width": 369,
+	    "height": 483,
+	    "frameX": -9,
+	    "frameY": -154,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 35,
+	    "x": 2205,
+	    "y": 914,
+	    "width": 360,
+	    "height": 491,
+	    "frameX": -18,
+	    "frameY": -146,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 36,
+	    "x": 3492,
+	    "y": 451,
+	    "width": 360,
+	    "height": 489,
+	    "frameX": -18,
+	    "frameY": -148,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 37,
+	    "x": 0,
+	    "y": 905,
+	    "width": 360,
+	    "height": 489,
+	    "frameX": -18,
+	    "frameY": -148,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 38,
+	    "x": 360,
+	    "y": 912,
+	    "width": 360,
+	    "height": 490,
+	    "frameX": -18,
+	    "frameY": -147,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 39,
+	    "x": 720,
+	    "y": 912,
+	    "width": 360,
+	    "height": 490,
+	    "frameX": -18,
+	    "frameY": -147,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 40,
+	    "x": 1080,
+	    "y": 912,
+	    "width": 360,
+	    "height": 490,
+	    "frameX": -18,
+	    "frameY": -147,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 41,
+	    "x": 1440,
+	    "y": 912,
+	    "width": 360,
+	    "height": 490,
+	    "frameX": -18,
+	    "frameY": -147,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 42,
+	    "x": 1440,
+	    "y": 912,
+	    "width": 360,
+	    "height": 490,
+	    "frameX": -18,
+	    "frameY": -147,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 43,
+	    "x": 1440,
+	    "y": 912,
+	    "width": 360,
+	    "height": 490,
+	    "frameX": -18,
+	    "frameY": -147,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 44,
+	    "x": 2331,
+	    "y": 451,
+	    "width": 387,
+	    "height": 463,
+	    "frameX": -72,
+	    "frameY": -163,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 45,
+	    "x": 0,
+	    "y": 445,
+	    "width": 396,
+	    "height": 460,
+	    "frameX": -63,
+	    "frameY": -166,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 46,
+	    "x": 3861,
+	    "y": 0,
+	    "width": 396,
+	    "height": 459,
+	    "frameX": -63,
+	    "frameY": -167,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 47,
+	    "x": 396,
+	    "y": 451,
+	    "width": 387,
+	    "height": 461,
+	    "frameX": -63,
+	    "frameY": -165,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 48,
+	    "x": 783,
+	    "y": 451,
+	    "width": 387,
+	    "height": 461,
+	    "frameX": -63,
+	    "frameY": -165,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 49,
+	    "x": 1170,
+	    "y": 451,
+	    "width": 387,
+	    "height": 461,
+	    "frameX": -63,
+	    "frameY": -165,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 50,
+	    "x": 1557,
+	    "y": 451,
+	    "width": 387,
+	    "height": 461,
+	    "frameX": -63,
+	    "frameY": -165,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    },
+	    {
+	    "name": 51,
+	    "x": 1944,
+	    "y": 451,
+	    "width": 387,
+	    "height": 461,
+	    "frameX": -63,
+	    "frameY": -165,
+	    "frameWidth": 540,
+	    "frameHeight": 675
+	    }
+	]
+	}
+}
+
+atlas_sprite = sprite_add(sub.TextureAtlas.imagePath, 1, false, false, 0, 0);
+atlas_texture = sprite_get_texture(atlas_sprite, 0);

@@ -63,8 +63,8 @@ show_debug_log(1)
 
 //Game main
 var Game_engine_type = "NE"
-if !file_exists(working_directory + "\\song_test.json") {
-	show_message("Error:NO find json file")
+if !file_exists(working_directory + "\\assets\\songs\\"+string(global.song_get.song)+"\\charts\\"+string(global.song_get.song)+"-"+string(global.song_get.difficulties)+".json") {
+	show_message("Error:NO find json file Path : " + string(working_directory + "\\assets\\songs\\"+string(global.song_get.song)+"\\charts\\"+string(global.song_get.song)+"-"+string(global.song_get.difficulties)+".json"))
 	game_end()	
 }
 //var file_content = buffer_load(working_directory + "\\song_test.json")//lang_en()

@@ -23,6 +23,5 @@ for (var a = 0;a < array_length(all_songs);a++) {
 		image_alpha = 0.5	
 	}
 	draw_text_bet(string(all_songs[a][0]),80+better_math,(270 +120 * a) + -ui_y,1,1,0,image_alpha)
-	//draw_text_bet(string(test_need_draw[a]),50,(500 + 100 * a) + -ui_y,1,1,0,image_alpha)
 	image_alpha = 1
 }

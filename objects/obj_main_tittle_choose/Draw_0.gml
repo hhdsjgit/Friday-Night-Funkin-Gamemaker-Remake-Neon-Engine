@@ -58,5 +58,8 @@ for (var a = 0;a < array_length(test_need_draw);a++) {
 }
 draw_set_halign(fa_right)
 draw_set_color(c_white)
-draw_Outline("Neon Engine 0.0.1 beta",1275,680,0.8,0.8,c_black,c_white,0,Font_vcr)
+draw_Outline("Neon Engine 0.0.1 beta",1275,660,0.8,0.8,c_black,c_white,0,Font_vcr)
+draw_Outline(date_time_string(GM_build_date),1275,675,0.8,0.8,c_black,c_white,0,Font_vcr)
+draw_Outline("v" + GM_version,1275,690,0.8,0.8,c_black,c_white,0,Font_vcr)
+
 draw_set_halign(fa_left)

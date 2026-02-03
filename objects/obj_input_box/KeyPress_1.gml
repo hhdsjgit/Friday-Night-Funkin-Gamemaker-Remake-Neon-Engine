@@ -1,7 +1,9 @@
 
 if (active) {
 	
-	if !(keyboard_check_pressed(vk_enter)or(keyboard_check_pressed(vk_backspace))or(keyboard_check_pressed(vk_shift)or(keyboard_check_pressed(vk_alt)or(keyboard_check_pressed(vk_lcontrol)) ))){
+	if !(keyboard_check(vk_control) or keyboard_check(vk_enter)or(keyboard_check(vk_backspace))or
+	(keyboard_check(vk_shift)or(keyboard_check(vk_alt)
+	or(keyboard_check(vk_lcontrol)) ))){
 		var key = keyboard_lastchar;
     
 	    if (string_length(text) < max_length) {
@@ -11,6 +13,14 @@ if (active) {
 			//show_debug_message(string(text) + "  " + string(cursor_pos))
         
 	    }	
+	}
+	if keyboard_check(vk_control) and keyboard_check_pressed(ord("V")) {
+		var get_text = clipboard_get_text();
+		var get_text_length = string_length(get_text)
+		if get_text_length > 0 {
+			text = string_insert(get_text, text, cursor_pos + 1);
+			cursor_pos += get_text_length
+		}
 	}
     // 处理删除键
     if (keyboard_check_pressed(vk_backspace)) {
