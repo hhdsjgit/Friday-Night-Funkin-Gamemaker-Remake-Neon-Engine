@@ -35,7 +35,12 @@ function load_image(Path) {
 }
 
 function func_frc(val){
+	//return val * (global.fps_time);
 	return val * 60 * global.fps_time
+}
+function func_frc_main(val){
+	return val * (global.fps_time);
+	//return val * 60 * global.fps_time
 }
 /// @function func_play_sounds(sounds_dir,priority,loops)
 /// @description 读取外部音频文件用=)

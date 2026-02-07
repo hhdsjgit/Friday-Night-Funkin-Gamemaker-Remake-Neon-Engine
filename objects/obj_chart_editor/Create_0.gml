@@ -1,4 +1,5 @@
 /// @description
+depth = -3
 json = {}
 var file_content = buffer_load(working_directory + "\\assets\\songs\\extirpatient\\charts\\extirpatient-hell.json")
 

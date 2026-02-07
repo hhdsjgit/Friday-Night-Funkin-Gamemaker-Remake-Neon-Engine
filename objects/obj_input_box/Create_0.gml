@@ -1,5 +1,6 @@
 // 创建对象 obj_textbox
 // 创建事件
+depth = -1
 active = 1
 is_active = false;          // 是否激活输入
 text = "";              // 存储的文本
@@ -11,9 +12,10 @@ input_ok = false
 // 定义输入框外观
 box_x = 100;
 box_y = 100;
-box_width = 400;
+box_width = 600;
 box_height = 30;
 buff_time = 10
+choose_text = "NONE"
 if clipboard_has_text()
 {
     str = clipboard_get_text();

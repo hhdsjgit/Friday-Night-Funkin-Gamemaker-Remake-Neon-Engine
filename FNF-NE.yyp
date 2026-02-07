@@ -117,6 +117,7 @@
   "ForcedPrefabProjectReferences":[],
   "IncludedFiles":[
     {"$GMIncludedFile":"","%Name":"credits.json","CopyToMask":-1,"filePath":"datafiles/assets/data","name":"credits.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"LICENSE-OFL.txt","CopyToMask":-1,"filePath":"datafiles/assets/font","name":"LICENSE-OFL.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"starjump.json","CopyToMask":-1,"filePath":"datafiles/assets/imagles/characters","name":"starjump.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"starjump.png","CopyToMask":-1,"filePath":"datafiles/assets/imagles/characters","name":"starjump.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"credit_icon_example.png","CopyToMask":-1,"filePath":"datafiles/assets/imagles/credits","name":"credit_icon_example.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
@@ -416,13 +417,13 @@
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
     {"roomId":{"name":"room_characters_editor","path":"rooms/room_characters_editor/room_characters_editor.yy",},},
-    {"roomId":{"name":"room_maker_song","path":"rooms/room_maker_song/room_maker_song.yy",},},
+    {"roomId":{"name":"room_credions","path":"rooms/room_credions/room_credions.yy",},},
     {"roomId":{"name":"room_game_start_tittle","path":"rooms/room_game_start_tittle/room_game_start_tittle.yy",},},
+    {"roomId":{"name":"room_maker_song","path":"rooms/room_maker_song/room_maker_song.yy",},},
     {"roomId":{"name":"room_game_choose","path":"rooms/room_game_choose/room_game_choose.yy",},},
     {"roomId":{"name":"room_stroy_mode","path":"rooms/room_stroy_mode/room_stroy_mode.yy",},},
     {"roomId":{"name":"Main","path":"rooms/Main/Main.yy",},},
     {"roomId":{"name":"Ro_test","path":"rooms/Ro_test/Ro_test.yy",},},
-    {"roomId":{"name":"room_credions","path":"rooms/room_credions/room_credions.yy",},},
     {"roomId":{"name":"room_options","path":"rooms/room_options/room_options.yy",},},
     {"roomId":{"name":"room_freeplay","path":"rooms/room_freeplay/room_freeplay.yy",},},
   ],

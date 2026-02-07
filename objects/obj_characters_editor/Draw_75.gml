@@ -1,0 +1,1 @@
+draw_inf.movechar = 1
