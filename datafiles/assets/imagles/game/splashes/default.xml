@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TextureAtlas imagePath="default.png">
+  <SubTexture name="20001" x="2" y="2" width="330" height="294" frameX="-0" frameY="-0" frameWidth="333" frameHeight="295"/>
+  <SubTexture name="20002" x="2" y="300" width="326" height="289" frameX="-7" frameY="-0" frameWidth="333" frameHeight="295"/>
+  <SubTexture name="10001" x="336" y="2" width="290" height="320" rotated="true" frameX="-1" frameY="-0" frameWidth="321" frameHeight="292"/>
+  <SubTexture name="10002" x="332" y="326" width="288" height="321" rotated="true" frameX="-0" frameY="-3" frameWidth="321" frameHeight="292"/>
+  <SubTexture name="20000" x="2" y="593" width="325" height="265" frameX="-8" frameY="-17" frameWidth="333" frameHeight="295"/>
+  <SubTexture name="10000" x="624" y="326" width="261" height="284" rotated="true" frameX="-27" frameY="-17" frameWidth="321" frameHeight="292"/>
+  <SubTexture name="10003" x="624" y="614" width="95" height="255" frameX="-221" frameY="-7" frameWidth="321" frameHeight="292"/>
+  <SubTexture name="20003" x="331" y="651" width="270" height="63" rotated="true" frameX="-9" frameY="-21" frameWidth="333" frameHeight="295"/>
+</TextureAtlas>

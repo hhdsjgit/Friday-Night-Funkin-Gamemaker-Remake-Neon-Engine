@@ -1,8 +1,7 @@
 function events_game(song_name){
-	
 	if song_name = "Montagem-Miau" {
-		global.Game_inf.cam_x -= ( global.Game_inf.cam_x - (obj_bf_car.x)+720) / 20
-		global.Game_inf.cam_y -= ( global.Game_inf.cam_y - (obj_bf_car.y) + 500) / 20
+		global.Game_inf.cam_x -= ( global.Game_inf.cam_x - (global.palyer_i.x)+720) / 20
+		global.Game_inf.cam_y -= ( global.Game_inf.cam_y - (global.palyer_i.y) + 100) / 20
 		global.Game_inf.cam_scale += func_frc((1.3-global.Game_inf.cam_scale)/15)
 		global.Game_inf.show_health_bar = 0
 		global.Game_inf.show_opponent_alpha = 0
@@ -54,8 +53,8 @@ function events_game(song_name){
 		//	global.Game_inf.cam_x -= ( global.Game_inf.cam_x - (obj_opponent_player.x) +900) / 30
 		//	global.Game_inf.cam_y -= ( global.Game_inf.cam_y - (obj_opponent_player.y) + 900) / 30
 		//}else{		
-		//	global.Game_inf.cam_x -= ( global.Game_inf.cam_x - obj_bf_car.x + 1280/2) / 30	
-		//	global.Game_inf.cam_y -= ( global.Game_inf.cam_y - (obj_bf_car.y + 100)+ 760) / 30
+		//	global.Game_inf.cam_x -= ( global.Game_inf.cam_x - global.palyer_i.x + 1280/2) / 30	
+		//	global.Game_inf.cam_y -= ( global.Game_inf.cam_y - (global.palyer_i.y + 100)+ 760) / 30
 		//}
 	}
 	//#######Satisfracture#######//

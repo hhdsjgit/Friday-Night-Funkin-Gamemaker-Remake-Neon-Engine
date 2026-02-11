@@ -1,5 +1,5 @@
 /// @description
-
+global.palyer_i = obj_player
 global.input_latency_test = false;
 global.input_timestamp = 0;
 global.check_map = 

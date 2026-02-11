@@ -587,5 +587,5 @@ sub = {
 	}
 }
 
-atlas_sprite = sprite_add(sub.TextureAtlas.imagePath, 1, false, false, 0, 0);
-atlas_texture = sprite_get_texture(atlas_sprite, 0);
+//atlas_sprite = sprite_add(sub.TextureAtlas.imagePath, 1, false, false, 0, 0);
+//atlas_texture = sprite_get_texture(atlas_sprite, 0);

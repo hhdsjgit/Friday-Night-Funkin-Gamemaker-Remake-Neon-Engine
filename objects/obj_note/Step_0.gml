@@ -62,9 +62,9 @@ if global.game_paused = 0 {
                 global.Game_inf.heath += 0.5
             }
             // 设置BF角色动画
-            obj_bf_car.image_index = 0
-            obj_bf_car.Action = note_arrow
-            obj_bf_car.time = 30
+            global.palyer_i._test_time = 0
+            global.palyer_i.Action = note_arrow
+            global.palyer_i.time = 30
         }
 		if check_note = 0 and Note_mustHitSection = false{
 			obj_opponent_player.image_index = 0
@@ -121,8 +121,8 @@ if  note_arrow >= 4 {
 
 // 长音符持续判定逻辑（玩家段）
 if Note_length > 0 and check_note=true and Note_mustHitSection and global.Game_inf.BOTPLAY = 1 and worry_note = "NOONE"{
-    //obj_bf_car.Action = note_arrow
-    obj_bf_car.time = 30
+    //global.palyer_i.Action = note_arrow
+    global.palyer_i.time = 30
     
     // 设置玩家音符状态
     switch note_arrow {
@@ -248,9 +248,9 @@ if Note_mustHitSection = 1 and (y >= (-200 +_NOTENOWY) and y <= (200 + _NOTENOWY
 				instance_destroy(id)
 				var obj = instance_create_depth(x,_NOTENOWY,-15,obj_noteSplashes)    
 	            obj.Note_Direction = note_arrow
-				obj_bf_car.image_index = 0
-		        obj_bf_car.Action = note_arrow
-		        obj_bf_car.time = 30
+				global.palyer_i._test_time = 0
+		        global.palyer_i.Action = note_arrow
+		        global.palyer_i.time = 30
 				global.Game_inf.Note_player2_0=1;
 			
 				global.Game_inf.Combo_note ++
@@ -264,9 +264,9 @@ if Note_mustHitSection = 1 and (y >= (-200 +_NOTENOWY) and y <= (200 + _NOTENOWY
 				instance_destroy(id)
 				var obj = instance_create_depth(x,_NOTENOWY,-15,obj_noteSplashes)    
 	            obj.Note_Direction = note_arrow
-				obj_bf_car.image_index = 0
-		        obj_bf_car.Action = note_arrow
-		        obj_bf_car.time = 30
+				global.palyer_i._test_time = 0
+		        global.palyer_i.Action = note_arrow
+		        global.palyer_i.time = 30
 				global.Game_inf.Note_player2_1=1;
 			
 				global.Game_inf.Combo_note ++
@@ -280,9 +280,9 @@ if Note_mustHitSection = 1 and (y >= (-200 +_NOTENOWY) and y <= (200 + _NOTENOWY
 				instance_destroy(id)
 				var obj = instance_create_depth(x,_NOTENOWY,-15,obj_noteSplashes)    
 	            obj.Note_Direction = note_arrow
-				obj_bf_car.image_index = 0
-		        obj_bf_car.Action = note_arrow
-		        obj_bf_car.time = 30
+				global.palyer_i._test_time = 0
+		        global.palyer_i.Action = note_arrow
+		        global.palyer_i.time = 30
 				global.Game_inf.Note_player2_2=1;
 						
 				global.Game_inf.Combo_note ++
@@ -297,9 +297,9 @@ if Note_mustHitSection = 1 and (y >= (-200 +_NOTENOWY) and y <= (200 + _NOTENOWY
 				var obj = instance_create_depth(x,_NOTENOWY,-15,obj_noteSplashes)    
 	            obj.Note_Direction = note_arrow
 				global.Game_inf.Note_player2_3=1;
-				obj_bf_car.image_index = 0
-		        obj_bf_car.Action = note_arrow
-		        obj_bf_car.time = 30
+				global.palyer_i._test_time = 0
+		        global.palyer_i.Action = note_arrow
+		        global.palyer_i.time = 30
 				global.Game_inf.Combo_note ++
 	            scrore_ui(global.Game_inf.Combo_note,func_judge_performance_quality(y,_NOTENOWY,3,false))
 				//obj_main.obj_right_arrow.sprite_index=right_confirm0000;
@@ -321,9 +321,9 @@ if Note_mustHitSection = 1 and Note_length > 0{
 					var obj = instance_create_depth(x,_NOTENOWY,-15,obj_noteSplashes)    
 					obj.Note_Direction = note_arrow
 					global.Game_inf.Note_player2_0=1;
-					obj_bf_car.image_index = 0
-		            obj_bf_car.Action = note_arrow
-		            obj_bf_car.time = 30
+					global.palyer_i._test_time = 0
+		            global.palyer_i.Action = note_arrow
+		            global.palyer_i.time = 30
 					global.Game_inf.Combo_note ++
 		            scrore_ui(global.Game_inf.Combo_note,func_judge_performance_quality(y,_NOTENOWY,0,false))
 					//obj_main.obj_left_arrow.sprite_index=left_confirm0000;
@@ -335,9 +335,9 @@ if Note_mustHitSection = 1 and Note_length > 0{
 					var obj = instance_create_depth(x,_NOTENOWY,-15,obj_noteSplashes)    
 					obj.Note_Direction = note_arrow
 					global.Game_inf.Note_player2_1=1;
-					obj_bf_car.image_index = 0
-		            obj_bf_car.Action = note_arrow
-		            obj_bf_car.time = 30
+					global.palyer_i._test_time = 0
+		            global.palyer_i.Action = note_arrow
+		            global.palyer_i.time = 30
 					global.Game_inf.Combo_note ++
 		            scrore_ui(global.Game_inf.Combo_note,func_judge_performance_quality(y,_NOTENOWY,1,false))
 					//obj_main.obj_down_arrow.sprite_index=down_confirm0000;
@@ -349,9 +349,9 @@ if Note_mustHitSection = 1 and Note_length > 0{
 					var obj = instance_create_depth(x,_NOTENOWY,-15,obj_noteSplashes)    
 					obj.Note_Direction = note_arrow
 					global.Game_inf.Note_player2_2=1;
-					obj_bf_car.image_index = 0
-		            obj_bf_car.Action = note_arrow
-		            obj_bf_car.time = 30			
+					global.palyer_i._test_time = 0
+		            global.palyer_i.Action = note_arrow
+		            global.palyer_i.time = 30			
 					global.Game_inf.Combo_note ++
 		            scrore_ui(global.Game_inf.Combo_note,func_judge_performance_quality(y,_NOTENOWY,2,false))
 					//obj_main.obj_up_arrow.sprite_index=up_confirm0000;
@@ -363,9 +363,9 @@ if Note_mustHitSection = 1 and Note_length > 0{
 					var obj = instance_create_depth(x,_NOTENOWY,-15,obj_noteSplashes)    
 					obj.Note_Direction = note_arrow
 					global.Game_inf.Note_player2_3=1;
-					obj_bf_car.image_index = 0
-		            obj_bf_car.Action = note_arrow
-		            obj_bf_car.time = 30		
+					global.palyer_i._test_time = 0
+		            global.palyer_i.Action = note_arrow
+		            global.palyer_i.time = 30		
 					global.Game_inf.Combo_note ++
 		            scrore_ui(global.Game_inf.Combo_note,func_judge_performance_quality(y,_NOTENOWY,3,false))
 					//obj_main.obj_right_arrow.sprite_index=right_confirm0000;
@@ -382,7 +382,7 @@ if Note_mustHitSection = 1 and Note_length > 0{
 				global.Game_inf.Note_player2_0=1;
 				check_note = 1	
 				Check_note_length = -(y-_NOTENOWY)
-				obj_bf_car.time = 30
+				global.palyer_i.time = 30
 				obj_main.obj_left_arrow.alarm_time = 0;
 				obj_main.obj_left_arrow.image_index=0;
 				//obj_main.obj_left_arrow.sprite_index=left_confirm0000;
@@ -395,7 +395,7 @@ if Note_mustHitSection = 1 and Note_length > 0{
 				global.Game_inf.Note_player2_1=1;
 				check_note = 1
 				Check_note_length = -(y-_NOTENOWY)
-				obj_bf_car.time = 30
+				global.palyer_i.time = 30
 				obj_main.obj_down_arrow.alarm_time = 0;
 				obj_main.obj_down_arrow.image_index=0;
 				//obj_main.obj_down_arrow.sprite_index=down_confirm0000;
@@ -408,7 +408,7 @@ if Note_mustHitSection = 1 and Note_length > 0{
 				global.Game_inf.Note_player2_2=1;
 				check_note = 1		
 				Check_note_length = -(y-_NOTENOWY)
-				obj_bf_car.time = 30
+				global.palyer_i.time = 30
 				obj_main.obj_up_arrow.alarm_time = 0;
 				obj_main.obj_up_arrow.image_index=0;
 				//obj_main.obj_up_arrow.sprite_index=up_confirm0000;
@@ -421,7 +421,7 @@ if Note_mustHitSection = 1 and Note_length > 0{
 				global.Game_inf.Note_player2_3=1;
 				check_note = 1		
 				Check_note_length = -(y-_NOTENOWY)
-				obj_bf_car.time = 30
+				global.palyer_i.time = 30
 				obj_main.obj_right_arrow.alarm_time = 0;
 				obj_main.obj_right_arrow.image_index=0;
 				//obj_main.obj_right_arrow.sprite_index=right_confirm0000;

@@ -1,4 +1,11 @@
 /// @description 
+
+//////////////////////////////////////////////////
+//---------------------警告---------------------//
+//-----------------这不是最优的-----------------//
+//////////////////////////////////////////////////
+
+
 if !draw_inf.movechar and !draw_inf.canmovefileing {
     mouse_move_x = 0
     mouse_move_y = 0
@@ -34,7 +41,6 @@ if (hovering_title_bar or draw_inf.canmovefileing) and mouse_check_button(1) {
 if file_exists(working_directory + string(text_box_path.text)) {
 
     if sprite_exists(atlas_sprite) and array_length(buff_png_json) > 0 {
-		show_debug_message("A")
 		if string_replace_all(text_box_i_fps.text, " ", "") != "" {
 			test_time += func_frc_main(real(string_replace_all(text_box_i_fps.text, " ", "")))
 		}else{
@@ -76,6 +82,11 @@ if file_exists(working_directory + string(text_box_path.text)) {
 			need_move_x += buff_png_json[_test_time].frameWidth*characters_scale + buff_png_json[_test_time].frameX*characters_scale*2
 		}
 		
+		// 检查是否存在帧偏移属性
+		var has_frame_offset = (variable_struct_exists(buff_png_json[_test_time], "frameX")) 
+                and (variable_struct_exists(buff_png_json[_test_time], "frameY"))
+				
+				
 		// 绘制位置计算
         var base_x = 530 + need_move_x
         var base_y = 100 + need_move_y
@@ -83,14 +94,11 @@ if file_exists(working_directory + string(text_box_path.text)) {
         // 应用帧偏移
         var draw_x = base_x - buff_png_json[_test_time].frameX * characters_scale
         var draw_y = base_y - buff_png_json[_test_time].frameY * characters_scale
+		
         // 检查数组索引是否有效
         if _test_time >= 0 and _test_time < array_length(buff_png_json) {
             var rotated = 0
-            
-            // 检查是否存在帧偏移属性
-            var has_frame_offset = (variable_struct_exists(buff_png_json[_test_time], "frameX")) 
-                and (variable_struct_exists(buff_png_json[_test_time], "frameY"))
-            
+			// 检查是否存在帧偏移属性
             if has_frame_offset {
                 if variable_struct_exists(buff_png_json[_test_time], "rotated") {
                     rotated = 90
@@ -334,8 +342,6 @@ draw_box("loop:",draw_file_x + 600, draw_file_y + 300,24,24,buff_char_json.chara
 draw_box("flipX:",draw_file_x + 315, draw_file_y + 365,24,24,buff_char_json.character.properties.flipX,make_color_rgb(200,90,10),c_orange,"p_flipX")
 draw_box("isPlayer:",draw_file_x + 315, draw_file_y + 400,24,24,buff_char_json.character.properties.isPlayer,make_color_rgb(200,90,10),c_orange,"p_isPlayer")
 draw_box("isGF:",draw_file_x + 315, draw_file_y + 435,24,24,buff_char_json.character.properties.isGF,make_color_rgb(200,90,10),c_orange,"p_isGF")
-
-
 
 
 

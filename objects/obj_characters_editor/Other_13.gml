@@ -15,11 +15,8 @@ if file_path != "" and string_pos(".json",string(file_path)){
 			last_png_name = ""
 			path_ok = false
 			buff_png_json = []
-			
-			
-			
+					
 			var buff_load_path = load_path
-			
 			
 			file_content = buffer_load(working_directory + buff_load_path + windows_extract_filename(buff_char_json.character.properties.json_path))
 			json_string = buffer_read(file_content, buffer_string);

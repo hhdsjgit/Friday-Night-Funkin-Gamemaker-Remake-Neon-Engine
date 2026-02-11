@@ -66,7 +66,7 @@ Shooting_time =song_time / 1000 - Shooting_time_last
 if Shooting_time > Shooting_duration * 2 {
 	//audio_play_sound(click,0,0)
 	
-	obj_bf_car.can_act = 1
+	global.palyer_i.can_act = 1
 	obj_opponent_player.can_act = 1
 	
 	Shooting_time_last = song_time / 1000
@@ -189,7 +189,7 @@ if array_length(global.Song_information.notes_data) > i {
 				if note_1.mustHitSection = 0 {
 					cam_move_type = obj_opponent_player
 				}else{
-					cam_move_type = obj_bf_car
+					cam_move_type = global.palyer_i
 				}
 				////对手箭头生成end
 				//show_debug_message(note_1.sectionNotes[n][1])
