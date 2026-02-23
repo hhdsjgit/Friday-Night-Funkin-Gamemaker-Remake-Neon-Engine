@@ -39,6 +39,13 @@ if keyboard_check_pressed(vk_escape) {
 		now_need_read = test_need_draw.options
 		
 	}
+	if now_need_read == test_need_draw.options_appearance {
+		can_use_options(1)
+		choose_setting = 1
+		last_need_read = now_need_read
+		now_need_read = test_need_draw.options
+		
+	}
 	
 }
 var noo_true = 0
@@ -49,6 +56,13 @@ if keyboard_check_pressed(vk_enter) {
 		choose_setting = 0
 		last_need_read = now_need_read
 		now_need_read = test_need_draw.options_gameplay
+		noo_true = 1
+	}
+	if now_need_read[choose_setting] == "APPEARANCE >" {
+		can_use_options(0)
+		choose_setting = 0
+		last_need_read = now_need_read
+		now_need_read = test_need_draw.options_appearance
 		noo_true = 1
 	}
 	

@@ -41,6 +41,7 @@
 
 
 
+
 if Note_mustHitSection = 1{
 	if Note_Direction = 0 and global.Game_inf.Note_player2_0=1{
 		sprite_index=skin_left_pass_ok

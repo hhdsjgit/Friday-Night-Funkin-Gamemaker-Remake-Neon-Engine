@@ -1,0 +1,73 @@
+{
+  "character":{
+    "animations":[
+      {
+        "fps":24.0,
+        "start_anim":"0",
+        "x":0.0,
+        "end_anim":"13",
+        "y":0.0,
+        "loop":false,
+        "name":"idle",
+        "anim":"Izzy Idle"
+      },
+      {
+        "fps":24.0,
+        "start_anim":"0",
+        "x":140.0,
+        "end_anim":"13",
+        "y":25.0,
+        "loop":false,
+        "name":"singUP",
+        "anim":"Izzy Up Note"
+      },
+      {
+        "fps":24.0,
+        "start_anim":"0",
+        "x":-131.0,
+        "end_anim":"29",
+        "y":-42.0,
+        "loop":false,
+        "name":"singDOWN",
+        "anim":"Izzy Down Note"
+      },
+      {
+        "fps":24.0,
+        "start_anim":"0",
+        "x":250.0,
+        "end_anim":"13",
+        "y":-30.0,
+        "loop":false,
+        "name":"singLEFT",
+        "anim":"Izzy Left Note"
+      },
+      {
+        "fps":24.0,
+        "start_anim":"0",
+        "x":-113.0,
+        "end_anim":"13",
+        "y":-20.0,
+        "loop":false,
+        "name":"singRIGHT",
+        "anim":"Izzy Right Note"
+      }
+    ],
+    "metadata":{
+      "doctype":"neon-engine-character",
+      "version":"0.0.1"
+    },
+    "properties":{
+      "y":0.0,
+      "flipX":false,
+      "sprite":"",
+      "flipY":false,
+      "isPlayer":true,
+      "isGF":false,
+      "icon":"bf",
+      "holdTime":8.0,
+      "json_path":"assets\\imagles\\characters\\lzzy.json",
+      "png_path":"assets\\imagles\\characters\\Izzy.png",
+      "color":"#30B0D1"
+    }
+  }
+}

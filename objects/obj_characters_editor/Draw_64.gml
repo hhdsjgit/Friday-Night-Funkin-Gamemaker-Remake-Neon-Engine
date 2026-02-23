@@ -5,7 +5,7 @@
 /* #############################   DRAW  STEP   ################################# */
 /* ############################################################################## */
 
-var main_copy_path = working_directory + "assets\\imagles\\characters\\";
+var main_copy_path = working_directory + "assets\\images\\characters\\";
 draw_set_color(make_color_rgb(144,202,249))
 draw_rectangle(0,0,1280,20,0)
 if point_in_rectangle(mouse_x, mouse_y, 0, 0, 0 + 50, 0 + 20) {

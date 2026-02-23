@@ -22,9 +22,7 @@ if file_path != "" and string_pos(".json",string(file_path)){
 			json_string = buffer_read(file_content, buffer_string);
 			buffer_delete(file_content);
 			var buff_json = json_parse(json_string);
-			
-			buff_json.TextureAtlas.imagePath = buff_load_path + windows_extract_filename(buff_char_json.character.properties.json_path)
-					
+						
 			buff_json.TextureAtlas.imagePath = buff_load_path + windows_extract_filename(buff_char_json.character.properties.png_path)
 					
 			var updated_json_string = json_stringify(buff_json, false);
@@ -44,7 +42,6 @@ if file_path != "" and string_pos(".json",string(file_path)){
 		}
 	}
 	catch(e){
-		show_message("Error can open :" + string(file_path))	
+		show_message("Error can open :" + string(file_path) + "\n别给重新奇奇怪怪的文件进去qwp!!!(人话:文件错误)")	
 	}
 }
-exit

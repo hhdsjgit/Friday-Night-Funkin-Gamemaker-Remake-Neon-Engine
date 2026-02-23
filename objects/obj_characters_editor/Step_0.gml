@@ -1,4 +1,15 @@
 /// @description
+
+if keyboard_check(vk_f3) {
+	debug_test -= 1
+}
+if keyboard_check(vk_f4) {
+	debug_test += 1	
+}
+
+
+
+
 global.debug_settig.debug_y = 700
 if file_exists(working_directory + string(text_box_path.text)) and path_ok = false{
 	if string_pos(".json",string(text_box_path.text)) {
@@ -96,3 +107,26 @@ if keyboard_check_pressed(vk_space) {
 
 draw_inf.file_inf_x = clamp(draw_inf.file_inf_x,-700,1260)
 draw_inf.file_inf_y = clamp(draw_inf.file_inf_y,0,700)
+var speed_move = 10
+if keyboard_check(vk_control) {
+	speed_move = 1	
+}
+
+if keyboard_check_pressed(vk_left) {
+	text_box_i_x.text = real(text_box_i_x.text) - speed_move	
+}
+if keyboard_check_pressed(vk_right) {
+	text_box_i_x.text = real(text_box_i_x.text) + speed_move	
+}
+if keyboard_check_pressed(vk_up) {
+	text_box_i_y.text = real(text_box_i_y.text) - speed_move	
+}
+if keyboard_check_pressed(vk_down) {
+	text_box_i_y.text = real(text_box_i_y.text) + speed_move	
+}
+if string_replace_all(text_box_i_x.text, " ", "") == "" {
+	text_box_i_x.text = "0"	
+}
+if string_replace_all(text_box_i_y.text, " ", "") == "" {
+	text_box_i_y.text = "0"	
+}

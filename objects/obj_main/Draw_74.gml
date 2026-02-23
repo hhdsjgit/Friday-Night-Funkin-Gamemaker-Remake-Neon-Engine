@@ -1,212 +1,282 @@
-/// @description 
-/// 创建着色器（在创建事件中）
+/// @description 主UI绘制脚本 - 处理游戏界面渲染
 
-
-
-
-
-/// 绘制事件中使用
-
-//shader_set(shader_invert);
-    
-//// 获取uniform位置（如果尚未获取）
-//if (uniform_invert == -1) {
-//    uniform_invert = shader_get_uniform(shader_invert, "invert");
-//}
-    
-//// 设置反转参数：0=正常，1=反转
-//var should_invert = 1;  // 或 1
-//shader_set_uniform_f(uniform_invert, should_invert);
-    
-//// 绘制精灵
-//draw_surface(application_surface,0,0)
-    
-//shader_reset();
-//surface_reset_target();
-
-
-
-
+//==============================================================================
+// 基础变量初始化
+//==============================================================================
+// 获取UI表面的宽高
 var w = surface_get_width(global.ui_surface);
 var h = surface_get_height(global.ui_surface);
-var center_x = 640;  // 中心x坐标
-var center_y = 360;  // 中心y坐标
 
-// 缩放系数（示例：随时间变化的缩放）
-//var scale_x = 1 + 0.05 * cos(test_time);  // 在0.8到1.2之间缩放
-//var scale_y = 1 + 0.05 * cos(test_time);  // 不同的缩放节奏
-//Ui arrow箭头运动X
+// 屏幕中心坐标 (基于1280x720分辨率)
+var center_x = 640;  
+var center_y = 360;  
 
+// 获取帧时间用于动画同步
+var fps_time = global.fps_time;
 
-//obj_left_arrow.y = sin(test_time + 0.4) * 30 + 100
-//obj_down_arrow.y= sin(test_time + 0.5) * 30 + 100
-//obj_up_arrow.y = sin(test_time + 0.6) * 30 + 100
-//obj_right_arrow.y = sin(test_time + 0.7) * 30 + 100
-
-//obj_opponent_left_arrow.y = sin(test_time) * 30 + 100
-//obj_opponent_down_arrow.y = sin(test_time + 0.1) * 30 + 100
-//obj_opponent_up_arrow.y = sin(test_time + 0.2) * 30 + 100
-//obj_opponent_right_arrow.y = sin(test_time + 0.3) * 30 + 100
-
-
-
-//END
-var fps_time = global.fps_time
-//Ui缩放
+//==============================================================================
+// UI缩放与旋转动画
+//==============================================================================
+// UI缩放系数
 var scale_x = Ui_Zoom; 
 var scale_y = Ui_Zoom; 
-// 角度变化
-if global.game_paused = 0 and global.game_play = 1{
-	test_time += 2 * fps_time 
-	var speed_note_arrow = func_frc((cos(test_time / 10 + 0.5) *100))
-	var fun_test = func_frc(cos(test_time / 2) * 5)
 
-	var test_a = sin(test_time) * 20
-
+// 游戏运行时更新动画参数
+if global.game_paused = 0 and global.game_play = 1 {
+    // 累积时间用于动画
+    test_time += 2 * fps_time;
+    
+    // 音符速度波动效果 (未使用)
+    var speed_note_arrow = func_frc((cos(test_time / 10 + 0.5) * 100));
+    // 测试变量 (未使用)
+    var fun_test = func_frc(cos(test_time / 2) * 5);
+    // 正弦波动 (未使用)
+    var test_a = sin(test_time) * 20;
 }
 
-
-
-
+// 角度转弧度
 var angle_rad = -angle * pi / 180;
 
-// 考虑缩放后的计算
-// 缩放会影响表面的有效尺寸，所以偏移量也要乘以缩放系数
+//==============================================================================
+// 计算旋转后的UI位置
+//==============================================================================
+// 考虑缩放后的位置计算
+// 公式说明: 以中心点为基准，计算旋转缩放后的表面左上角位置
 var _x = center_x - (w * scale_x / 2) * cos(angle_rad) + (h * scale_y / 2) * sin(angle_rad);
 var _y = center_y - (w * scale_x / 2) * sin(angle_rad) - (h * scale_y / 2) * cos(angle_rad);
 
-// 绘制时传入缩放参数
-draw_surface_ext(global.ui_surface, _x + global.Game_inf.ui_shark_shake_x, _y + global.Game_inf.ui_shark_shake_y, scale_x, scale_y, angle, c_white, 1);
-//draw_surface_ext(global.ui_surface,0,0,1,1,10,c_white,1)
-//draw_surface(global.ui_surface,0,0)
+// 绘制UI表面 (带缩放、旋转和抖动效果)
+draw_surface_ext(
+    global.ui_surface, 
+    _x + global.Game_inf.ui_shark_shake_x,  // X坐标 + 水平抖动
+    _y + global.Game_inf.ui_shark_shake_y,  // Y坐标 + 垂直抖动
+    scale_x, scale_y,   // 缩放系数
+    angle,              // 旋转角度
+    c_white,            // 混合颜色
+    1                   // 透明度
+);
 
+//==============================================================================
+// 设置UI表面渲染目标
+//==============================================================================
 surface_set_target(global.ui_surface);
-draw_clear_alpha(c_black, 0);
-draw_set_color(c_white)
+draw_clear_alpha(c_black, 0);  // 清除表面为全透明
+draw_set_color(c_white);
 
+//==============================================================================
+// 血条绘制
+//==============================================================================
+// 血条位置
+var _draw_heath_bar_x = 200;
+var _draw_heath_bar_y = 620;
 
-//draw_sprite_ext(Heathbar_bar,0,640,688,0.4649515,0.4649515,0,c_blue,1)
-
-var _draw_heath_bar_x = 200 ,_draw_heath_bar_y = 620 ;
-
+// 获取血条精灵尺寸
 var spr_w = sprite_get_width(Heathbar_bar);
 var spr_h = sprite_get_height(Heathbar_bar);
 
-if keyboard_check(vk_f10) {
-	test_zx -= 1	
-	show_debug_message(test_zx)
-}
-if keyboard_check(vk_f11) {
-	test_zx += 1	
-	show_debug_message(test_zx)
-}
-
+//==============================================================================
+// 绘制血条
+//==============================================================================
+var draw_color_i = #FFFFFF;  // 玩家颜色
+var draw_color_o = #FFFFFF;  // 对手颜色
 
 if global.Game_inf.show_health_bar {
-	// 1. 先绘制空的部分（白色/背景色）
-	draw_sprite_ext(Heathbar_bar, 0, _draw_heath_bar_x + 40,_draw_heath_bar_y,0.6,0.6, 0, c_blue, 1);
-	// 从左到右的进度
-	var fill_width = spr_w * ((100-global.Game_inf.heath) / 100);
-	
-	// 使用部分绘制，只绘制进度内的区域
-	draw_sprite_part_ext(
-	    Heathbar_bar, 
-	    0,
-	    0, 0,                    // 源图的起始位置
-	    fill_width, spr_h,       // 要绘制的宽度和高度
-	    _draw_heath_bar_x + 40, _draw_heath_bar_y,                  // 目标位置
-	    0.6,0.6,                   // 缩放
-	    c_white,              // 颜色
-	    1                        // 透明度
-	);
-	draw_sprite_ext(Heathbar_overlay,0,_draw_heath_bar_x,_draw_heath_bar_y,0.6,0.6,0,c_white,1)
+    // 设置颜色 (从角色对象获取)
+    draw_color_o = global.player_o.color;
+    draw_color_i = global.player_i.color;
+    
+    // 绘制血条背景 (空血条部分)
+    draw_sprite_ext(
+        Heathbar_bar, 0, 
+        _draw_heath_bar_x + 40, _draw_heath_bar_y,  // 位置
+        0.6, 0.6,  // 缩放
+        0,         // 角度
+        draw_color_i,  // 颜色 (对手方)
+        1          // 透明度
+    );
+    
+    // 计算血条填充宽度 (基于当前血量)
+    // 注意: 血量越低，填充宽度越大 (对手血条是从左到右填充)
+    var fill_width = spr_w * ((100 - global.Game_inf.heath) / 100);
+    
+    // 绘制血条填充部分 (动态宽度)
+    draw_sprite_part_ext(
+        Heathbar_bar, 
+        0,
+        0, 0,                    // 源图起始位置
+        fill_width, spr_h,       // 要绘制的宽度和高度
+        _draw_heath_bar_x + 40, _draw_heath_bar_y,  // 目标位置
+        0.6, 0.6,                // 缩放
+        draw_color_o,             // 颜色 (玩家方)
+        1                         // 透明度
+    );
+    
+    // 绘制血条边框覆盖层
+    draw_sprite_ext(
+        Heathbar_overlay, 0,
+        _draw_heath_bar_x, _draw_heath_bar_y,
+        0.6, 0.6, 0, c_white, 1
+    );
 
-	// 5. 绘制BF图标，跟随血条进度
-	var icon_x = _draw_heath_bar_x + 40 + fill_width * 0.6; // 考虑0.6缩放
-	var icon_y = _draw_heath_bar_y; // 垂直居中
-	// 根据BF的方向决定是否镜像（如果是面向左边）
-	icon_scale += func_frc((-1-icon_scale) / 6);
-	icon_x -= sprite_get_width(icon_bf); // 镜像时需要调整位置
-	draw_sprite_ext(
-	    icon_bf, 
-	    0, 
-	    icon_x+200, 
-	    icon_y+40, 
-	    icon_scale, -icon_scale, // 水平和垂直缩放
-	    0, 
-	    c_white, 
-	    1
+    //==============================================================================
+    // 绘制角色图标 (跟随血条进度)
+    //==============================================================================
+    // 计算图标X位置 (基于血条填充宽度)
+    var icon_x = _draw_heath_bar_x + 40 + fill_width * 0.6; // 考虑0.6缩放
+    var icon_y = _draw_heath_bar_y; // 垂直居中
+    
+    // 图标缩放动画
+    icon_scale += func_frc((-1 - icon_scale) / 6);
+    
+    // 调整图标位置 (镜像时需要偏移)
+    icon_x -= 150;
+    
+    // 绘制BF图标 (镜像效果: 负缩放值)
+    //draw_sprite_ext(
+    //    icon_bf, 
+    //    0, 
+    //    icon_x + 200, 
+    //    icon_y + 40, 
+    //    icon_scale, -icon_scale,  // 水平正常，垂直镜像
+    //    0, 
+    //    c_white, 
+    //    1
+    //);
+	draw_sprite_general(
+        obj_player.character_icon, 0,
+        0,
+        0,
+        150*get_icon_heath(global.Game_inf.heath),
+        150,
+        icon_x + 200 + 75, 
+        icon_y + 40 - 75, 
+        icon_scale, 
+		-icon_scale,
+        0,
+        c_white, c_white, c_white, c_white,
+        1
 	);
-	function get_icon_heath (heath) {
-		if heath >= 85 {
-			return 1	
-		}else if heath < 85 and heath > 15{
-			return 0
-		}else{
-			return 2	
-		}
-	}
-	draw_sprite_ext(
-	    icon_nightflaid, 
-	    get_icon_heath(global.Game_inf.heath), 
-	    icon_x+90, 
-	    icon_y+40, 
-	    -icon_scale, -icon_scale, // 水平和垂直缩放
-	    0, 
-	    c_white, 
-	    1
+    // 绘制对手图标
+	draw_sprite_general(
+        obj_player_opponent.character_icon, 0,
+        0,
+        0,
+        150*get_icon_heath(global.Game_inf.heath),
+        150,
+        icon_x, 
+        icon_y + 40 - 75, 
+        -icon_scale, 
+		-icon_scale,
+        0,
+        c_white, c_white, c_white, c_white,
+        1
 	);
+    //draw_sprite_ext(
+    //    icon_nightflaid, 
+    //    get_icon_heath(global.Game_inf.heath), 
+    //    icon_x + 90, 
+    //    icon_y + 40, 
+    //    -icon_scale, -icon_scale,  // 水平镜像，垂直镜像
+    //    0, 
+    //    c_white, 
+    //    1
+    //);
 }
-// 设置水平和垂直对齐方式
-draw_set_halign(fa_center);
-draw_set_valign(fa_middle);
 
-//draw_text_transformed(640,700,"Combo_note : " + string(global.Game_inf.Combo_note),1.1,1.1,0)
-//draw_Outline("Combo_note : " + string(global.Game_inf.Combo_note),640,700,1,1,c_black,c_white,0,Font_vcr)
+//==============================================================================
+// 文本信息绘制
+//==============================================================================
+// UI文本起始Y坐标
+var _draw_ui_y = 570;
 
-// 恢复默认对齐方式
-draw_set_halign(fa_left);
-draw_set_valign(fa_top);
-
-var _draw_ui_y = 570
+// 获取当前播放时间和总时长
 var display_time = seconds_to_min_sec(audio_sound_get_track_position(song_sound1)); 
-var remaining_time = seconds_to_min_sec(audio_sound_length(song_sound1))
-draw_Outline("Game fps : " + string(fps),15,_draw_ui_y - 80,1,1,c_black,c_white,0,Font_vcr)
-draw_Outline("Heath : " + string(global.Game_inf.heath),15,_draw_ui_y - 50,1,1,c_black,c_white,0,Font_vcr)
+var remaining_time = seconds_to_min_sec(audio_sound_length(song_sound1));
 
-global.Game_inf.accuracy = (global.Game_inf.total_score / global.Game_inf.max_score) * 100
-draw_Outline("ACC : " + string(global.Game_inf.accuracy) + "%",15,_draw_ui_y - 20,1,1,c_black,c_white,0,Font_vcr)
+if global.Game_inf.player_die != true {
+	/**
+	 * 带描边的文本绘制函数
+	 * @param {string} text - 要绘制的文本
+	 * @param {real} x - X坐标
+	 * @param {real} y - Y坐标
+	 * @param {real} scale_x - 水平缩放
+	 * @param {real} scale_y - 垂直缩放
+	 * @param {color} outline_color - 描边颜色
+	 * @param {color} text_color - 文字颜色
+	 * @param {real} angle - 旋转角度
+	 * @param {sprite} font - 字体精灵
+	 */
+	draw_Outline("Game fps : " + string(fps), 15, _draw_ui_y - 80, 1, 1, c_black, c_white, 0, Font_vcr);
+	draw_Outline("Heath : " + string(global.Game_inf.heath), 15, _draw_ui_y - 50, 1, 1, c_black, c_white, 0, Font_vcr);
 
-draw_Outline("FNF - NE BETA 0.0.1",15,_draw_ui_y,1,1,c_black,c_white,0,Font_vcr)
-draw_Outline("TIME: " + string(remaining_time) + " | " + string(display_time),15,_draw_ui_y + 30,1,1,c_black,c_white,0,Font_vcr)
-if global.Game_inf.BOTPLAY = 1 {
-	draw_set_color(c_grey)
-	draw_set_halign(fa_center);
-	draw_set_valign(fa_middle);
-	
-	image_alpha = sin(test_time/10)
-	draw_Outline("BOTPLAY",1280/2,100,1.3,1.3,c_black,c_white,0,Font_vcr)
-	image_alpha = 1
-	draw_set_halign(fa_left);
-	draw_set_valign(fa_top);
-	draw_set_color(c_white)
-	
-	//draw_Outline("Now Bot Playing!!!!!",15,_draw_ui_y + 60,1,1,c_black,c_white,0,Font_vcr)
-}else{
-	//draw_Outline("Now Player Playing!!!!!",15,_draw_ui_y + 60,1,1,c_black,c_white,0,Font_vcr)
+	// 计算准确率 (总分/最大分 * 100)
+	global.Game_inf.accuracy = (global.Game_inf.total_score / global.Game_inf.max_score) * 100;
+	draw_Outline("ACC : " + string(global.Game_inf.accuracy) + "%", 15, _draw_ui_y - 20, 1, 1, c_black, c_white, 0, Font_vcr);
+
+	// 游戏版本信息
+	draw_Outline("FNF - NE BETA 0.0.1", 15, _draw_ui_y, 1, 1, c_black, c_white, 0, Font_vcr);
+
+	// 时间显示 (剩余时间/当前时间)
+	draw_Outline("TIME: " + string(remaining_time) + " | " + string(display_time), 15, _draw_ui_y + 30, 1, 1, c_black, c_white, 0, Font_vcr);
+
+	//==============================================================================
+	// 自动播放模式(BOTPLAY)提示
+	//==============================================================================
+	if global.Game_inf.BOTPLAY = 1{
+	    draw_set_color(c_grey);
+	    draw_set_halign(fa_center);
+	    draw_set_valign(fa_middle);
+    
+	    // 闪烁效果
+	    draw_set_alpha(abs(sin(time_bot)));
+	    draw_Outline("BOTPLAY", 1280 / 2, 100, 1.3, 1.3, c_black, c_white, 0, Font_vcr);
+    
+	    // 恢复设置
+	    draw_set_alpha(1);
+	    draw_set_halign(fa_left);
+	    draw_set_valign(fa_top);
+	    draw_set_color(c_white);
+	}
+
+	// 绘制其他游戏信息
+	draw_Outline("noone", 15, _draw_ui_y + 60, 1, 1, c_black, c_white, 0, Font_vcr);
+	draw_Outline("Combo_note : " + string(global.Game_inf.Combo_note), 15, _draw_ui_y + 90, 1, 1, c_black, c_white, 0, Font_vcr);
+	draw_Outline("Miss: " + string(global.Game_inf.miss_note), 15, _draw_ui_y + 120, 1, 1, c_black, c_white, 0, Font_vcr);
+
+	// 保存时间字符串供其他地方使用
+	song_time_show = ("TIME: " + string(remaining_time) + " | " + string(display_time));
+
+	//==============================================================================
+	// 执行歌曲事件
+	//==============================================================================
+	events_game(global.Song_information.song);
+
 }
-draw_Outline("noone",15,_draw_ui_y + 60,1,1,c_black,c_white,0,Font_vcr)
-draw_Outline("Combo_note : " + string(global.Game_inf.Combo_note),15,_draw_ui_y + 90,1,1,c_black,c_white,0,Font_vcr)
-draw_Outline("Miss: " + string(global.Game_inf.miss_note),15,_draw_ui_y + 120,1,1,c_black,c_white,0,Font_vcr)
-//draw_Outline("Miss: " + string(global.Game_inf.miss_note),900,300,1,1,c_black,c_white,0,Font_vcr)
-/* Cam debug
-draw_Outline("Cam_x : " + string(global.Game_inf.cam_x),15,180,1,1,c_black,c_white,0,Font_vcr)
-draw_Outline("Cam_y : " + string(global.Game_inf.cam_y),15,210,1,1,c_black,c_white,0,Font_vcr)
-draw_Outline("Cam_scale : " + string(global.Game_inf.cam_scale),15,240,1,1,c_black,c_white,0,Font_vcr)
-*/
-song_time_show = ("TIME: " + string(remaining_time) + " | " + string(display_time))
-//draw_Outline(audio_sound_get_track_position(song_sound1),100,200,1,1,c_black,c_white,0,Font_vcr)
+
+//==============================================================================
+// 结束UI表面渲染
+//==============================================================================
 surface_reset_target();
 
 
-events_game(global.Song_information.song)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

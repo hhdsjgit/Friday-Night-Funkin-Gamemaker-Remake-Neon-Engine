@@ -261,8 +261,8 @@
   "swatchColours":null,
   "swfPrecision":0.5,
   "textureGroupId":{
-    "name":"text_tittle_ui_spr",
-    "path":"texturegroups/text_tittle_ui_spr",
+    "name":"text_tittle_ui_spr1",
+    "path":"texturegroups/text_tittle_ui_spr1",
   },
   "type":0,
   "VTile":false,

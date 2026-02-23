@@ -25,6 +25,10 @@ if global.game_paused = 1{
 	ui_y += func_frc((choose_setting * 180 - ui_y) / 6)
 	if keyboard_check_pressed(vk_enter) {
 		if test_need_draw[choose_setting] == "RESTART SONG" {
+			sprite_delete(obj_player.character_icon);
+			sprite_delete(obj_player.atlas_sprite);
+			sprite_delete(obj_player_opponent.character_icon);
+			sprite_delete(obj_player_opponent.atlas_sprite);
 			room_goto(Main)
 			audio_stop_all()
 		}

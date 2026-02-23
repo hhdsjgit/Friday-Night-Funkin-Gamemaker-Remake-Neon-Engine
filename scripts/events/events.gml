@@ -9,3 +9,12 @@ function Flash_Camera(param1, param2) {
 	obj_else_events.flash_active = 1
 	obj_else_events.flash_time = real(param1)
 }
+function change_character(param1, param2) {
+		
+}
+function Change_Stage_Zoom(param1, param2) {
+	global.Game_inf.Target_cam_scale = param2
+}
+function Change_Character_Offset(param1, param2) {
+	
+}

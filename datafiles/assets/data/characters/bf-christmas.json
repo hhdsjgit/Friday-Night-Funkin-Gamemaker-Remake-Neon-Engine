@@ -1,0 +1,73 @@
+{
+  "character":{
+    "animations":[
+      {
+        "fps":24.0,
+        "x":-5.0,
+        "y":0.0,
+        "name":"idle",
+        "anim":"BF idle dance",
+        "start_anim":"0",
+        "loop":false,
+        "end_anim":"13"
+      },
+      {
+        "fps":24.0,
+        "x":-39.0,
+        "y":27.0,
+        "name":"singUP",
+        "anim":"BF NOTE UP",
+        "start_anim":"0",
+        "loop":false,
+        "end_anim":"14"
+      },
+      {
+        "fps":24.0,
+        "x":-17.0,
+        "y":-50.0,
+        "name":"singDOWN",
+        "anim":"BF NOTE DOWN",
+        "start_anim":"0",
+        "loop":false,
+        "end_anim":"29"
+      },
+      {
+        "fps":24.0,
+        "x":6.0,
+        "y":-7.0,
+        "name":"singLEFT",
+        "anim":"BF NOTE LEFT",
+        "start_anim":"0",
+        "loop":false,
+        "end_anim":"14"
+      },
+      {
+        "fps":24.0,
+        "x":-48.0,
+        "y":-6.0,
+        "name":"singRIGHT",
+        "anim":"BF NOTE RIGHT",
+        "start_anim":"0",
+        "loop":false,
+        "end_anim":"61"
+      }
+    ],
+    "properties":{
+      "y":0.0,
+      "color":"#30B0D1",
+      "flipX":false,
+      "isPlayer":true,
+      "isGF":false,
+      "sprite":"",
+      "flipY":false,
+      "icon":"bf",
+      "holdTime":8.0,
+      "json_path":"assets\\images\\characters\\bf-christmas.json",
+      "png_path":"assets\\images\\characters\\bf-christmas.png"
+    },
+    "metadata":{
+      "doctype":"neon-engine-character",
+      "version":"0.0.1"
+    }
+  }
+}

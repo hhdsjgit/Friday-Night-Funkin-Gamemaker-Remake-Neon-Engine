@@ -4,10 +4,11 @@
 var need_read_characters = []
 var need_read_json_path = -1
 var need_read_png_path = -1
+var need_read_properties = -1
 var file_content = -1
 var json_string = -1
 var can_read = false
-var json_data = {}
+
 
 //---读取json文件---//
 file_content = buffer_load(working_directory + "assets\\data\\characters\\" +string(character_json_name) + ".json")
@@ -27,6 +28,7 @@ if can_read = true {
 	need_read_characters = characters_json_data.character.animations;
 	need_read_json_path = working_directory + characters_json_data.character.properties.json_path;
 	need_read_png_path = working_directory + characters_json_data.character.properties.png_path;
+	need_read_properties = characters_json_data.character.properties
 }else{
 	return;	
 }
@@ -53,15 +55,20 @@ json_data = json_parse(json_string);
 try {
 	var choose_anim = -1
 	for (var n = 0;n < array_length(need_read_characters);n++) {
-
+		var find_i = 0
 		for (var i = 0; i < array_length(json_data.TextureAtlas.SubTextures); i++) {
 		    var full_name = json_data.TextureAtlas.SubTextures[i].name;
 		    var name_length = string_length(full_name);
 			//放错误空值A0000
 		    if (name_length >= 4) {
 		        var base_name = string_copy(full_name, 1, name_length - 4);
+				//show_debug_message(i)
 				if base_name == need_read_characters[n].anim {
-					if i >= need_read_characters[n].start_anim and i <= need_read_characters[n].end_anim {
+					if find_i == 0 {
+						find_i = i	
+					}
+					if i >= real(need_read_characters[n].start_anim) + find_i and i <= real(need_read_characters[n].end_anim) + find_i{
+						
 						switch need_read_characters[n].name {
 							case "idle":
 								array_push(Action_skin_idle, json_data.TextureAtlas.SubTextures[i]);
@@ -90,4 +97,31 @@ try {
 	show_message("***发生错误!***\n错误信息:\n" + string(e))	
 	return;
 }
+
+//这里赋值一个临时变量,来存储人物的小图标的文件位置
+var icon_path = (working_directory + "assets\\images\\icons\\" + need_read_properties.icon + ".png")
+	
+//这里是用来检测这个小图标是否存在的
+if file_exists(icon_path) {
+	//如果存在就执行这个代码
+	character_icon = sprite_add(icon_path, 1, false, false, 0, 0);//加载外部图像
+	show_message("OK")
+}
+
+
+
+/*
+被玩家抱起来的注意仪重新放下 就无法使用了 可以打开摆物品，但是无法合成东西
+
+*/
+
+
+
+
+
+
+
+var buff_color_i = hex_to_rgb(need_read_properties.color)
+color = make_color_rgb(buff_color_i[0],buff_color_i[1],buff_color_i[2])
+
 load_json_0 = true

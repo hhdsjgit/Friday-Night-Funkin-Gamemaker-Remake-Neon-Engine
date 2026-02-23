@@ -1,6 +1,6 @@
 /// @description
 var buff_load_path = load_path
-var main_copy_path = working_directory + "assets\\imagles\\characters\\";
+var main_copy_path = working_directory + "assets\\images\\characters\\";
 var file_path = get_open_filename("json", "选择文件");
 
 if (file_path != "") and string_pos(".json",string(file_path)){

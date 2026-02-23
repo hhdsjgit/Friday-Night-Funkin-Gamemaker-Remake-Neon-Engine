@@ -1,5 +1,1 @@
-/// @description 在此处插入描述 
-// 你可以在此编辑器中写入代码 
-
-
-
+global.Game_inf.heath = clamp(global.Game_inf.heath,0,100)

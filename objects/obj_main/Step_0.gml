@@ -1,7 +1,23 @@
 /// @description
 
+if global.Game_inf.player_die == true {
+	for (var i0 = 0;i0 < array_length(global.Game_inf.Note_arrow_alpha);i0 ++) {
+		global.Game_inf.Note_arrow_alpha[i0] = 0
+	}
+	for (var char_type_0 = 0; char_type_0 < array_length(global.Game_inf.characters_alpha);char_type_0 ++) {
+		global.Game_inf.characters_alpha[char_type_0] = 0	
+	}
+	global.Game_inf.show_health_bar = false
+	audio_pause_sound(obj_main.song_sound1);
+	audio_pause_sound(obj_main.song_sound2);
+	audio_pause_sound(obj_main.song_sound3);
+	show_message("你失败了,对就这么潦草")
+	game_end(true)
+}
 
-
+if global.Game_inf.heath <= 0 {
+	global.Game_inf.player_die = true;
+}
 switch Game_start_pos {
 	case 1: if Game_start_pos_time >= 0.1 {func_play_sounds("\\assets\\sounds\\minus\\1.ogg",0,0);Game_start_pos ++};break;
 	case 2: if Game_start_pos_time >= 0.5 {func_play_sounds("\\assets\\sounds\\minus\\2.ogg",0,0);Game_start_pos ++};break;
@@ -12,9 +28,9 @@ switch Game_start_pos {
 }
 Game_start_pos_time += 0.013333
 
-var _view_w = 1280 * global.Game_inf.cam_scale
-var _view_h = 720 * global.Game_inf.cam_scale
-camera_set_view_pos(global._camera,(1280 - _view_w)/2 + global.Game_inf.cam_x + global.Game_inf.cam_shark_shake_x,(720 - _view_h)/2 + global.Game_inf.cam_y + global.Game_inf.cam_shark_shake_y)
+var _view_w = 1280 * global.Game_inf.cam_scale * 1.5
+var _view_h = 720 * global.Game_inf.cam_scale * 1.5
+camera_set_view_pos(global._camera,(1280*1.5 - _view_w)/2 + global.Game_inf.cam_x + global.Game_inf.cam_shark_shake_x,(720*1.5 - _view_h)/2 + global.Game_inf.cam_y + global.Game_inf.cam_shark_shake_y)
 camera_set_view_size(global._camera,_view_w,_view_h)
 camera_apply(global._camera)
 
@@ -36,7 +52,7 @@ camera_apply(global._camera)
 //if keyboard_check(ord("E")) {
 //	global.Game_inf.cam_scale += 0.02
 //}
-
+time_bot += func_frc_main(1)
 
 if !audio_exists(song_sound1) or !audio_exists(song_sound2) {
 	if audio_exists(song_sound1) {
@@ -48,42 +64,16 @@ if !audio_exists(song_sound1) or !audio_exists(song_sound2) {
 	audio_stop_all()
 	room_goto(room_stroy_mode)
 	exit;
-	//load_s = audio_create_stream(working_directory + "\\assets\\songs\\test-song\\song\\Inst.ogg")
-	//load_s1 = audio_create_stream(working_directory + "\\assets\\songs\\test-song\\song\\Voices.ogg")
-	//song_sound1=audio_play_sound(load_s,0,0)
-	//song_sound2=audio_play_sound(load_s1,0,0)	
-	//var audio_time = song_time / 1000
-	
-	//audio_sound_set_track_position(song_sound1, audio_time)	
-	//audio_sound_set_track_position(song_sound2, audio_time)	
-			
-	
 }
 
 
 Shooting_duration = 60 / global.Song_information.bpm;
 Shooting_time =song_time / 1000 - Shooting_time_last
 if Shooting_time > Shooting_duration * 2 {
-	//audio_play_sound(click,0,0)
-	
-	global.palyer_i.can_act = 1
-	obj_opponent_player.can_act = 1
-	
+
 	Shooting_time_last = song_time / 1000
-	image_index = 0
-	image_speed = 1
-	//Ui_Zoom = 1.05
-	if !(audio_sound_get_track_position(song_sound1) >= 19.5 and audio_sound_get_track_position(song_sound1) <= 20.5) {
-		
-		//global.Game_inf.cam_scale = 1.75
-	}
-	if song_time >= 23225 {
-		//execute_event("Add Camera Zoom",0.05,0.08)	
-	}
+	
 }	
-if sprite_get_number(BF) <= image_index{
-	image_speed = 0
-}
 
 //读取json进行解析处理
 song_time = audio_sound_get_track_position(song_sound1) * 1000//get_timer() / 1000 - song_last_time;
@@ -98,7 +88,8 @@ song_time = audio_sound_get_track_position(song_sound1) * 1000//get_timer() / 10
 */
 
 
-if array_length(global.Song_information.notes_data) > i {
+
+if array_length(global.Song_information.notes_data) > i and global.Game_inf.player_die != true{
 	var note = 0
 	var note_1 = 0
 	
@@ -112,28 +103,33 @@ if array_length(global.Song_information.notes_data) > i {
 	}
 	if array_length(note_1.sectionNotes) >= 1 {
 		song_time = audio_sound_get_track_position(song_sound1) * 1000
+		
 		//冒泡排序(会卡死)(整理时间顺序)
 		if global.setting_game.BUBBLE_SORT {
-			var array_2d = note_1.sectionNotes
+			var array_2d = note_1.sectionNotes;
 			var n1 = array_length(array_2d);
-    
+			var swapped;
+
 			for (var i1 = 0; i1 < n1 - 1; i1++) {
+			    swapped = false;
+    
 			    for (var j = 0; j < n1 - i1 - 1; j++) {
-			        // 比较相邻子数组的第0个元素
 			        if (array_2d[j][0] > array_2d[j + 1][0]) {
-			            // 交换整个子数组
 			            var temp = array_2d[j];
 			            array_2d[j] = array_2d[j + 1];
 			            array_2d[j + 1] = temp;
+			            swapped = true;
 			        }
 			    }
+    
+			    // 如果没有交换发生，数组已经有序，提前退出
+			    if (!swapped) break;
 			}
 		}
-		//show_debug_message("TIME:" + string(note_1.sectionNotes[n][0]) + " TEST:" + string(song_time + 800))
-			
+
 		//排序""""""""
 		//for (var t = 0;note_1.sectionNotes[n][0] >= song_time + 800;t ++) {
-		var song_time_add = 800
+		var song_time_add = 815
 		var notes_to_process = 0;
 		for (var check_idx = n; check_idx < array_length(note_1.sectionNotes); check_idx++) {
 		    if (note_1.sectionNotes[check_idx][0] <= song_time + song_time_add) {
@@ -145,51 +141,66 @@ if array_length(global.Song_information.notes_data) > i {
 		
 		for (var t = 0; t < notes_to_process; t++) {
 			if note_1.sectionNotes[n][0] <= song_time + song_time_add{
-					
+				var worry_note_a = "NOONE"
+				if (array_length(note_1.sectionNotes[n]) >= 4) {
+					 worry_note_a = note_1.sectionNotes[n][3]
+				}
+				var note_dir = note_1.sectionNotes[n][1];
+				var note_length = note_1.sectionNotes[n][2];
+				var note_obj = undefined	
 				var load_note_now = 0
-				//生成玩家的箭头
-				if note_1.mustHitSection = 1 and note_1.sectionNotes[n][1] <= 3{
-					var note_obj = instance_create_depth(800 + note_1.sectionNotes[n][1] * 110,800,-15,obj_note)
-					note_obj.note_arrow=note_1.sectionNotes[n][1]
-					note_obj.Note_length=note_1.sectionNotes[n][2]
-					note_obj.Note_mustHitSection=note_1.mustHitSection
-					if (array_length(note_1.sectionNotes[n]) >= 4) {
-						note_obj.worry_note=note_1.sectionNotes[n][3]
-					}
-				}else{
-					var note_obj = instance_create_depth(100 + (note_1.sectionNotes[n][1] - 3) * 110,800,-15,obj_note)
-					note_obj.note_arrow=note_1.sectionNotes[n][1] - 3
-					note_obj.Note_length=note_1.sectionNotes[n][2]
-					note_obj.Note_mustHitSection=0
-					if (array_length(note_1.sectionNotes[n]) >= 4) {
-						note_obj.worry_note=note_1.sectionNotes[n][3]
-					}
-				}
 				
-				////玩家箭头生成end
-			
-				//生成对手的箭头
-				if note_1.mustHitSection = 0 and note_1.sectionNotes[n][1] <= 3{
-					var note_obj = instance_create_depth(100 + note_1.sectionNotes[n][1] * 110,800,-15,obj_note)
-					note_obj.note_arrow=note_1.sectionNotes[n][1]
-					note_obj.Note_length=note_1.sectionNotes[n][2]
-					note_obj.Note_mustHitSection=note_1.mustHitSection
-					if (array_length(note_1.sectionNotes[n]) >= 4) {
-						note_obj.worry_note=note_1.sectionNotes[n][3]
-					}
-				}else if note_1.mustHitSection = 0{
-					var note_obj = instance_create_depth(800 + (note_1.sectionNotes[n][1] - 3) * 110,800,-15,obj_note)
-					note_obj.note_arrow=note_1.sectionNotes[n][1] - 3
-					note_obj.Note_length=note_1.sectionNotes[n][2]
-					note_obj.Note_mustHitSection=1
-					if (array_length(note_1.sectionNotes[n]) >= 4) {
-						note_obj.worry_note=note_1.sectionNotes[n][3]
+				//生成玩家的箭头
+				if note_1.mustHitSection = 1 {
+				    if note_dir <= 3 {
+				        // 玩家右侧 (0-3)
+				        note_obj =create_note(
+				            800 + note_dir * 110,  
+				            note_dir,               
+				            1,            
+				            note_length,
+				            worry_note_a
+				        )
+					}else {
+				        // 玩家左侧 (4-7)
+				        note_obj = create_note(
+				            100 + (note_dir - 4) * 110,  
+				            note_dir - 4,                 
+				            0,                   
+				            note_length,      
+				            worry_note_a
+				        )
+				    }
+				}
+
+				// 对手段生成
+				if note_1.mustHitSection = 0 {
+				    if note_dir <= 3 {
+				        // 对手左侧 (0-3)
+				        note_obj = create_note(
+				            100 + note_dir * 110, 
+				            note_dir,              
+				            0,            
+				            note_length,  
+				            worry_note_a
+				        )
+					}else {
+					    // 对手右侧 (4-7)
+					    note_obj = create_note(
+					        800 + (note_dir - 4) * 110, 
+					        note_dir - 4,                  
+					        1,               
+					        note_length,       
+					        worry_note_a
+					    )
 					}
 				}
+				note_obj.target_time = note_1.sectionNotes[n][0]  // 从当前处理的音符获取目标时间
+				note_obj.spawn_time = song_time
 				if note_1.mustHitSection = 0 {
-					cam_move_type = obj_opponent_player
+					cam_move_type = global.player_o
 				}else{
-					cam_move_type = global.palyer_i
+					cam_move_type = global.player_i
 				}
 				////对手箭头生成end
 				//show_debug_message(note_1.sectionNotes[n][1])
@@ -238,7 +249,12 @@ function execute_event(_event_type, param1, param2) {
             // 播放视频
             //play_midsong_video(param1);
             break;
+			
+		case "Change Stage Zoom":
+			Change_Stage_Zoom(param1,param2)
+			break;
             
+			
         // 添加其他事件类型...
             
         default:
@@ -295,7 +311,7 @@ if array_length(global.Song_information.events_data) > events_i {
 
 
 
-global.Game_inf.heath = clamp(global.Game_inf.heath,0,100)
+
 
 
 
@@ -324,7 +340,7 @@ if (audio_is_playing(song_sound1) and audio_is_playing(song_sound2)) {
 }
 
 //UI缩放
-Ui_Zoom += func_frc((1-Ui_Zoom)/15)
+Ui_Zoom += func_frc((global.Game_inf.Target_ui_scale-Ui_Zoom)/15)
 
 
 //玩家条件判定按键

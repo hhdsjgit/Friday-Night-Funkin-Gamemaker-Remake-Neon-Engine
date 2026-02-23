@@ -2,7 +2,7 @@
 //全局游戏设置!
 global.setting_game = 
 {	
-	"Volume":3,
+	"Volume":10,
 	"DOWNSCROLL":0,
 	"GHOST_TRAPPING":0,
 	"SONG OFFSET":0,

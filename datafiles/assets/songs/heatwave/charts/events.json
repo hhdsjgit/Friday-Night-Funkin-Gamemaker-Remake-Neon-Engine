@@ -1,0 +1,251 @@
+{
+	"song": {
+		"speed": 2,
+		"stage": "pride",
+		"player1": "bf",
+		"player2": "izzy",
+		"instVol": 1,
+		"events": [
+			[
+				117176.470588235,
+				[
+					[
+						"Change Fake Alpha",
+						"1",
+						"0"
+					]
+				]
+			],
+			[
+				118500,
+				[
+					[
+						"Change Fake Alpha",
+						"0",
+						"0.3"
+					]
+				]
+			],
+			[
+				192000,
+				[
+					[
+						"Change Fake Alpha",
+						"0",
+						"0.3"
+					]
+				]
+			],
+			[
+				192176.470588235,
+				[
+					[
+						"Play Animation",
+						"singRIGHTmiss",
+						"BF"
+					]
+				]
+			],
+			[
+				193411.764705882,
+				[
+					[
+						"Change Fake Alpha",
+						"1",
+						"0"
+					]
+				]
+			],
+			[
+				197647.058823529,
+				[
+					[
+						"Change Fake Alpha",
+						"0",
+						"0.3"
+					]
+				]
+			],
+			[
+				197823.529411764,
+				[
+					[
+						"Play Animation",
+						"singUPmiss",
+						"BF"
+					]
+				]
+			],
+			[
+				199058.823529411,
+				[
+					[
+						"Change Fake Alpha",
+						"1",
+						"0"
+					]
+				]
+			],
+			[
+				201529.411764705,
+				[
+					[
+						"Change Fake Alpha",
+						"0",
+						"0.3"
+					]
+				]
+			],
+			[
+				201705.882352941,
+				[
+					[
+						"Play Animation",
+						"singDOWNmiss",
+						"BF"
+					]
+				]
+			],
+			[
+				203294.117647058,
+				[
+					[
+						"Change Fake Alpha",
+						"1",
+						"0"
+					]
+				]
+			],
+			[
+				205235.294117647,
+				[
+					[
+						"Change Fake Alpha",
+						"0",
+						"0.3"
+					]
+				]
+			],
+			[
+				205411.764705882,
+				[
+					[
+						"Play Animation",
+						"singRIGHTmiss",
+						"BF"
+					]
+				]
+			],
+			[
+				206823.529411764,
+				[
+					[
+						"Change Fake Alpha",
+						"1",
+						"0"
+					]
+				]
+			],
+			[
+				208764.705882353,
+				[
+					[
+						"Change Fake Alpha",
+						"0",
+						"0.3"
+					]
+				]
+			],
+			[
+				208941.176470588,
+				[
+					[
+						"Play Animation",
+						"singLEFTmiss",
+						"BF"
+					]
+				]
+			],
+			[
+				210352.94117647,
+				[
+					[
+						"Change Fake Alpha",
+						"1",
+						"0"
+					]
+				]
+			],
+			[
+				211588.235294117,
+				[
+					[
+						"Change Fake Alpha",
+						"0",
+						"0.3"
+					]
+				]
+			],
+			[
+				211764.705882353,
+				[
+					[
+						"Play Animation",
+						"singUPmiss",
+						"BF"
+					]
+				]
+			],
+			[
+				213176.470588235,
+				[
+					[
+						"Change Fake Alpha",
+						"1",
+						"0"
+					]
+				]
+			],
+			[
+				214411.764705882,
+				[
+					[
+						"Change Fake Alpha",
+						"0",
+						"0.3"
+					]
+				]
+			],
+			[
+				214588.235294117,
+				[
+					[
+						"Play Animation",
+						"singRIGHTmiss",
+						"BF"
+					]
+				]
+			],
+			[
+				216000,
+				[
+					[
+						"Change Fake Alpha",
+						"1",
+						"0"
+					]
+				]
+			]
+		],
+		"arrowSkinBF": "notes/Notes_Izzy",
+		"notes": [],
+		"splashSkin": "notes/noteSplashes_quant",
+		"validScore": false,
+		"gfVersion": "gf-pride",
+		"arrowSkinDAD": "notes/Notes_Izzy",
+		"bpm": 170,
+		"needsVoices": true,
+		"vocalVol": 1,
+		"song": "Egobrainiac"
+	}
+}

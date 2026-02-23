@@ -1,7 +1,7 @@
 function events_game(song_name){
 	if song_name = "Montagem-Miau" {
-		global.Game_inf.cam_x -= ( global.Game_inf.cam_x - (global.palyer_i.x)+720) / 20
-		global.Game_inf.cam_y -= ( global.Game_inf.cam_y - (global.palyer_i.y) + 100) / 20
+		global.Game_inf.cam_x -= ( global.Game_inf.cam_x - (global.player_i.x)+720) / 20
+		global.Game_inf.cam_y -= ( global.Game_inf.cam_y - (global.player_i.y) + 100) / 20
 		global.Game_inf.cam_scale += func_frc((1.3-global.Game_inf.cam_scale)/15)
 		global.Game_inf.show_health_bar = 0
 		global.Game_inf.show_opponent_alpha = 0
@@ -49,12 +49,12 @@ function events_game(song_name){
 		ui_arrow_move_buffer(135,135+115,135+230,135+345,100,100,100,100,1,10,180000,186000,1,1)
 	
 		
-		//if cam_move_type = obj_opponent_player {
-		//	global.Game_inf.cam_x -= ( global.Game_inf.cam_x - (obj_opponent_player.x) +900) / 30
-		//	global.Game_inf.cam_y -= ( global.Game_inf.cam_y - (obj_opponent_player.y) + 900) / 30
+		//if cam_move_type = global.player_o {
+		//	global.Game_inf.cam_x -= ( global.Game_inf.cam_x - (global.player_o.x) +900) / 30
+		//	global.Game_inf.cam_y -= ( global.Game_inf.cam_y - (global.player_o.y) + 900) / 30
 		//}else{		
-		//	global.Game_inf.cam_x -= ( global.Game_inf.cam_x - global.palyer_i.x + 1280/2) / 30	
-		//	global.Game_inf.cam_y -= ( global.Game_inf.cam_y - (global.palyer_i.y + 100)+ 760) / 30
+		//	global.Game_inf.cam_x -= ( global.Game_inf.cam_x - global.player_i.x + 1280/2) / 30	
+		//	global.Game_inf.cam_y -= ( global.Game_inf.cam_y - (global.player_i.y + 100)+ 760) / 30
 		//}
 	}
 	//#######Satisfracture#######//
@@ -67,19 +67,19 @@ function events_game(song_name){
 		//######GAME######//
 		if audio_sound_get_track_position(song_sound1) >= 20.5 {
 			
-			if obj_opponent_player.Action_skin != "WrathRetroSpecterAngy" {
-				obj_opponent_player.can_play_act_else = 1
+			if global.player_o.Action_skin != "WrathRetroSpecterAngy" {
+				global.player_o.can_play_act_else = 1
 			}
 		
-			obj_opponent_player.Action_skin = "WrathRetroSpecterAngy"
+			global.player_o.Action_skin = "WrathRetroSpecterAngy"
 		
 		}else{
-			obj_opponent_player.Action_skin = "WrathRetroSpecter"
+			global.player_o.Action_skin = "WrathRetroSpecter"
 		}
 
 		if !(audio_sound_get_track_position(song_sound1) >= 19.5 and audio_sound_get_track_position(song_sound1) <= 20.5){
 			global.Game_inf.cam_scale += func_frc((1.8-global.Game_inf.cam_scale)/15)
-			if cam_move_type = obj_opponent_player {
+			if cam_move_type = global.player_o {
 				global.Game_inf.cam_x -= ( global.Game_inf.cam_x - (-395)) / 40
 			}else{
 				global.Game_inf.cam_x -= ( global.Game_inf.cam_x - 460) / 40				
@@ -95,6 +95,17 @@ function events_game(song_name){
 
 
 	}	
+		
+	if song_name = "Egobrainiac" {
+		global.Game_inf.cam_scale += func_frc((2-global.Game_inf.cam_scale)/15)
+	}
+	
+	if song_name = "Heatwave" {
+		
+		global.Game_inf.cam_scale += func_frc((global.Game_inf.Target_cam_scale-global.Game_inf.cam_scale)/15)
+		global.Game_inf.cam_y -= ( global.Game_inf.cam_y + 50) / 20
+		global.Game_inf.cam_x -= ( global.Game_inf.cam_x + 400) / 20
+	}
 }
 
 function game_song_init() {

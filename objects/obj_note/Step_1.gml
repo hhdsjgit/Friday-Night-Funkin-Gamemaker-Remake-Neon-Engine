@@ -1,4 +1,6 @@
 /// @description 
+time_deviation = spawn_time - target_time
+worry_note = "NOONE"
 with obj_note {
 	if id != other.id and note_arrow = other.note_arrow and Note_mustHitSection = other.Note_mustHitSection {
 			

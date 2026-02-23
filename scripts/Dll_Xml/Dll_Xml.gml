@@ -81,3 +81,51 @@ function draw_box(text,x,y,width,hight,value,c0,c1,name){
 	
 	draw_set_color(c_white)
 }
+
+function hex_to_rgb(hex_color) {
+    // 1. 去掉#号
+    hex_color = string_replace(hex_color, "#", "");
+    
+    // 2. 读取1,2位 → R
+    var r_high = hex_char_to_value(string_char_at(hex_color, 1));
+    var r_low = hex_char_to_value(string_char_at(hex_color, 2));
+    var r = r_high * 16 + r_low;
+    
+    // 3. 读取3,4位 → G
+    var g_high = hex_char_to_value(string_char_at(hex_color, 3));
+    var g_low = hex_char_to_value(string_char_at(hex_color, 4));
+    var g = g_high * 16 + g_low;
+    
+    // 4. 读取5,6位 → B
+    var b_high = hex_char_to_value(string_char_at(hex_color, 5));
+    var b_low = hex_char_to_value(string_char_at(hex_color, 6));
+    var b = b_high * 16 + b_low;
+    
+    // 5. 返回RGB数组\
+	show_debug_message(string([r,g,b]))
+    return [r, g, b];
+}
+
+/// 单个十六进制字符转数值
+function hex_char_to_value(char) {
+    char = string_upper(char);
+    
+    if (char == "0") return 0;
+    if (char == "1") return 1;
+    if (char == "2") return 2;
+    if (char == "3") return 3;
+    if (char == "4") return 4;
+    if (char == "5") return 5;
+    if (char == "6") return 6;
+    if (char == "7") return 7;
+    if (char == "8") return 8;
+    if (char == "9") return 9;
+    if (char == "A") return 10;
+    if (char == "B") return 11;
+    if (char == "C") return 12;
+    if (char == "D") return 13;
+    if (char == "E") return 14;
+    if (char == "F") return 15;
+    
+    return 0; // 无效字符返回0
+}

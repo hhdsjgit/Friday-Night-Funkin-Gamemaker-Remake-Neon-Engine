@@ -3,7 +3,7 @@ Action = 4
 sprite_index = Bf_car
 time = 0
 can_act = 0
-
+color = #FFFFFF
 Action_skin_left = newmstbf_left
 Action_skin_right = newmstbf_right
 Action_skin_down = newmstbf_down

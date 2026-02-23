@@ -1,11 +1,17 @@
 /// @description 
+/**
+---开发技术文档---
+
+
+*/
 choose_setting = 0
 ui_y = 0
 draw_alpha = 1
 test_need_draw = 
 {
 	"options":["CONTROLS","GAMEPLAY >","APPEARANCE >","MISCELLANEOUS >","SHARDER >"],
-	"options_gameplay":["DOWNSCROLL","GHOST TRAPPING","SONG OFFSET","NAUGHTYNESS","CAMERA ZOOM ON BEAT","BUBBLE SORT"]		
+	"options_gameplay":["DOWNSCROLL","GHOST TRAPPING","SONG OFFSET","NAUGHTYNESS","CAMERA ZOOM ON BEAT","BUBBLE SORT"],
+	"options_appearance":["TEST0","TEST1","TEST2","TEST3"]
 }
 
 time = 0

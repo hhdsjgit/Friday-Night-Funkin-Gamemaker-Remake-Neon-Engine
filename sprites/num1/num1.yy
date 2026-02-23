@@ -83,8 +83,8 @@
   "swatchColours":null,
   "swfPrecision":0.5,
   "textureGroupId":{
-    "name":"text_ui",
-    "path":"texturegroups/text_ui",
+    "name":"text_ui2",
+    "path":"texturegroups/text_ui2",
   },
   "type":0,
   "VTile":false,

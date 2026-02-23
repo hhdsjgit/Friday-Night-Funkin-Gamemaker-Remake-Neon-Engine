@@ -38,6 +38,7 @@ if (hovering_title_bar or draw_inf.canmovefileing) and mouse_check_button(1) {
 }
 
 // 绘制精灵
+// 绘制精灵
 if file_exists(working_directory + string(text_box_path.text)) {
 
     if sprite_exists(atlas_sprite) and array_length(buff_png_json) > 0 {
@@ -64,12 +65,31 @@ if file_exists(working_directory + string(text_box_path.text)) {
             test_time = a_test_time
         }
         
-        var _test_time = floor(test_time)
-        
+		var _test_time = floor(test_time)
+		
+		var frameWidth = 0
+        var frameheight = 0
+		var frameX = 0
+        var frameY = 0
+		
+		var has_frame = (variable_struct_exists(buff_png_json[_test_time], "frameWidth")) 
+                and (variable_struct_exists(buff_png_json[_test_time], "frameheight"))
+		var has_frame_offset = (variable_struct_exists(buff_png_json[_test_time], "frameX")) 
+                and (variable_struct_exists(buff_png_json[_test_time], "frameY"))
+				
+		if has_frame {
+			frameWidth = buff_png_json[_test_time].frameWidth
+	        frameheight = buff_png_json[_test_time].frameheight
+		}
+		
+		if has_frame_offset {
+			frameX = buff_png_json[_test_time].frameX
+	        frameY = buff_png_json[_test_time].frameY
+		}
+		
         // 计算移动偏移量
         var need_move_x = all_move_x + mouse_move_x
         var need_move_y = all_move_y + mouse_move_y
-        
         
         if draw_inf.movechar == 0 {
             need_move_x = all_move_x
@@ -77,70 +97,54 @@ if file_exists(working_directory + string(text_box_path.text)) {
         }
 		
         var filpx = 1
-		if buff_char_json.character.properties.flipX = 1 {
+		if buff_char_json.character.properties.flipX == 1 {
 			filpx = -1	
-			need_move_x += buff_png_json[_test_time].frameWidth*characters_scale + buff_png_json[_test_time].frameX*characters_scale*2
+			need_move_x += frameWidth * characters_scale + frameX * characters_scale * 2
 		}
 		
-		// 检查是否存在帧偏移属性
-		var has_frame_offset = (variable_struct_exists(buff_png_json[_test_time], "frameX")) 
-                and (variable_struct_exists(buff_png_json[_test_time], "frameY"))
-				
-				
-		// 绘制位置计算
-        var base_x = 530 + need_move_x
-        var base_y = 100 + need_move_y
+		// 绘制位置计算（移到外面，让旋转和未旋转都能访问）
+        var base_x = 100 + need_move_x
+        var base_y = 0 + need_move_y
         
         // 应用帧偏移
-        var draw_x = base_x - buff_png_json[_test_time].frameX * characters_scale
-        var draw_y = base_y - buff_png_json[_test_time].frameY * characters_scale
+        var draw_x = base_x - frameX * characters_scale
+        var draw_y = base_y - frameY * characters_scale
 		
-        // 检查数组索引是否有效
+		// 最终绘制位置（减去文本框偏移）
+		var final_draw_x = draw_x - real(text_box_i_x.text)* characters_scale
+		var final_draw_y = draw_y - real(text_box_i_y.text)* characters_scale
+		
+		// 检查数组索引是否有效
         if _test_time >= 0 and _test_time < array_length(buff_png_json) {
             var rotated = 0
-			// 检查是否存在帧偏移属性
-            if has_frame_offset {
-                if variable_struct_exists(buff_png_json[_test_time], "rotated") {
-                    rotated = 90
-                }
-                draw_sprite_general(
-                    atlas_sprite,                          // sprite
-                    0,                                     // subimg
-                    buff_png_json[_test_time].x,           // left
-                    buff_png_json[_test_time].y,           // top
-                    buff_png_json[_test_time].width,       // width
-                    buff_png_json[_test_time].height,      // height
-                    draw_x, // x
-                    draw_y, // y
-                    characters_scale * filpx,                      // xscale
-                    characters_scale,                      // yscale
-                    rotated,                               // rotation
-                    c_white,                               // c1
-                    c_white,                               // c2
-                    c_white,                               // c3
-                    c_white,                               // c4
-                    1                                      // alpha
-                );
-            } else {
-                draw_sprite_part_ext(
-                    atlas_sprite,
-                    0,
-                    buff_png_json[_test_time].x, 
-                    buff_png_json[_test_time].y,
-                    buff_png_json[_test_time].width, 
-                    buff_png_json[_test_time].height,
-                    530 + need_move_x,
-                    100 + need_move_y,
-                    characters_scale * filpx, 
-                    characters_scale,
-                    c_white,
-                    1
-                );
-            }
+			var orig_w = buff_png_json[_test_time].width
+			var orig_h = buff_png_json[_test_time].height
+			var rot_offset_x = 0
+			var rot_offset_y = 0
+			// 检查是否存在旋转属性
+            if has_frame_offset and variable_struct_exists(buff_png_json[_test_time], "rotated") {
+                rotated = 90
+				final_draw_y += frameWidth * characters_scale + 500
+            } 
+            // 没有旋转，正常绘制
+            draw_sprite_general(
+                atlas_sprite, 0,
+                buff_png_json[_test_time].x,
+                buff_png_json[_test_time].y,
+                buff_png_json[_test_time].width,
+                buff_png_json[_test_time].height,
+                final_draw_x,
+                final_draw_y,
+                characters_scale * filpx,
+                characters_scale,
+                rotated,
+                c_white, c_white, c_white, c_white,
+                1
+            );
+            
         }
     }
 }
-
 // 处理鼠标释放事件 - 移动文件窗口
 if mouse_check_button_released(1) {
     if draw_inf.canmovefileing {

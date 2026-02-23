@@ -28,6 +28,9 @@ function get_note_y (_note_arrow,_Note_mustHitSection){
 	return 100;
 	//get_note_y(note_arrow,Note_mustHitSection)
 }
+time_deviation = 0
+target_time = 0
+spawn_time = 0
 note_arrow = 0
 Note_length = 0
 Check_note_length = 0

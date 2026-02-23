@@ -14,7 +14,7 @@ test_need_draw =
 		{
 			"names": "GOODTIMES2",
 	        "role": "code",
-	        "path": "assets//imagles//credits//credit_icon_hhdsj.png"
+	        "path": "assets//images//credits//credit_icon_hhdsj.png"
 		},
 		{
 			"names": "> ELSE",

@@ -1,7 +1,12 @@
 /// @description 
 var _x = -2080
 var _y = -1152
-
+if global.Game_inf.player_die = true {
+	draw_set_color(c_black)
+	draw_rectangle(-3000,-3000,4000,4000,0)
+	draw_set_color(c_white)
+	exit;	
+}
 if global.Song_information.song = "Extirpatient" {
 	draw_sprite_stretched(highlights,0,_x,_y,sprite_width,sprite_height)
 	// 假设你想绘制高光精灵右半部分，并放在(x,y)位置

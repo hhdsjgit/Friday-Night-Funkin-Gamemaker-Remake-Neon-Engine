@@ -9,6 +9,20 @@ function func_main(a1,a2,a3,a4,b1,b2,b3,b4){
 	obj_main.obj_opponent_right_arrow.x = b4
 	
 }
+
+/**
+* 根据血量获取图标帧索引
+* @param {real} heath - 当前血量(0-100)
+* @return {real} 图标帧索引 (0=正常, 1=胜利, 2=失败)
+*/
+function get_icon_heath(heath) {
+	if heath <= 100 and heath > 20 {
+	    return 1;  // 血量中等 -> 正常表情
+	} else {
+	    return 2;  // 血量低 -> 失败表情
+	}
+}
+	
 function Use_Gradient (value) {
 	if value = 0 and obj_all_load.suc_gradient{
 		obj_all_load.can_show_gradient = 0
@@ -348,18 +362,22 @@ function func_judge_performance_quality(_y,_offset,_note,worry_note){
     
     // 使用ACC时间窗口判断
     if distance_ms <= 45 {
+		global.Game_inf.sick_number += 1
         judgement = "SICK";
         rating = 0; // Sick
         base_score = 300;
     } else if distance_ms <= 90 {
+		global.Game_inf.good_number += 1
         judgement = "GOOD";
         rating = 1; // Good
-        base_score = 200;
+        base_score = 230;
     } else if distance_ms <= 135 {
+		global.Game_inf.bad_number += 1
         judgement = "BAD";
         rating = 2; // Bad
         base_score = 100;
     } else if distance_ms <= 160 {
+		global.Game_inf.shit_number += 1
         judgement = "SHIT";
         rating = 3; // Shit
         base_score = 50;
@@ -400,4 +418,22 @@ function load_all_jsons_from_folder(folder_path) {
     file_find_close();
     
     return all_jsons; 
+}
+
+function miss_note_do() {
+	global.Game_inf.heath -= 2
+	global.Game_inf.max_score += 300
+	global.Game_inf.total_score -= 10
+    global.Game_inf.miss_note += 1  // 增加错过计数
+	global.Game_inf.Combo_note = 0
+}
+
+function player_check_do() {
+	global.Game_inf.heath += 1	
+	global.Game_inf.heath = clamp(global.Game_inf.heath,0,100)
+}
+
+function player_check_long_do() {
+	global.Game_inf.heath += 0.05	
+	global.Game_inf.heath = clamp(global.Game_inf.heath,0,100)
 }

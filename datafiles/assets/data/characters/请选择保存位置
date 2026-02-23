@@ -1,0 +1,33 @@
+{
+  "character":{
+    "animations":[
+      {
+        "fps":24.0,
+        "name":"",
+        "x":0.0,
+        "anim":"",
+        "y":0.0,
+        "start_anim":0.0,
+        "end_anim":0.0,
+        "loop":false
+      }
+    ],
+    "properties":{
+      "sprite":"",
+      "flipY":true,
+      "y":0.0,
+      "icon":"bf",
+      "holdTime":8.0,
+      "json_path":"",
+      "png_path":"",
+      "color":"#30B0D1",
+      "flipX":false,
+      "isPlayer":false,
+      "isGF":false
+    },
+    "metadata":{
+      "doctype":"neon-engine-character",
+      "version":"0.0.1"
+    }
+  }
+}
