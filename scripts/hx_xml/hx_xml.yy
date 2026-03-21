@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"hx_xml",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"hx_xml",
+  "parent":{
+    "name":"脚本",
+    "path":"folders/脚本.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

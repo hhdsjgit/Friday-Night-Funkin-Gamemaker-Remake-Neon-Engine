@@ -42,7 +42,7 @@ if global.game_paused = 1{
 			surface_free(global.ui_surface)
 			audio_stop_all()
 			wimdows_rename()
-			global.tittle_music = func_play_sounds("assets\\music\\freakyMenu.ogg",0,1)
+			global.tittle_music = func_play_sounds("game_assets/music/freakyMenu.ogg",0,1)
 		}
 	}
 }

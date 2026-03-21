@@ -354,8 +354,10 @@ function unload_texture_group(group_name) {
 function func_judge_performance_quality(_y,_offset,_note,worry_note){
     // 计算与判定线的实际距离（像素转换为毫秒）
     var distance_pixels = abs(_y - _offset);
-    var distance_ms = distance_pixels * (1000 / (22.5 * 60)); // 转换为毫秒
-    show_debug_message(distance_ms)
+    var distance_ms = distance_pixels * (1000 / (global.Game_inf.Game_song_speed * 720)); // 转换为毫秒
+	if distance_ms >= 45 {
+		distance_ms -= global.setting_game.SONG_OFFSET
+	}
     var judgement = "";
     var rating = 0; // 0=Sick, 1=Good, 2=Bad, 3=Shit
     var base_score = 0;
@@ -365,26 +367,26 @@ function func_judge_performance_quality(_y,_offset,_note,worry_note){
 		global.Game_inf.sick_number += 1
         judgement = "SICK";
         rating = 0; // Sick
-        base_score = 300;
+        base_score = 1000;
     } else if distance_ms <= 90 {
 		global.Game_inf.good_number += 1
         judgement = "GOOD";
         rating = 1; // Good
-        base_score = 230;
+        base_score = 650;
     } else if distance_ms <= 135 {
 		global.Game_inf.bad_number += 1
         judgement = "BAD";
         rating = 2; // Bad
-        base_score = 100;
+        base_score = 450;
     } else if distance_ms <= 160 {
 		global.Game_inf.shit_number += 1
         judgement = "SHIT";
         rating = 3; // Shit
-        base_score = 50;
+        base_score = 100;
     }
    
     if worry_note = false {
-        global.Game_inf.max_score += 300;
+        global.Game_inf.max_score += 1000;
     }
     
     if base_score > 0 {
@@ -436,4 +438,160 @@ function player_check_do() {
 function player_check_long_do() {
 	global.Game_inf.heath += 0.05	
 	global.Game_inf.heath = clamp(global.Game_inf.heath,0,100)
+}
+
+
+
+function alpha_changed(time) {
+	if floor(time) % 3 == 0{
+		return 1;
+	}else{
+		return 0;
+	}
+}
+
+function draw_text_bet_ext(text,_x,_y,_image_xscale,_image_yscale,a,angle,alpha) {
+	var use_x = string_length(text) * (sprite_get_width(spr_alphabet) - 37) * _image_xscale
+	draw_text_bet(text,_x - use_x/2,_y,_image_xscale,_image_yscale,angle,alpha)
+}
+
+function split_string(str, delimiter) {
+    var result = [];
+    var temp_str = str;
+    var _pos = 0;  // 声明为局部变量并初始化
+    
+    while (string_length(temp_str) > 0) {
+        _pos = string_pos(delimiter, temp_str);
+        
+        if (_pos == 0) {
+            // 没有更多分隔符，添加剩余部分
+            array_push(result, temp_str);
+            break;
+        } else {
+            // 找到分隔符，添加子字符串
+            if (_pos > 1) {
+                array_push(result, string_copy(temp_str, 1, _pos - 1));
+            } else {
+                array_push(result, ""); // 空字符串（分隔符在开头）
+            }
+            
+            // 跳过分隔符
+            temp_str = string_copy(temp_str, _pos + 1, string_length(temp_str) - _pos);
+        }
+    }
+    return result;
+}
+
+// ease_functions.gml
+// ==================== 缓动函数 ====================
+function ease_linear(t) { 
+    return t; 
+}
+
+function ease_quad_in(t) { 
+    return t * t; 
+}
+function ease_quad_out(t) { 
+    return t * (2 - t); 
+}
+function ease_quad_inout(t) {
+    if (t < 0.5) return 2 * t * t;
+    return -1 + (4 - 2 * t) * t;
+}
+
+function ease_sine_in(t) { 
+    return 1 - cos(t * pi / 2); 
+}
+function ease_sine_out(t) { 
+    return sin(t * pi / 2); 
+}
+function ease_sine_inout(t) { 
+    return 0.5 * (1 - cos(pi * t)); 
+}
+
+function ease_cubic_in(t) { 
+    return t * t * t; 
+}
+function ease_cubic_out(t) { 
+    t -= 1;
+    return t * t * t + 1; 
+}
+function ease_cubic_inout(t) {
+    if (t < 0.5) return 4 * t * t * t;
+    t = 2 * t - 2;
+    return 0.5 * t * t * t + 1;
+}
+
+// 获取缓动函数
+function get_ease_function(ease_type, ease_dir) {
+    var key = ease_type + "_" + ease_dir;
+    switch (key) {
+        case "linear_In":
+        case "linear_Out":
+        case "linear_InOut":
+            return ease_linear;
+            
+        case "quad_In": return ease_quad_in;
+        case "quad_Out": return ease_quad_out;
+        case "quad_InOut": return ease_quad_inout;
+        
+        case "sine_In": return ease_sine_in;
+        case "sine_Out": return ease_sine_out;
+        case "sine_InOut": return ease_sine_inout;
+        
+        case "cubic_In": return ease_cubic_in;
+        case "cubic_Out": return ease_cubic_out;
+        case "cubic_InOut": return ease_cubic_inout;
+        
+        default: return ease_linear;
+    }
+}
+
+function draw_vignette() {
+    if (!global.vignette.active && global.vignette.intensity <= 0) return;
+    
+    //// 方法1：使用圆形渐变
+    //var cx = 640;  // 屏幕中心X
+    //var cy = 360;  // 屏幕中心Y
+    //var max_dist = 800;  // 最大距离
+    
+    //var intensity = clamp(global.vignette.intensity, 0, 1);
+    //var size = clamp(global.vignette.size, 0.3, 2);
+    
+    //// 绘制暗角
+    //for (var i = 0; i < 360; i += 10) {
+    //    var angle = i * pi / 180;
+    //    var dist = 500 * size;
+        
+    //    var x1 = cx + cos(angle) * dist;
+    //    var y1 = cy + sin(angle) * dist;
+    //    var x2 = cx + cos(angle) * (dist + 200);
+    //    var y2 = cy + sin(angle) * (dist + 200);
+        
+    //    var alpha = intensity * (1 - dist / max_dist);
+        
+    //    draw_set_color(c_black);
+    //    draw_set_alpha(alpha);
+    //    draw_line(x1, y1, x2, y2);
+    //}
+    
+    // 方法2：使用4个渐变矩形（更简单）
+    var alpha = intensity * 0.8;
+    
+    draw_set_color(c_black);
+    
+    // 上边缘
+    draw_set_alpha(alpha);
+    draw_rectangle(0, 0, 1280, cy - 200 * size, false);
+    
+    // 下边缘
+    draw_rectangle(0, cy + 200 * size, 1280, 720, false);
+    
+    // 左边缘
+    draw_rectangle(0, 0, 200 * size, 720, false);
+    
+    // 右边缘
+    draw_rectangle(1280 - 200 * size, 0, 1280, 720, false);
+    
+    draw_set_alpha(1);
 }

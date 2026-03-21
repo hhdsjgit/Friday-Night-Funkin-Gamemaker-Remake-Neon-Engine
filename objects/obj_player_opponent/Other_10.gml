@@ -11,7 +11,7 @@ var can_read = false
 
 
 //---读取json文件---//
-file_content = buffer_load(working_directory + "assets\\data\\characters\\" +string(character_json_name) + ".json")
+file_content = buffer_load(working_directory + "game_assets/data/characters/" +string(character_json_name) + ".json")
 json_string = buffer_read(file_content, buffer_string);
 buffer_delete(file_content);
 characters_json_data = json_parse(json_string);
@@ -62,7 +62,6 @@ try {
 			//放错误空值A0000
 		    if (name_length >= 4) {
 		        var base_name = string_copy(full_name, 1, name_length - 4);
-				show_debug_message(i)
 				if base_name == need_read_characters[n].anim {
 					if find_i == 0 {
 						find_i = i	
@@ -98,7 +97,7 @@ try {
 	return;
 }
 //这里赋值一个临时变量,来存储人物的小图标的文件位置
-var icon_path = (working_directory + "assets\\images\\icons\\" + need_read_properties.icon + ".png")
+var icon_path = (working_directory + "game_assets/images/icons/" + need_read_properties.icon + ".png")
 	
 //这里是用来检测这个小图标是否存在的
 if file_exists(icon_path) {

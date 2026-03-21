@@ -1,6 +1,8 @@
 var need_sing = ""
 var filpx = 1
-
+var rotated = 0
+var frameWidth = 0
+var frameheight = 0
 switch Action {
 	case 0:	need_sing = Action_skin_left;break;
 	case 1:	need_sing = Action_skin_down;break;
@@ -20,10 +22,12 @@ if characters_json_data.character.properties.flipX = 1 {
 		default: need_sing = Action_skin_idle;break;
 	}
 }
+
 for (var i = 0; i <array_length(characters_json_data.character.animations);i ++) {
 	if characters_json_data.character.animations[i].anim = string_copy(need_sing[0].name, 1, string_length(need_sing[0].name) - 4) {
 		draw_x -= characters_json_data.character.animations[i].x
 		draw_y -= characters_json_data.character.animations[i].y
+		
 	}
 }
 if floor(global.crochet) % 2 == 1 and Action == 4 and _test_time >= array_length(need_sing){
@@ -37,8 +41,21 @@ if characters_json_data.character.properties.flipX = 1 {
 	filpx = -1	
 	draw_x += need_sing[_test_time].frameWidth*characters_scale + need_sing[_test_time].frameX*characters_scale*2
 }
-
-
+var orig_w = need_sing[_test_time].width
+var orig_h =need_sing[_test_time].height
+var has_frame = (variable_struct_exists(need_sing[_test_time], "frameWidth")) 
+        and (variable_struct_exists(need_sing[_test_time], "frameheight"))
+var has_frame_offset = (variable_struct_exists(need_sing[_test_time], "frameX")) 
+        and (variable_struct_exists(need_sing[_test_time], "frameY"))
+				
+if has_frame {
+	frameWidth = need_sing[_test_time].frameWidth
+	frameheight = need_sing[_test_time].frameheight
+}
+if variable_struct_exists(need_sing[_test_time], "rotated") {
+    rotated = 90
+	draw_y += frameWidth * characters_scale + orig_w * characters_scale
+} 
 
 
 
@@ -58,7 +75,7 @@ draw_sprite_general(
     draw_y, // y
     characters_scale * filpx,                      // xscale
     characters_scale,                      // yscale
-    0,                               // rotation
+    rotated,                               // rotation
     c_white,                               // c1
     c_white,                               // c2
     c_white,                               // c3

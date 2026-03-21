@@ -45,7 +45,7 @@ original_opponent_colors = array_create(4);
 
 // 闪光灯效果开关（对应Lua的flashingLights）
 global.flashing_lights = true; // 默认开启，可以根据需要改为false
-
+global.crochet_time = 0
 // 其他可能需要的全局变量
 global.modcharts = true; // Modcharts开关
 

@@ -4,45 +4,94 @@
 global.ui_surface = surface_create(1280, 720);
 
 // ==================== 游戏信息结构体 ====================
+global.vignette = {
+    "active": false,
+    "intensity": 0,      // 强度 (0-1)
+    "size": 1,           // 大小 (0-2)
+    "target_intensity": 0,
+    "target_size": 1,
+    "tween_active": false,
+    "tween_start_time": 0,
+    "tween_duration": 0,
+    "start_intensity": 0,
+    "start_size": 1
+};
+
 global.Game_inf = {
+    // ==================== 游戏状态 ====================
     "miss_note": 0,                    // 错过音符数
     "Combo_note": 0,                   // 当前连击数
     "BOTPLAY": 0,                      // 自动模式开关
-    "Note_player2_0": false,            // 对手第0列音符状态
+    "player_die": false,               // 玩家死亡状态
+    
+    // ==================== 血量系统 ====================
+    "heath": 50,                       // 血量
+    
+    // ==================== 音符状态 ====================
+    // 对手音符状态（玩家侧？命名可能需要调整）
+    "Note_player2_0": false,
     "Note_player2_1": false,
     "Note_player2_2": false,
     "Note_player2_3": false,
-    "Note_player1_0": false,            // 玩家第0列音符状态
+    // 玩家音符状态
+    "Note_player1_0": false,
     "Note_player1_1": false,
     "Note_player1_2": false,
     "Note_player1_3": false,
-    "heath": 50,                         // 血量
-    "cam_scale": 1,                      // 摄像机缩放
+    
+    // ==================== 分数系统 ====================
+    "total_score": 0,                  // 总分
+    "accuracy": 100,                   // 准确率
+    "max_score": 0,                    // 最大可能分数
+    "sick_number": 0,
+    "good_number": 0,
+    "bad_number": 0,
+    "shit_number": 0,
+    
+    // ==================== 摄像机系统 ====================
+    "cam_scale": 1,                    // 摄像机缩放
     "cam_last_scale": 1,
     "cam_scale_changed": 1,
-    "cam_x": 0,                          // 摄像机X偏移
-    "cam_y": 0,                          // 摄像机Y偏移
-    "cam_shark_shake_x": 0,              // 摄像机抖动X
-    "cam_shark_shake_y": 0,              // 摄像机抖动Y
-    "ui_shark_shake_x": 0,               // UI抖动X
-    "ui_shark_shake_y": 0,               // UI抖动Y
-    "total_score": 0,                    // 总分
-    "accuracy": 100,                     // 准确率
-    "max_score": 0,                      // 最大可能分数
-    "show_health_bar": 1,                // 显示血条
-    "show_opponent_alpha": 1,             // 显示对手透明度
-    "show_note_Splashes": 1,              // 显示溅墨特效
-	"sick_number": 0,
-	"good_number": 0,
-	"bad_number": 0,
-	"shit_number": 0,
-	"player_die": false,
-	"Note_arrow_alpha":[1,1],
-	"characters_alpha":[1,1],
-	"Target_ui_scale":1,
-	"Target_cam_scale":1,
+    "cam_x": 0,                        // 摄像机X偏移
+    "cam_y": 0,                        // 摄像机Y偏移
+    "Target_cam_scale": 1,             // 目标摄像机缩放
+    
+    // 摄像机缓动移动
+    "Target_cam_x": 0,
+    "Target_cam_y": 0,
+    "cam_move_active": false,
+    "cam_move_start_time": 0,
+    "cam_move_duration": 0,
+    "cam_move_start_x": 0,
+    "cam_move_start_y": 0,
+    "cam_move_ease_type": "linear",
+    "cam_move_ease_dir": "In",
+    "cam_buff_crochet": 0,
+    
+    // 摄像机抖动
+    "cam_shake_active": false,
+    "cam_shake_strength": 0,
+    "cam_shake_duration": 0,
+    "cam_shake_start_time": 0,
+    "cam_shark_shake_x": 0,
+    "cam_shark_shake_y": 0,
+    
+    // ==================== UI系统 ====================
+    "Target_ui_scale": 1,
+    "ui_shark_shake_x": 0,
+    "ui_shark_shake_y": 0,
+    "show_health_bar": 1,
+    "show_opponent_alpha": 1,
+    "show_note_Splashes": 1,
+    
+    // ==================== 透明度控制 ====================
+    "Note_arrow_alpha": [1, 1],
+    "characters_alpha": [1, 1],
+    
+    // ==================== 游戏速度 ====================
+    "Game_song_speed": 3
 };
-global.Game_inf.Target_cam_scale = 2
+global.Game_inf.Target_cam_scale = 1
 // ==================== 全局变量初始化 ====================
 global.arrow_draw = []
 global.player_i = obj_player;              // 玩家对象
@@ -64,7 +113,6 @@ global.check_map = {                        // 按键状态映射
 depth = -20;                                // 对象深度
 video_played = false;                       // 视频播放状态
 cam_move_type = global.player_o;            // 摄像机跟随目标
-shader = shader_invert;                      // 使用的着色器
 uniform_invert = -1;                         // 着色器参数
 icon_scale = -1;                             // 图标缩放
 Ui_Zoom = 1;                                 // UI缩放
@@ -120,8 +168,8 @@ view_set_camera(0, global._camera);
 var Game_engine_type = "NE";
 
 // 构建JSON文件路径
-var json_path = working_directory + "assets\\songs\\" + string(global.song_get.song) + 
-                "\\charts\\" + string(global.song_get.song) + "-" + 
+var json_path = working_directory + "game_assets/songs/" + string(global.song_get.song) + 
+                "/charts/" + string(global.song_get.song) + "-" + 
                 string(global.song_get.difficulties) + ".json";
 
 // 检查文件是否存在
@@ -134,7 +182,18 @@ if (!file_exists(json_path)) {
 var file_content = buffer_load(json_path);
 var json_string = buffer_read(file_content, buffer_string);
 buffer_delete(file_content);
-global.song_file = json_parse(json_string);
+var raw_song_data = json_parse(json_string);
+
+// ==================== 新增：预处理歌曲数据 ====================
+show_debug_message("开始预处理歌曲数据...");
+var start_time = get_timer();
+
+global.processed_song = scr_preprocess_song_data(raw_song_data);
+
+var process_time = (get_timer() - start_time) / 1000;
+show_debug_message("预处理完成！耗时: " + string(process_time) + "ms");
+
+global.song_file = global.processed_song;//json_parse(json_string);
 
 // ==================== 歌曲信息初始化 ====================
 global.Song_information = {
@@ -171,16 +230,16 @@ window_set_caption("Friday Night Funkin-Neon Engine - " + string(global.Song_inf
 
 // ==================== 音频加载 ====================
 // 加载伴奏（Inst）
-if (file_exists(working_directory + "assets\\songs\\" + string(global.song_get.song) + "\\song\\Inst.ogg")) {
-    load_s = audio_create_stream(working_directory + "assets\\songs\\" + string(global.song_get.song) + "\\song\\Inst.ogg");
+if (file_exists(working_directory + "game_assets/songs/" + string(global.song_get.song) + "/song/Inst.ogg")) {
+    load_s = audio_create_stream(working_directory + "game_assets/songs/" + string(global.song_get.song) + "/song/Inst.ogg");
     song_sound1 = audio_play_sound(load_s, 0, 0);
 } else {
     song_sound1 = audio_play_sound(Voices1_1, 0, 0);  // 默认音效
 }
 
 // 加载人声（Voices）
-if (file_exists(working_directory + "assets\\songs\\" + string(global.song_get.song) + "\\song\\Voices.ogg")) {
-    load_s1 = audio_create_stream(working_directory + "assets\\songs\\" + string(global.song_get.song) + "\\song\\Voices.ogg");
+if (file_exists(working_directory + "game_assets/songs/" + string(global.song_get.song) + "/song/Voices.ogg")) {
+    load_s1 = audio_create_stream(working_directory + "game_assets/songs/" + string(global.song_get.song) + "/song/Voices.ogg");
     song_sound2 = audio_play_sound(load_s1, 0, 0);
 } else {
     song_sound2 = audio_play_sound(Voices1_1, 0, 0);  // 默认音效

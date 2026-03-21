@@ -1,0 +1,25 @@
+{
+	"credits":
+	[
+		{
+			"names": "> CODE BY",
+	        "role": "",
+	        "path": ""
+		},
+		{
+			"names": "GOODTIMES2",
+	        "role": "code",
+	        "path": "game_assets//imagles//credits//credit_icon_hhdsj.png"
+		},	
+		{
+			"names": "> ELSE THANK",
+	        "role": "",
+	        "path": ""
+		},
+		{
+			"names": "Shui Ping Jun ",
+	        "role": "thank",
+	        "path": "game_assets//imagles//credits//thank0.png"
+		}
+	]
+}

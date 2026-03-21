@@ -1,15 +1,3 @@
-function alpha_changed(time) {
-	if floor(time) % 3 == 0{
-		return 1;
-	}else{
-		return 0;
-	}
-}
-
-function draw_text_bet_ext(text,_x,_y,_image_xscale,_image_yscale,a,angle,alpha) {
-	var use_x = string_length(text) * (sprite_get_width(spr_alphabet) - 37) * _image_xscale
-	draw_text_bet(text,_x - use_x/2,_y,_image_xscale,_image_yscale,angle,alpha)
-}
 for (var a = 0;a < array_length(all_songs);a++) {
 	var better_math = choose_setting - a
 	if better_math > 0 {

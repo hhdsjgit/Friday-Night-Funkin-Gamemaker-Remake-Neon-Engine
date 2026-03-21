@@ -127,7 +127,7 @@ if global.Game_inf.show_health_bar {
     
     // 图标缩放动画
     icon_scale += func_frc((-1 - icon_scale) / 6);
-    
+    icon_scale = clamp(icon_scale,-1.5,1.5)
     // 调整图标位置 (镜像时需要偏移)
     icon_x -= 150;
     
@@ -239,7 +239,7 @@ if global.Game_inf.player_die != true {
 	}
 
 	// 绘制其他游戏信息
-	draw_Outline("noone", 15, _draw_ui_y + 60, 1, 1, c_black, c_white, 0, Font_vcr);
+	draw_Outline("Score : " + string(global.Game_inf.total_score), 15, _draw_ui_y + 60, 1, 1, c_black, c_white, 0, Font_vcr);
 	draw_Outline("Combo_note : " + string(global.Game_inf.Combo_note), 15, _draw_ui_y + 90, 1, 1, c_black, c_white, 0, Font_vcr);
 	draw_Outline("Miss: " + string(global.Game_inf.miss_note), 15, _draw_ui_y + 120, 1, 1, c_black, c_white, 0, Font_vcr);
 
@@ -256,6 +256,31 @@ if global.Game_inf.player_die != true {
 //==============================================================================
 // 结束UI表面渲染
 //==============================================================================
+
+// ==================== 更新暗角缓动（在 obj_main Step 中）====================
+if (global.vignette.tween_active) {
+    var _current_time = obj_main.song_time;
+    var elapsed = _current_time - global.vignette.tween_start_time;
+    
+    if (elapsed >= global.vignette.tween_duration) {
+        // 动画完成
+        global.vignette.intensity = global.vignette.target_intensity;
+        global.vignette.size = global.vignette.target_size;
+        global.vignette.tween_active = false;
+    } else {
+        var progress = elapsed / global.vignette.tween_duration;
+        var eased = get_ease_function(global.vignette.tween_ease, global.vignette.tween_dir)(progress);
+        
+        global.vignette.intensity = global.vignette.start_intensity + 
+            (global.vignette.target_intensity - global.vignette.start_intensity) * eased;
+        global.vignette.size = global.vignette.start_size + 
+            (global.vignette.target_size - global.vignette.start_size) * eased;
+    }
+}
+
+// ==================== 绘制暗角效果 ====================
+
+
 surface_reset_target();
 
 

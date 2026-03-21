@@ -222,7 +222,7 @@ function string_Convert_Encoding(text,sorEnc="GBK",tarEnc="UTF-8"){
  * @desc 打开文件 如
 		file_Open(@"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
 		"--inprivate  --single-argument %1")
-		"C:\\Program Files (x86)\\Adobe\\Reader 11.0\\Reader\\AcroRd32.exe", "/A /R example.pdf"
+		"C:/Program Files (x86)/Adobe/Reader 11.0/Reader/AcroRd32.exe", "/A /R example.pdf"
  * @arg {string}  path 路径
  * @arg {string}  arg 参数
  */

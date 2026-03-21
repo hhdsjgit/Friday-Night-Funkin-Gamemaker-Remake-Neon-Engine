@@ -7,10 +7,10 @@
   },
   "bitDepth":1,
   "channelFormat":0,
-  "compression":0,
+  "compression":3,
   "compressionQuality":4,
   "conversionMode":0,
-  "duration":244.60716,
+  "duration":244.59782,
   "exportDir":"",
   "name":"Inst",
   "parent":{

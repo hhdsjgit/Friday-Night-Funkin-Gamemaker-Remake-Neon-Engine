@@ -27,3 +27,15 @@ global.setting_game.Volume = clamp(global.setting_game.Volume,0,10);
 draw_Volume_ui_y = clamp(draw_Volume_ui_y,-30,100)
 
 
+
+// 在 Step 事件中
+if (keyboard_check_pressed(fullscreen_toggle_key)) {
+    window_set_fullscreen(!window_get_fullscreen());
+    
+    // 可选：显示提示
+    if (window_get_fullscreen()) {
+        show_debug_message("已切换到全屏模式");
+    } else {
+        show_debug_message("已切换到窗口模式");
+    }
+}

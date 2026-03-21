@@ -41,10 +41,20 @@ if global.game_paused = 0 {
 	    }   
 	}
     // 音符向上移动（每秒20*60像素）
-	var speed_move = 20
-	speed_move = 22.5
-    y = cr_obj_note - move_y - (time_deviation * (speed_move/1000))
-    move_y += (speed_move * 60) * _dt 
+	//var speed_move = 20
+	//speed_move = 22.5
+	//velocity_y_offset = global.Game_inf.Game_song_speed * 720;   // 每帧更新速度
+	//cr_obj_note = abs(time_deviation/1000) * velocity_y_offset; // 重新计算初始偏移（基于当前速度）
+	//move_y += velocity_y_offset * _dt
+    //y = cr_obj_note - move_y   
+	// 计算剩余时间（毫秒）
+    var time_left = target_time - obj_main.song_time;
+    // 当前速度（像素/秒）
+    var speed_y = global.Game_inf.Game_song_speed * 720;
+    // 直接计算 Y 位置：判定线 Y + 剩余时间对应的距离
+	if _NOTENOWY + (time_left / 1000) * speed_y <= 1400{
+		y = _NOTENOWY + (time_left / 1000) * speed_y;
+	}
     // 检查音符是否到达判定线（y=100）且满足自动播放或非玩家音符条件
     if y <= (_NOTENOWY) and (global.Game_inf.BOTPLAY = 1 or Note_mustHitSection = 0) {
         // 如果是第一次检查且是玩家音符段
@@ -55,8 +65,6 @@ if global.game_paused = 0 {
             
             // 如果是长音符，增加连击
             if Note_length > 0 {
-				//global.Game_inf.max_score += 300
-				//global.Game_inf.total_score += 300
                 global.Game_inf.Combo_note ++
 				if worry_note = "NOONE" {
 					scrore_ui(global.Game_inf.Combo_note,func_judge_performance_quality(y,_NOTENOWY,note_arrow,false))    

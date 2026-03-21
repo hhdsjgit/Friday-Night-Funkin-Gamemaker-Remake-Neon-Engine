@@ -2,7 +2,7 @@
 
 
 
-//show_debug_message(load_all_jsons_from_folder("assets\\weeks\\"))
+//show_debug_message(load_all_jsons_from_folder("game_assets/weeks/"))
 
 choose_setting = 0
 ui_y = 0
@@ -11,7 +11,7 @@ time = 0
 draw_alpha = 1
 time = 0
 sound_scroll= scroll
-test_need_draw = load_all_jsons_from_folder("assets\\weeks\\")
+test_need_draw = load_all_jsons_from_folder("game_assets/weeks/")
 
 
 

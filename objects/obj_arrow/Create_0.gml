@@ -20,3 +20,4 @@ skin_left_pass_ok = left_confirm0000
 skin_down_pass_ok = down_confirm0000
 skin_up_pass_ok = up_confirm0000
 skin_right_pass_ok = right_confirm0000
+

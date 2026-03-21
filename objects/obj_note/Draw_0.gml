@@ -136,12 +136,13 @@ if Note_length > 0  {
 			default:sprite_index=global.sprite_index_note.p_note_arrow_right_hold_piece;break;
 		}	
 	}
+	var speed_note = 1
 	var k = sprite_index
 	if Check_note_length >= Note_length - 20 {
-		Check_note_length = Note_length	
+		Check_note_length = Note_length
 	}
 	if Note_length >= 10 and Check_note_length <= Note_length - 20{
-		for (var i = Check_note_length;i <= Note_length + 100;i += 25) {
+		for (var i = Check_note_length * speed_note;i <= Note_length * speed_note + 100;i += 20) {
 			y = _y + i
 			if i <= Note_length and (x >= 0 and x <= 1280 and y >= -100 and y <= 920){
 				//image_yscale = 2
@@ -160,9 +161,6 @@ if Note_length > 0  {
                 //    c_white,
                 //    1
                 //);
-				//draw_sprite_ext(sprite_index,0,x,y,1,2,0,c_white,1)
-				
-				//draw_text(x+15,y-0,"LEG "+string(Note_length) + " / " + string(Check_note_length))
 				
 			}
 		
@@ -194,6 +192,7 @@ if worry_note = "NOONE" {
 		
 		}
 	}
+	draw_text(x+30,y+50,time_deviation)
 }else{
 	if Note_mustHitSection = 1 {
 		switch note_arrow {

@@ -8,6 +8,7 @@ var bpm = global.Song_information.bpm; // 128
 crochet = (60 / bpm) * 1000; // 每拍毫秒数 = 468.75ms
 var _current_time = obj_main.song_time; // 你的时间变量
 global.crochet = (_current_time / crochet);
+global.crochet_time = crochet
 
 if array_length(special_cam) > n {
 	var a = special_cam[n]	

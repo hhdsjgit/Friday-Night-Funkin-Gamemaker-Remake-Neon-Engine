@@ -124,7 +124,8 @@ if file_exists(working_directory + string(text_box_path.text)) {
 			// 检查是否存在旋转属性
             if has_frame_offset and variable_struct_exists(buff_png_json[_test_time], "rotated") {
                 rotated = 90
-				final_draw_y += frameWidth * characters_scale + 500
+				final_draw_y += frameWidth * characters_scale + orig_w * characters_scale
+				//final_draw_x += frameheight * characters_scale + orig_h * characters_scale
             } 
             // 没有旋转，正常绘制
             draw_sprite_general(
@@ -316,7 +317,7 @@ if draw_button_ext(draw_file_x + 620, draw_file_y + 410,25,25,"-") or keyboard_c
 //	if array_length(buff_char_json) >= 0{
 //		var updated_json_string = json_stringify(buff_char_json, true);
 
-//        var save_path = working_directory + "assets\\data\\characters\\" + windows_extract_filename(text_box_path.text);
+//        var save_path = working_directory + "game_assets/data/characters/" + windows_extract_filename(text_box_path.text);
                     
 //        var file_handle = file_text_open_write(save_path);
                     

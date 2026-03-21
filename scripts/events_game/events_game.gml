@@ -103,8 +103,8 @@ function events_game(song_name){
 	if song_name = "Heatwave" {
 		
 		global.Game_inf.cam_scale += func_frc((global.Game_inf.Target_cam_scale-global.Game_inf.cam_scale)/15)
-		global.Game_inf.cam_y -= ( global.Game_inf.cam_y + 50) / 20
-		global.Game_inf.cam_x -= ( global.Game_inf.cam_x + 400) / 20
+		//global.Game_inf.cam_y -= ( global.Game_inf.cam_y + 50) / 20
+		//global.Game_inf.cam_x -= ( global.Game_inf.cam_x + 300) / 20
 	}
 }
 

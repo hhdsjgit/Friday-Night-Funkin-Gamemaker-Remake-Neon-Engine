@@ -8,7 +8,7 @@ function wimdows_rename() {
 function windows_extract_filename(file_path) {
     if (file_path == "") return "";
     
-    var normalized_path = string_replace_all(file_path, "\\", "/");
+    var normalized_path = string_replace_all(file_path, "/", "/");
     
     var last_slash = string_last_pos("/",normalized_path);
     

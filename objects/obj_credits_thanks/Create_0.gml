@@ -14,7 +14,7 @@ test_need_draw =
 		{
 			"names": "GOODTIMES2",
 	        "role": "code",
-	        "path": "assets//images//credits//credit_icon_hhdsj.png"
+	        "path": "game_assets//images//credits//credit_icon_hhdsj.png"
 		},
 		{
 			"names": "> ELSE",
@@ -23,8 +23,8 @@ test_need_draw =
 		}
 	]
 }
-if file_exists(working_directory + "assets\\data\\credits.json") {
-	var file_content = buffer_load(working_directory + "assets\\data\\credits.json")
+if file_exists(working_directory + "game_assets/data/credits.json") {
+	var file_content = buffer_load(working_directory + "game_assets/data/credits.json")
 	var json_string = buffer_read(file_content, buffer_string);
 	buffer_delete(file_content);
 	test_need_draw = json_parse(json_string);

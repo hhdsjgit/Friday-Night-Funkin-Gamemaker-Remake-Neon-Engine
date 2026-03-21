@@ -62,7 +62,7 @@ for (var i = 0;i < array_length(buff_char_json.character.animations);i ++) {
 	array_push(buff_pe_json.animations,anim_buff)
 }
 buff_json_pe.flip_x = buff_char_json.character.properties.flipX
-buff_json_pe.image = "characters" + "\\" + base_name
+buff_json_pe.image = "characters" + "/" + base_name
 show_debug_message(buff_json_pe.image)
 buff_json_pe._editor_isPlayer = buff_char_json.character.properties.isPlayer
 

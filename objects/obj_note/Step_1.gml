@@ -1,5 +1,7 @@
 /// @description 
-time_deviation = spawn_time - target_time
+velocity_y_offset = global.Game_inf.Game_song_speed * 720
+time_deviation = target_time - obj_main.song_time //spawn_time - target_time
+cr_obj_note = abs(time_deviation/1000) * velocity_y_offset
 worry_note = "NOONE"
 with obj_note {
 	if id != other.id and note_arrow = other.note_arrow and Note_mustHitSection = other.Note_mustHitSection {

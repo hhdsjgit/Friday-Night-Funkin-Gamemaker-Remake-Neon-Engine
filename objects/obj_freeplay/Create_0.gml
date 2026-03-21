@@ -6,7 +6,7 @@ time = 0
 draw_alpha = 1
 time = 0
 sound_scroll= scroll
-test_need_draw = load_all_jsons_from_folder("assets\\weeks\\")
+test_need_draw = load_all_jsons_from_folder("game_assets/weeks/")
 
 all_songs = [];
 
@@ -18,4 +18,3 @@ for (var i = 0; i < array_length(test_need_draw); i++) {
         array_push(all_songs, week.songs[j]);
     }
 }
-show_debug_message(all_songs)

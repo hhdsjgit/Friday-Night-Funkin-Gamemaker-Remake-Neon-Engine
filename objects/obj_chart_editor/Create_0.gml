@@ -1,7 +1,7 @@
 /// @description
 depth = -3
 json = {}
-var file_content = buffer_load(working_directory + "\\assets\\songs\\extirpatient\\charts\\extirpatient-hell.json")
+var file_content = buffer_load(working_directory + "/game_assets/songs/extirpatient/charts/extirpatient-hell.json")
 
 var json_string = buffer_read(file_content, buffer_string);
 buffer_delete(file_content);
@@ -52,13 +52,13 @@ draw_note_i = 0;
 draw_note_n = 0;
 draw_last_time = -1;
 
-load_s = audio_create_stream(working_directory + "\\assets\\songs\\extirpatient\\song\\Inst.ogg")
-load_s1 = audio_create_stream(working_directory + "\\assets\\songs\\extirpatient\\song\\Voices.ogg")
-//load_s2 = audio_create_stream(working_directory + "\\assets\\songs\\extirpatient\\song\\VoicesInsatian.ogg")
+load_s = audio_create_stream(working_directory + "/game_assets/songs/extirpatient/song/Inst.ogg")
+load_s1 = audio_create_stream(working_directory + "/game_assets/songs/extirpatient/song/Voices.ogg")
+//load_s2 = audio_create_stream(working_directory + "/game_assets/songs/extirpatient/song/VoicesInsatian.ogg")
 
 
-//load_s = audio_create_stream(working_directory + "\\assets\\songs\\test-song\\song\\Inst.ogg")
-//load_s1 = audio_create_stream(working_directory + "\\assets\\songs\\test-song\\song\\Voices.ogg")
+//load_s = audio_create_stream(working_directory + "/game_assets/songs/test-song/song/Inst.ogg")
+//load_s1 = audio_create_stream(working_directory + "/game_assets/songs/test-song/song/Voices.ogg")
 song_sound1=audio_play_sound(load_s,0,0)
 song_sound2=audio_play_sound(load_s1,0,0)
 

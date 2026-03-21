@@ -160,7 +160,7 @@ json_data = {}
 //	show_debug_message("文件: " + windows_extract_filename(file_path));
 //}
 show_lan = 0
-load_path = "assets\\images\\characters\\"
+load_path = "game_assets/images/characters/"
 
 
 function string_add_zero (number) {

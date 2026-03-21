@@ -28,6 +28,7 @@ function get_note_y (_note_arrow,_Note_mustHitSection){
 	return 100;
 	//get_note_y(note_arrow,Note_mustHitSection)
 }
+velocity_y_offset = 0 //速度偏移
 time_deviation = 0
 target_time = 0
 spawn_time = 0
@@ -86,7 +87,7 @@ global.sprite_index_note =
 //	o_note_arrow_up_hold_piece:Notes_Nightflaid_Assets_green_hold_piece_1,
 //	o_note_arrow_right_hold_piece:Notes_Nightflaid_Assets_red_hold_piece_1,
 //}
-cr_obj_note = y
+cr_obj_note = 0
 now_y = 0
 
 _NOTENOWY = 0

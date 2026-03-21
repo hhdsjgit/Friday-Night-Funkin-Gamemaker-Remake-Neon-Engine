@@ -7,10 +7,10 @@
   },
   "bitDepth":1,
   "channelFormat":0,
-  "compression":0,
+  "compression":3,
   "compressionQuality":4,
   "conversionMode":0,
-  "duration":72.21467,
+  "duration":-1.0,
   "exportDir":"",
   "name":"snd_test",
   "parent":{
